@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PS.Motorcycle.Application\PS.Motorcycle.Application.csproj" />
+    <ProjectReference Include="..\PS.Motorcycle.Domain\PS.Motorcycle.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
