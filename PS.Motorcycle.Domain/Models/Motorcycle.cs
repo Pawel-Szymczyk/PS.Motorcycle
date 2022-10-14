@@ -174,7 +174,7 @@ namespace PS.Motorcycle.Domain.Models
 
         // aggregations
         private Engine engine;
-
+        private Chassis chassis;
 
         // constructors 
         public Motorcycle()
@@ -193,6 +193,7 @@ namespace PS.Motorcycle.Domain.Models
             this.type = TwoWheelerType.MOTORCYCLE;
 
             this.engine = new Engine();
+            this.chassis = new Chassis();
         }
 
 
