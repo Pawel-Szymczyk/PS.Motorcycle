@@ -29,27 +29,73 @@ namespace PS.Motorcycle.Domain.Test
             };
 
 
-            //IBreak break = new Break();
-
-
-            //ISuspension susspension = new ISuspension();
-            //ITyre tyre = new Tyre();
-            //IWheel wheel = new IWheel();
-
-
-            //IMotorcycle motorcycle = new Models.Motorcycle(break, chassis, engine, susspension, tyre, wheel);
-
-            //var x = motorcycle.Type;
-
             List<IBreak> breaks = new List<IBreak>();
-            IBreak frontBreak = new Break() { };
-            IBreak rearBreak = new Break() { };
+            IBreak frontBreak = new Break() 
+            { 
+                Name = "Disc, twin",
+                NumberOfDiscs = 2,
+                Type = "Front"
+            };
+            IBreak rearBreak = new Break()
+            {
+                Name = "Disc",
+                NumberOfDiscs = 1,
+                Type = "Rear"
+            };
 
             breaks.Add(frontBreak);
             breaks.Add(rearBreak);
 
             List<ISuspension> suspensions = new List<ISuspension>();
+            ISuspension frontSuspension = new Suspension()
+            {
+                HasSuspension = true,
+                Description = "Inverted telescopic, coil spring, oil damped",
+                Type = "Front"
+                
+            };
+            ISuspension rearSuspension = new Suspension()
+            {
+                HasSuspension = true,
+                Description = "Link type, coil spring, oil damped",
+                Type = "Rear"
+            };
+
+            suspensions.Add(frontSuspension);
+            suspensions.Add(rearSuspension);
+
             List<IWheel> wheels = new List<IWheel>();
+            IWheel frontWheel = new Wheel()
+            {
+                RimDiameter = 17,
+                Type = "Front", 
+                Tyre = new Tyre()
+                {
+                    Brand = "Michelin",
+                    SpeedIndex = "W - up to over 169mph",
+                    LoadIndexOfTire = 58,
+                    Profile = 70,
+                    RimDiameter = 17,
+                    Width = 120
+                }
+            };
+            IWheel rearWheel = new Wheel()
+            {
+                RimDiameter = 17,
+                Type = "Rear",
+                Tyre = new Tyre()
+                {
+                    Brand = "Michelin",
+                    SpeedIndex = "W - up to over 169mph",
+                    LoadIndexOfTire = 73,
+                    Profile = 50,
+                    RimDiameter = 17,
+                    Width = 190
+                }
+            };
+
+            wheels.Add(frontWheel);
+            wheels.Add(rearWheel);
 
 
             IChassis chassis = new Chassis()

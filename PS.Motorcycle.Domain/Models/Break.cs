@@ -9,9 +9,9 @@ namespace PS.Motorcycle.Domain.Models
 {
     public class Break : IBreak
     {
-        private string Name { get; set; }
-        private string Type { get; set; }
-        private int NumberOfDiscs { get; set; }
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public int NumberOfDiscs { get; set; }
 
         public Break()
         {

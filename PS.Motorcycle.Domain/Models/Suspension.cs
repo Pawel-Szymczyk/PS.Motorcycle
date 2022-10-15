@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PS.Motorcycle.Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace PS.Motorcycle.Domain.Models
 {
-    internal class Suspension
+    public class Suspension : ISuspension
     {
-        private bool HasSuspension { get; set; }
-        private string Type { get; set; }
-        private string Name { get; set; }
-        private string Description { get; set; }
+        public bool HasSuspension { get; set; }
+        public string Type { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
 
         public Suspension()
         {

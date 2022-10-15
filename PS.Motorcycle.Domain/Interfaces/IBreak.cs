@@ -8,5 +8,8 @@ namespace PS.Motorcycle.Domain.Interfaces
 {
     public interface IBreak
     {
+        public string Name { get; set; }
+        public string Type { get; set; }
+        public int NumberOfDiscs { get; set; }
     }
 }

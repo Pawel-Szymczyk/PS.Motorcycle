@@ -8,5 +8,9 @@ namespace PS.Motorcycle.Domain.Interfaces
 {
     public interface ISuspension
     {
+        public bool HasSuspension { get; set; }
+        public string Type { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

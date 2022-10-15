@@ -1,13 +1,12 @@
-﻿using PS.Motorcycle.Domain.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PS.Motorcycle.Domain.Models
+namespace PS.Motorcycle.Domain.Interfaces
 {
-    public class Tyre : ITyre
+    public interface ITyre
     {
         public string Brand { get; set; }
         public string SpeedIndex { get; set; }
@@ -15,15 +14,5 @@ namespace PS.Motorcycle.Domain.Models
         public int Profile { get; set; }
         public int RimDiameter { get; set; }
         public int LoadIndexOfTire { get; set; }
-
-        public Tyre()
-        {
-            this.Brand = string.Empty;
-            this.SpeedIndex = string.Empty;
-            this.Width = 0;
-            this.Profile = 0;
-            this.RimDiameter = 0;
-            this.LoadIndexOfTire = 0;
-        }
     }
 }

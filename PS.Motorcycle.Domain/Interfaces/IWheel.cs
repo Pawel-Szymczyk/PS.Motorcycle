@@ -8,5 +8,9 @@ namespace PS.Motorcycle.Domain.Interfaces
 {
     public interface IWheel
     {
+        public int RimDiameter { get; set; }
+        public string Type { get; set; }
+
+        public ITyre Tyre { get; set; }
     }
 }
