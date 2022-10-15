@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PS.Motorcycle.Domain.Models
 {
-    internal class Motorcycle : TwoWheeler, IMotorcycle
+    public class Motorcycle : TwoWheeler, IMotorcycle
     {
         // attributes
         private int lenght;
@@ -24,6 +24,9 @@ namespace PS.Motorcycle.Domain.Models
         private string brand;
         private string model;
         private TwoWheelerType type;
+
+        private IChassis chassis;
+        private IEngine engine;
 
 
         // properties
@@ -172,13 +175,36 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        // aggregations
-        private Engine engine;
-        private Chassis chassis;
+        public IChassis Chassis
+        {
+            get
+            {
+                return this.chassis;
+            }
+
+            set
+            {
+                this.chassis = value;
+            }
+        }
+
+        public IEngine Engine
+        {
+            get
+            {
+                return this.engine;
+            }
+
+            set
+            {
+                this.engine = value;
+            }
+        }
 
         // constructors 
         public Motorcycle()
         {
+            this.type = TwoWheelerType.MOTORCYCLE;
             this.lenght = 0;
             this.height = 0;
             this.width = 0;
@@ -190,10 +216,20 @@ namespace PS.Motorcycle.Domain.Models
             this.fuelCapacity = 0;
             this.brand = String.Empty;
             this.model = String.Empty;
-            this.type = TwoWheelerType.MOTORCYCLE;
 
             this.engine = new Engine();
             this.chassis = new Chassis();
+        }
+
+
+        public Motorcycle(IChassis chassis, IEngine engine)
+        {
+            this.type = TwoWheelerType.MOTORCYCLE;
+            this.brand = String.Empty;
+            this.model = String.Empty;
+
+            this.chassis = chassis;
+            this.engine = engine;
         }
 
 

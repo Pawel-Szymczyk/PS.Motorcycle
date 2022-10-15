@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PS.Motorcycle.Domain.Abstracts
 {
-    internal abstract class TwoWheeler
+    public abstract class TwoWheeler
     {
         public abstract TwoWheelerType Type { get; set; }
         public abstract string Brand { get; set; }
