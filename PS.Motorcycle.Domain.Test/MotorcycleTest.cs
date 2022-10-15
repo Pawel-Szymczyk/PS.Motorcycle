@@ -27,10 +27,10 @@ namespace PS.Motorcycle.Domain.Test
                 Co2 = "143g/km",
                 Torque = "106.0 Nm @ 9,250rpm (78.18 lb. ft)†"
             };
-            
+
 
             //IBreak break = new Break();
-            IChassis chassis = new Chassis();
+
 
             //ISuspension susspension = new ISuspension();
             //ITyre tyre = new Tyre();
@@ -40,6 +40,26 @@ namespace PS.Motorcycle.Domain.Test
             //IMotorcycle motorcycle = new Models.Motorcycle(break, chassis, engine, susspension, tyre, wheel);
 
             //var x = motorcycle.Type;
+
+            List<IBreak> breaks = new List<IBreak>();
+            IBreak frontBreak = new Break() { };
+            IBreak rearBreak = new Break() { };
+
+            breaks.Add(frontBreak);
+            breaks.Add(rearBreak);
+
+            List<ISuspension> suspensions = new List<ISuspension>();
+            List<IWheel> wheels = new List<IWheel>();
+
+
+            IChassis chassis = new Chassis()
+            {
+                Breaks = breaks,
+                Suspensions = suspensions,
+                Wheels = wheels
+            };
+
+
 
 
             IMotorcycle motorcycle = new Models.Motorcycle(chassis, engine);

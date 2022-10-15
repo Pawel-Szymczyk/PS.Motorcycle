@@ -10,15 +10,62 @@ namespace PS.Motorcycle.Domain.Models
     public class Chassis : IChassis
     {
 
-        private List<Suspension> suspensions;
-        private List<Wheel> wheels;
-        private List<Break> breaks;
+        private List<ISuspension> suspensions;
+        private List<IWheel> wheels;
+        private List<IBreak> breaks;
+
+
+        public List<ISuspension> Suspensions
+        {
+            get
+            {
+                return this.suspensions;
+            }
+
+            set
+            {
+                this.suspensions = value;
+            }
+        }
+
+        public List<IWheel> Wheels
+        {
+            get
+            {
+                return this.wheels;
+            }
+
+            set
+            {
+                this.wheels = value;
+            }
+        }
+
+        public List<IBreak> Breaks
+        {
+            get
+            {
+                return this.breaks;
+            }
+
+            set
+            {
+                this.breaks = value;
+            }
+        }
 
         public Chassis()
         {
-            this.suspensions = new List<Suspension>();
-            this.wheels = new List<Wheel>();
-            this.breaks = new List<Break>();
+            this.suspensions = new List<ISuspension>();
+            this.wheels = new List<IWheel>();
+            this.breaks = new List<IBreak>();
+        }
+
+        public Chassis(List<ISuspension> suspensions, List<IWheel> wheels, List<IBreak> breaks)
+        {
+            this.suspensions = suspensions;
+            this.wheels = wheels;
+            this.breaks = breaks;
         }
     }
 }

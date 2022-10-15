@@ -8,5 +8,10 @@ namespace PS.Motorcycle.Domain.Interfaces
 {
     public interface IChassis
     {
+        public List<ISuspension> Suspensions { get; set; }
+
+        public List<IWheel> Wheels { get; set; }
+
+        public List<IBreak> Breaks { get; set; }
     }
 }
