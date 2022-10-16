@@ -7,8 +7,35 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using PS.Motorcycle.Data;
+using Microsoft.Azure.Cosmos;
+
+
+
+
+
+
+
+
+
+
+
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+// retrieve secrets...
+//string cosmos_enpoint = Environment.GetEnvironmentVariable("COSMOS_ENDPOINT");
+//string cosmos_key = Environment.GetEnvironmentVariable("COSMOS_KEY");
+string cosmos_enpoint = builder.Configuration["environmentVariables:COSMOS_ENDPOINT"];
+string cosmos_key = builder.Configuration["environmentVariables:COSMOS_KEY"];
+
+// New instance of CosmosClient class
+using CosmosClient client = new(
+    accountEndpoint: cosmos_enpoint,
+    authKeyOrResourceToken: cosmos_key
+);
+
 
 // Add services to the container.
 builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)

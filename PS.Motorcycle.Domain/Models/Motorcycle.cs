@@ -1,4 +1,4 @@
-﻿using PS.Motorcycle.Domain.Abstracts;
+﻿using PS.Motorcycle.Domain.Models.Base;
 using PS.Motorcycle.Domain.Interfaces;
 using PS.Motorcycle.Domain.Types;
 using System;

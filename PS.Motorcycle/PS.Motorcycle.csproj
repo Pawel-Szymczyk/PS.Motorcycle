@@ -11,13 +11,14 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.5" NoWarn="NU1605" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="6.0.5" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
     <PackageReference Include="Microsoft.Identity.Web" Version="1.16.0" />
     <PackageReference Include="Microsoft.Identity.Web.UI" Version="1.16.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PS.Motorcycle.Application\PS.Motorcycle.Application.csproj" />
-    <ProjectReference Include="..\PS.Motorcycle.Infrastructure\PS.Motorcycle.Infrastructure.csproj" />
+    <ProjectReference Include="..\PS.Motorcycle.Infrastructure\PS.Motorcycle.Infrastructure.CosmosDB.csproj" />
     <ProjectReference Include="..\PS.Motorcycle.UI\PS.Motorcycle.UserPortal.csproj" />
   </ItemGroup>
 

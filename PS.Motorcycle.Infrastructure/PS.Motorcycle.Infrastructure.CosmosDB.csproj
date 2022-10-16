@@ -7,7 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.31.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PS.Motorcycle.Application\PS.Motorcycle.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Configs\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>

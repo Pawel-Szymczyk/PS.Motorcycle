@@ -1,14 +1,18 @@
-﻿using PS.Motorcycle.Domain.Types;
+﻿using Newtonsoft.Json;
+using PS.Motorcycle.Domain.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PS.Motorcycle.Domain.Abstracts
+namespace PS.Motorcycle.Domain.Models.Base
 {
     public abstract class TwoWheeler
     {
+        [JsonProperty(PropertyName = "id")]
+        public virtual string Id { get; set; }
+
         public abstract TwoWheelerType Type { get; set; }
         public abstract string Brand { get; set; }
         public abstract string Model { get; set; }

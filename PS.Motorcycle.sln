@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.Motorcycle.Application",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.Motorcycle.Domain", "PS.Motorcycle.Domain\PS.Motorcycle.Domain.csproj", "{282442DD-7382-4E30-92D1-F1B25FFA41DF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.Motorcycle.Infrastructure", "PS.Motorcycle.Infrastructure\PS.Motorcycle.Infrastructure.csproj", "{70726AF2-000C-4254-829F-0A33DB554151}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.Motorcycle.Infrastructure.CosmosDB", "PS.Motorcycle.Infrastructure\PS.Motorcycle.Infrastructure.CosmosDB.csproj", "{70726AF2-000C-4254-829F-0A33DB554151}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.Motorcycle.UserPortal", "PS.Motorcycle.UI\PS.Motorcycle.UserPortal.csproj", "{4BBC5235-E322-4843-B96C-E528A1980710}"
 EndProject
