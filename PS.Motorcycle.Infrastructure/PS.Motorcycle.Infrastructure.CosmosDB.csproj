@@ -17,6 +17,7 @@
   <ItemGroup>
     <Folder Include="Configs\" />
     <Folder Include="Extensions\" />
+    <Folder Include="Interfaces\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
 

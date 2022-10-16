@@ -10,8 +10,8 @@ namespace PS.Motorcycle.Domain.Models.Base
 {
     public abstract class TwoWheeler
     {
-        [JsonProperty(PropertyName = "id")]
-        public virtual string Id { get; set; }
+        //[JsonProperty(PropertyName = "id")]
+        //public virtual string Id { get; set; }
 
         public abstract TwoWheelerType Type { get; set; }
         public abstract string Brand { get; set; }
