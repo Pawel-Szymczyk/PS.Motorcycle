@@ -6,11 +6,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace PS.Motorcycle.Domain.Models
 {
     public class Motorcycle : TwoWheeler, IMotorcycle
     {
+        [JsonProperty("id")]
+        public Guid Id { get; set; }
+
         // attributes
         private int lenght;
         private int height;

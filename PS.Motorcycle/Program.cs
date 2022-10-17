@@ -8,33 +8,29 @@ using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using PS.Motorcycle.Data;
 using Microsoft.Azure.Cosmos;
-
-
-
-
-
-
-
-
-
-
-
-
+using PS.Motorcycle.Domain.Models;
+using PS.Motorcycle.Infrastructure.CosmosDB;
+using PS.Motorcycle.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
+ConfigurationManager configuration = builder.Configuration;
+
+// TODO: to check it out later
+//var environmentVariables = configuration.GetSection("environmentVariables");
+//builder.Services.Configure<DatabaseConfig>(environmentVariables);
 
 // retrieve secrets...
 //string cosmos_enpoint = Environment.GetEnvironmentVariable("COSMOS_ENDPOINT");
 //string cosmos_key = Environment.GetEnvironmentVariable("COSMOS_KEY");
-string cosmos_enpoint = builder.Configuration["environmentVariables:COSMOS_ENDPOINT"];
-string cosmos_key = builder.Configuration["environmentVariables:COSMOS_KEY"];
+//string cosmos_enpoint = builder.Configuration["environmentVariables:COSMOS_ENDPOINT"];
+//string cosmos_key = builder.Configuration["environmentVariables:COSMOS_KEY"];
 
-// New instance of CosmosClient class
-using CosmosClient client = new(
-    accountEndpoint: cosmos_enpoint,
-    authKeyOrResourceToken: cosmos_key
-);
+//// New instance of CosmosClient class
+//using CosmosClient client = new(
+//    accountEndpoint: cosmos_enpoint,
+//    authKeyOrResourceToken: cosmos_key
+//);
 
 
 // Add services to the container.
@@ -53,6 +49,10 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor()
     .AddMicrosoftIdentityConsentHandler();
 builder.Services.AddSingleton<WeatherForecastService>();
+
+
+builder.Services.AddCosmosRepository();
+builder.Services.AddApplication();
 
 var app = builder.Build();
 

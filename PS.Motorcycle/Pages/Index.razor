@@ -1,4 +1,7 @@
 ﻿@page "/"
+@using PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.GetMotorcycles
+
+@inject IGetMotorcyclesUseCase motorcycles
 
 <PageTitle>Index</PageTitle>
 
@@ -7,3 +10,16 @@
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        var x = await this.motorcycles.GetMotorcyclesAsync();
+
+        var y = 0;
+    }
+}
