@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PS.Motorcycle.Domain.Models
 {
-    public class Suspension : ISuspension
+    public class Suspension
     {
         public bool HasSuspension { get; set; }
         public string Type { get; set; }

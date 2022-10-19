@@ -9,10 +9,10 @@ namespace PS.Motorcycle.Application.Interfaces
 {
     public interface IMotorcycleRepository
     {
-        Task<IEnumerable<PS.Motorcycle.Domain.Models.Motorcycle>> GetAsync();
-        Task<IMotorcycle> GetByIdAsync(Guid id);
-        Task<IMotorcycle> AddAsync(IMotorcycle motorcycle);
-        Task<IMotorcycle> UpdateAsync(IMotorcycle motorcycle);
-        Task<IMotorcycle> RemoveAsync(Guid id);
+        Task<IEnumerable<Domain.Models.Motorcycle>> GetAsync();
+        Task<Domain.Models.Motorcycle> GetByIdAsync(Guid id);
+        Task<Domain.Models.Motorcycle> AddAsync(Domain.Models.Motorcycle motorcycle);
+        Task<Domain.Models.Motorcycle> UpdateAsync(Domain.Models.Motorcycle motorcycle);
+        Task<Domain.Models.Motorcycle> RemoveAsync(Guid id);
     }
 }

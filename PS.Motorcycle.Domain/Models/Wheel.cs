@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace PS.Motorcycle.Domain.Models
 {
-    public class Wheel : IWheel
+    public class Wheel
     {
-        private ITyre tyre;
+        private Tyre tyre;
 
         public int RimDiameter { get; set; }
         public string Type { get; set; }
 
-        public ITyre Tyre
+        public Tyre Tyre
         {
             get
             {
@@ -35,7 +35,7 @@ namespace PS.Motorcycle.Domain.Models
             this.tyre = new Tyre();
         }
 
-        public Wheel(ITyre tyre)
+        public Wheel(Tyre tyre)
         {
             this.RimDiameter = 0;
             this.Type = string.Empty;

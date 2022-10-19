@@ -29,14 +29,14 @@ namespace PS.Motorcycle.Domain.Test
             };
 
 
-            List<IBreak> breaks = new List<IBreak>();
-            IBreak frontBreak = new Break() 
+            List<Break> breaks = new List<Break>();
+            Break frontBreak = new Break() 
             { 
                 Name = "Disc, twin",
                 NumberOfDiscs = 2,
                 Type = "Front"
             };
-            IBreak rearBreak = new Break()
+            Break rearBreak = new Break()
             {
                 Name = "Disc",
                 NumberOfDiscs = 1,
@@ -46,15 +46,15 @@ namespace PS.Motorcycle.Domain.Test
             breaks.Add(frontBreak);
             breaks.Add(rearBreak);
 
-            List<ISuspension> suspensions = new List<ISuspension>();
-            ISuspension frontSuspension = new Suspension()
+            List<Suspension> suspensions = new List<Suspension>();
+            Suspension frontSuspension = new Suspension()
             {
                 HasSuspension = true,
                 Description = "Inverted telescopic, coil spring, oil damped",
                 Type = "Front"
                 
             };
-            ISuspension rearSuspension = new Suspension()
+            Suspension rearSuspension = new Suspension()
             {
                 HasSuspension = true,
                 Description = "Link type, coil spring, oil damped",
@@ -64,8 +64,8 @@ namespace PS.Motorcycle.Domain.Test
             suspensions.Add(frontSuspension);
             suspensions.Add(rearSuspension);
 
-            List<IWheel> wheels = new List<IWheel>();
-            IWheel frontWheel = new Wheel()
+            List<Wheel> wheels = new List<Wheel>();
+            Wheel frontWheel = new Wheel()
             {
                 RimDiameter = 17,
                 Type = "Front", 
@@ -79,7 +79,7 @@ namespace PS.Motorcycle.Domain.Test
                     Width = 120
                 }
             };
-            IWheel rearWheel = new Wheel()
+            Wheel rearWheel = new Wheel()
             {
                 RimDiameter = 17,
                 Type = "Rear",

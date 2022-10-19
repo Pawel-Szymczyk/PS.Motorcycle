@@ -12,9 +12,7 @@ namespace PS.Motorcycle.Domain.Models
 {
     public class Motorcycle : TwoWheeler, IMotorcycle
     {
-        [JsonProperty("id")]
-        public Guid Id { get; set; }
-
+        
         // attributes
         private int lenght;
         private int height;
@@ -34,6 +32,10 @@ namespace PS.Motorcycle.Domain.Models
 
 
         // properties
+        [JsonProperty("id")]
+        public Guid Id { get; set; }
+
+        [JsonProperty("lenght")]
         public override int Length 
         {
             get
@@ -46,6 +48,8 @@ namespace PS.Motorcycle.Domain.Models
                 this.lenght = value;
             }
         }
+
+        [JsonProperty("height")]
         public override int Height 
         {
             get
@@ -58,6 +62,8 @@ namespace PS.Motorcycle.Domain.Models
                 this.height = value;
             }
         }
+
+        [JsonProperty("width")]
         public override int Width 
         {
             get
@@ -70,6 +76,8 @@ namespace PS.Motorcycle.Domain.Models
                 this.width = value;
             }
         }
+
+        [JsonProperty("kerbMass")]
         public override int KerbMass 
         {
             get
@@ -82,6 +90,8 @@ namespace PS.Motorcycle.Domain.Models
                 this.kerbMass = value;
             }
         }
+
+        [JsonProperty("sitHeight")]
         public int SitHeight
         {
             get
@@ -94,6 +104,8 @@ namespace PS.Motorcycle.Domain.Models
                 this.sitHeight = value;
             }
         }
+
+        [JsonProperty("wheelBase")]
         public int WheelBase
         {
             get
@@ -106,6 +118,8 @@ namespace PS.Motorcycle.Domain.Models
                 this.wheelBase = value;
             }
         }
+
+        [JsonProperty("groundClearance")]
         public int GroundClearance
         {
             get
@@ -118,6 +132,8 @@ namespace PS.Motorcycle.Domain.Models
                 this.groundClearance = value;
             }
         }
+
+        [JsonProperty("price")]
         public override float Price
         {
             get
@@ -130,6 +146,8 @@ namespace PS.Motorcycle.Domain.Models
                 this.price = value;
             }
         }
+
+        [JsonProperty("fuelCapacity")]
         public float FuelCapacity
         {
             get
@@ -142,6 +160,8 @@ namespace PS.Motorcycle.Domain.Models
                 this.fuelCapacity = value;
             }
         }
+
+        [JsonProperty("brand")]
         public override string Brand
         {
             get
@@ -154,6 +174,8 @@ namespace PS.Motorcycle.Domain.Models
                 this.brand = value;
             }
         }
+
+        [JsonProperty("model")]
         public override string Model
         {
             get
@@ -166,6 +188,8 @@ namespace PS.Motorcycle.Domain.Models
                 this.model = value;
             }
         }
+
+        [JsonProperty("type")]
         public override TwoWheelerType Type
         {
             get
@@ -179,7 +203,9 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
+        [JsonProperty("chassis")]
         public IChassis Chassis
+        //public Chassis Chassis
         {
             get
             {
@@ -192,7 +218,9 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
+        [JsonProperty("engine")]
         public IEngine Engine
+        //public Engine Engine
         {
             get
             {
@@ -226,6 +254,7 @@ namespace PS.Motorcycle.Domain.Models
         }
 
 
+        //public Motorcycle(IChassis chassis, IEngine engine)
         public Motorcycle(IChassis chassis, IEngine engine)
         {
             this.type = TwoWheelerType.MOTORCYCLE;

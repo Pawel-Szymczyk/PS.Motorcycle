@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PS.Motorcycle.Domain.Models
 {
-    public class Break : IBreak
+    public class Break
     {
         public string Name { get; set; }
         public string Type { get; set; }

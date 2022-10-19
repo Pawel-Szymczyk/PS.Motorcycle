@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.GetMotorcycles
 {
-    public class GetMotorcyclesUseCase : IGetMotorcyclesUseCase
+    public class GetMotorcycleUseCase : IGetMotorcycleUseCase
     {
         private readonly IMotorcycleRepository _motorcycleRepository;
-        public GetMotorcyclesUseCase(IMotorcycleRepository motorcycleRepository)
+        public GetMotorcycleUseCase(IMotorcycleRepository motorcycleRepository)
         {
             this._motorcycleRepository = motorcycleRepository;
         }
 
-        public async Task<IEnumerable<IMotorcycle>> Execute()
+        public async Task<IMotorcycle> Execute(Guid id)
         {
-            var motorcycleslist = await this._motorcycleRepository.GetAsync();
+            var motorcycle = await this._motorcycleRepository.GetByIdAsync(id);
 
-            return motorcycleslist;
+            return motorcycle;
         }
     }
 }

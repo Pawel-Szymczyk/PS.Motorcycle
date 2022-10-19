@@ -1,13 +1,6 @@
 ﻿using Microsoft.Azure.Cosmos;
 using PS.Motorcycle.Application.Interfaces;
-using PS.Motorcycle.Domain.Interfaces;
-
 using PS.Motorcycle.Infrastructure.CosmosDB.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PS.Motorcycle.Infrastructure.CosmosDB.Repositories
 {
@@ -20,15 +13,17 @@ namespace PS.Motorcycle.Infrastructure.CosmosDB.Repositories
             this._cosmosContext = cosmosContext;
         }
 
-        public Task<IMotorcycle> AddAsync(IMotorcycle motorcycle)
+        public async Task<Domain.Models.Motorcycle> AddAsync(Domain.Models.Motorcycle motorcycle)
         {
-            throw new NotImplementedException();
+            var partitionKey = new PartitionKey(motorcycle.Id.ToString());
+            var result = await _cosmosContext.MotorcycleContainer.CreateItemAsync(motorcycle, partitionKey);
+            return result.Resource;
         }
 
-        public async Task<IEnumerable<PS.Motorcycle.Domain.Models.Motorcycle>> GetAsync()
+        public async Task<IEnumerable<Domain.Models.Motorcycle>> GetAsync()
         {
             var queryDefination = new QueryDefinition("SELECT * FROM Motorcycle");
-            var query = _cosmosContext.MotorcycleContainer.GetItemQueryIterator<PS.Motorcycle.Domain.Models.Motorcycle>(queryDefination);
+            var query = _cosmosContext.MotorcycleContainer.GetItemQueryIterator<Domain.Models.Motorcycle>(queryDefination);
 
             var result = new List<PS.Motorcycle.Domain.Models.Motorcycle>();
 
@@ -41,19 +36,27 @@ namespace PS.Motorcycle.Infrastructure.CosmosDB.Repositories
             return result;
         }
 
-        public Task<IMotorcycle> GetByIdAsync(Guid id)
+        public async Task<Domain.Models.Motorcycle> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var partitionKey = new PartitionKey(id.ToString());
+            var results = await this._cosmosContext.MotorcycleContainer.ReadItemAsync<Domain.Models.Motorcycle>(id.ToString(), partitionKey); 
+            return results.Resource;
         }
 
-        public Task<IMotorcycle> RemoveAsync(Guid id)
+        public async Task<Domain.Models.Motorcycle> RemoveAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var partitionKey = new PartitionKey(id.ToString());
+            var result = await this._cosmosContext.MotorcycleContainer.DeleteItemAsync<Domain.Models.Motorcycle>(id.ToString(), partitionKey);  
+
+            return result.Resource;
         }
 
-        public Task<IMotorcycle> UpdateAsync(IMotorcycle motorcycle)
+        public async Task<Domain.Models.Motorcycle> UpdateAsync(Domain.Models.Motorcycle motorcycle)
         {
-            throw new NotImplementedException();
+            var partitionKey = new PartitionKey(motorcycle.Id.ToString());
+            var result = await this._cosmosContext.MotorcycleContainer.UpsertItemAsync(motorcycle, partitionKey);
+            return result.Resource;
+
         }
     }
 }

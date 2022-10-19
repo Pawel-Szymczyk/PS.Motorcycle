@@ -24,10 +24,11 @@ namespace PS.Motorcycle.Infrastructure.CosmosDB.Repositories
             ////string cosmos_enpoint = builder.Configuration["environmentVariables:COSMOS_ENDPOINT"];
             ////string cosmos_key = builder.Configuration["environmentVariables:COSMOS_KEY"];
 
-            string cosmos_enpoint = "this._config.COSMOS_ENDPOINT";
+            //string cosmos_enpoint = this._config.COSMOS_ENDPOINT;
+            //string cosmos_key = this._config.COSMOS_KEY;
+
+            string cosmos_enpoint = "";
             string cosmos_key = "";
-
-
 
             string databaseName = "PS.MotorcycleDB";
             string containerName = "Motorcycle";

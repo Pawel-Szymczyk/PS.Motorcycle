@@ -2,8 +2,8 @@
 
 namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.GetMotorcycles
 {
-    public interface IGetMotorcyclesUseCase
+    public interface IGetMotorcycleUseCase
     {
-        Task<IEnumerable<IMotorcycle>> Execute();
+        Task<IMotorcycle> Execute(Guid id);
     }
 }

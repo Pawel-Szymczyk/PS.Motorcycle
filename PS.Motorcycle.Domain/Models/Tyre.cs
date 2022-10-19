@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PS.Motorcycle.Domain.Models
 {
-    public class Tyre : ITyre
+    public class Tyre
     {
         public string Brand { get; set; }
         public string SpeedIndex { get; set; }
