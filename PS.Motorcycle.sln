@@ -25,9 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.Motorcycle.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.Motorcycle.UserPortal", "PS.Motorcycle.UI\PS.Motorcycle.UserPortal.csproj", "{4BBC5235-E322-4843-B96C-E528A1980710}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.Motorcycle.Domain.Test", "PS.Motorcycle.Domain.Test\PS.Motorcycle.Domain.Test.csproj", "{EBBAE370-16A8-4CB4-8CAA-3E12E364BE6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.Motorcycle.Domain.Test", "PS.Motorcycle.Domain.Test\PS.Motorcycle.Domain.Test.csproj", "{EBBAE370-16A8-4CB4-8CAA-3E12E364BE6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PS.Motorcycle.AdminPortal", "PS.Motorcycle.AdminPortal\PS.Motorcycle.AdminPortal.csproj", "{432DC31F-3A0F-4D8D-94ED-D5E961513A1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.Motorcycle.AdminPortal", "PS.Motorcycle.AdminPortal\PS.Motorcycle.AdminPortal.csproj", "{432DC31F-3A0F-4D8D-94ED-D5E961513A1E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{13C9CF8D-F589-4C6F-BB0E-5B70351E05DC}"
 	ProjectSection(SolutionItems) = preProject
