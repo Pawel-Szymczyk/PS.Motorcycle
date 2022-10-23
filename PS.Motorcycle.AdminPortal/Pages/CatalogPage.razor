@@ -1,12 +1,36 @@
-﻿@page "/admin"
+﻿@page "/"
 
 
 @attribute [Authorize]
 
+<div class="breadcrumbs-container">
+    <BreadcrumbComponent Breadcrumbs="@this.Breadcrumbs"></BreadcrumbComponent>
+</div>
 
 <div class="container">
 
-    <div class="breadcrumbs-container"></div>
+
+
+    
+
+
+
+
+
+
+
+
+    <div class="toolbar-container">
+        <div class="toolbar">
+            <div class="d-grid gap-2 d-md-block">
+                <AddButtonComponent />
+                 
+            </div>
+        </div>
+    </div>
+
+
+
     <div class="filter-container"></div>
     <div class="results-container">
 
@@ -22,11 +46,7 @@
 
         <div class="row row-cols-1 row-cols-md-3 g-4 motorcycles-list">
 
-               @* <Virtualize Items="@this.Motorcycles" Context="motorcycle" ItemSize="2" >
-                    <ItemContent>
-                        <PS.Motorcycle.UserPortal.Controls.CardComponent />
-                    </ItemContent>
-                </Virtualize>*@
+
 
                  <Virtualize ItemsProvider="@this.LoadMotorcycles" Context="motorcycle">
                     <ItemContent>

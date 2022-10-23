@@ -22,3 +22,22 @@
         margin: 0 10rem;
     }*/
 }
+
+
+
+/*TODO: move to toolbar later*/
+
+.toolbar-container {
+    margin-bottom: 2em;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #d6d6d6;
+}
+
+.toolbar {
+    padding: 1.5rem 0;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+
