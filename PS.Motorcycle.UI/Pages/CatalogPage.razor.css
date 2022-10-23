@@ -1,0 +1,26 @@
+﻿/* phone (default) */
+.results-container {
+    margin: 0;
+}
+
+/*.hide-unwanted-element {
+    display: none;
+}*/
+
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .results-container {
+        margin: 0;
+    }
+}
+
+
+/* For Desktop View */
+@media screen and (min-width: 1200px) {
+    .results-container {
+        margin: 0 10rem;
+    }
+}
+
+

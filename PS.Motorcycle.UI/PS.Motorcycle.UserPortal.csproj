@@ -17,10 +17,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PS.Motorcycle.Application\PS.Motorcycle.Application.csproj" />
+    <ProjectReference Include="..\PS.Motorcycle.Common\PS.Motorcycle.Common.csproj" />
     <ProjectReference Include="..\PS.Motorcycle.Domain\PS.Motorcycle.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controls\" />
     <Folder Include="ViewModels\" />
     <Folder Include="wwwroot\css\" />
   </ItemGroup>
@@ -33,6 +35,7 @@
     <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="BuildWebCompiler2022" Version="1.14.8" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.10" />
+    <PackageReference Include="SmartBreadcrumbs" Version="3.6.1" />
   </ItemGroup>
 
 </Project>

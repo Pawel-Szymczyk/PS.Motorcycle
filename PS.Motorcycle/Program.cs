@@ -11,6 +11,9 @@ using Microsoft.Azure.Cosmos;
 using PS.Motorcycle.Domain.Models;
 using PS.Motorcycle.Infrastructure.CosmosDB;
 using PS.Motorcycle.Application;
+using SmartBreadcrumbs.Extensions;
+using System.Reflection;
+using PS.Motorcycle.Domain.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,9 +53,12 @@ builder.Services.AddServerSideBlazor()
     .AddMicrosoftIdentityConsentHandler();
 builder.Services.AddSingleton<WeatherForecastService>();
 
+builder.Services.AddSingleton<IBreadcrumbService, BreadcrumbService>();
+
 
 builder.Services.AddCosmosRepository();
 builder.Services.AddApplication();
+
 
 var app = builder.Build();
 

@@ -1,4 +1,10 @@
 ﻿@page "/counter"
+@using PS.Motorcycle.Common.Controls
+@using PS.Motorcycle.Domain.Models.Components
+@using PS.Motorcycle.Domain.Services
+@*@using PS.Motorcycle.Domain.Models.Components*@
+
+<BreadcrumbComponent Breadcrumbs="@this.Breadcrumbs"></BreadcrumbComponent>
 
 <PageTitle>Counter</PageTitle>
 
@@ -10,6 +16,26 @@
 
 @code {
     private int currentCount = 0;
+
+    public List<IBreadcrumb> Breadcrumbs { get; set; }
+
+
+    [Inject]
+    protected IBreadcrumbService _breadcrumbService { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        IBreadcrumb breadcrumb = new Breadcrumb()
+        {
+            Text = "Counter",
+            Url = "counter"
+        };
+
+        this.Breadcrumbs = this._breadcrumbService.GetBreadcrumb(breadcrumb);
+
+    }
 
     private void IncrementCount()
     {

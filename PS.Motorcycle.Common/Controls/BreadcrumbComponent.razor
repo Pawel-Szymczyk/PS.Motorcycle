@@ -1,0 +1,25 @@
+﻿
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+
+        @if(this.Breadcrumbs is not null)
+        {
+            foreach(var breadcrumb in this.Breadcrumbs)
+            {
+                if(breadcrumb.Equals(Breadcrumbs.Last()))
+                {
+                    <li class="breadcrumb-item active" aria-current="page">@breadcrumb.Text</li>
+                }
+                else
+                {
+                    <li class="breadcrumb-item active" aria-current="page"><a href="@breadcrumb.Url">@breadcrumb.Text</a></li>
+                }
+            
+            }
+        }
+
+        
+    </ol>
+</nav>

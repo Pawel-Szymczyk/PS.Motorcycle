@@ -1,13 +1,10 @@
-﻿@page "/"
-
-@using Microsoft.AspNetCore.Components.Web.Virtualization
+﻿@page "/admin"
 
 
+@attribute [Authorize]
 
-<BreadcrumbComponent Breadcrumbs="@this.Breadcrumbs"></BreadcrumbComponent>
 
-
-<div class="page-container">
+<div class="container">
 
     <div class="breadcrumbs-container"></div>
     <div class="filter-container"></div>
