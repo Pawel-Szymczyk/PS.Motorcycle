@@ -14,7 +14,7 @@ namespace PS.Motorcycle.Domain.Models.Base
         //public virtual string Id { get; set; }
 
         public abstract TwoWheelerType Type { get; set; }
-        public abstract string Brand { get; set; }
+        public abstract string Make { get; set; }
         public abstract string Model { get; set; }
         public abstract float Price { get; set; }
         public abstract int Length { get; set; }

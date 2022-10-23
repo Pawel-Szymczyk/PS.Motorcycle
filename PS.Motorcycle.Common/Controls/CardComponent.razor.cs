@@ -9,5 +9,6 @@ namespace PS.Motorcycle.Common.Controls
 {
     public partial class CardComponent : ComponentBase
     {
+  
     }
 }

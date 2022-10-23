@@ -21,9 +21,10 @@ namespace PS.Motorcycle.Domain.Models
         private int sitHeight;
         private int wheelBase;
         private int groundClearance;
+        private int productionYear;
         private float price;
         private float fuelCapacity;
-        private string brand;
+        private string make;
         private string model;
         private TwoWheelerType type;
 
@@ -133,6 +134,20 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
+        [JsonProperty("year")]
+        public int ProductionYear
+        {
+            get
+            {
+                return this.productionYear;
+            }
+
+            set
+            {
+                this.productionYear = value;
+            }
+        }
+
         [JsonProperty("price")]
         public override float Price
         {
@@ -162,16 +177,16 @@ namespace PS.Motorcycle.Domain.Models
         }
 
         [JsonProperty("brand")]
-        public override string Brand
+        public override string Make
         {
             get
             {
-                return this.brand;
+                return this.make;
             }
 
             set
             {
-                this.brand = value;
+                this.make = value;
             }
         }
 
@@ -246,7 +261,7 @@ namespace PS.Motorcycle.Domain.Models
             this.groundClearance = 0;
             this.price = 0;
             this.fuelCapacity = 0;
-            this.brand = String.Empty;
+            this.make = String.Empty;
             this.model = String.Empty;
 
             this.engine = new Engine();
@@ -258,7 +273,7 @@ namespace PS.Motorcycle.Domain.Models
         public Motorcycle(IChassis chassis, IEngine engine)
         {
             this.type = TwoWheelerType.MOTORCYCLE;
-            this.brand = String.Empty;
+            this.make = String.Empty;
             this.model = String.Empty;
 
             this.chassis = chassis;

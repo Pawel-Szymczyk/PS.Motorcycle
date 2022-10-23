@@ -12,6 +12,14 @@ namespace PS.Motorcycle.Common.Controls
         [Inject]
         private NavigationManager NavigationManager { get; set; }
 
+        [Parameter]
+        public string Type { get; set; }
+
+        public SaveButtonComponent()
+        {
+            this.Type = "button";
+        }
+
         private void SaveMotorcycle()
         {
             //this.NavigationManager.NavigateTo("/");

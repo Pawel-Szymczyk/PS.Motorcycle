@@ -8,17 +8,169 @@
 </div>
 
 
-<div class="toolbar-container">
-    <div class="toolbar">
-        <div class="d-grid gap-2 d-md-block">
-            <SaveButtonComponent />
-            <CancelButtonComponent />
-        </div>
-    </div>
-</div>
+
 
 <div class="container">
 
+    <form class="row g-3">
+
+        <div class="toolbar-container">
+            <div class="toolbar">
+                <div class="d-grid gap-2 d-md-block">
+                    <SaveButtonComponent Type="submit" />
+                    <CancelButtonComponent />
+                </div>
+            </div>
+        </div>
+
+
+      <div class="col-md-6">
+        <label for="inputMake" class="form-label">Make</label>
+        <input type="text" class="form-control" id="inputMake">
+      </div>
+
+      <div class="col-md-6">
+        <label for="inputModel" class="form-label">Model</label>
+        <input type="text" class="form-control" id="inputModel">
+      </div>
+
+      <div class="col-md-6">
+        <label for="inputProductionYear" class="form-label">Production Year</label>
+        <input type="number" class="form-control" id="inputProductionYear">
+      </div>
+
+      <div class="col-md-6">
+        <label for="inputFuelCapacity" class="form-label">Fuel Capacity</label>
+        <input type="number" class="form-control" id="inputFuelCapacity">
+      </div>
+
+      <div class="col-md-6">
+        <label for="inputPrice" class="form-label">Market Price</label>
+        <input type="number" class="form-control" id="inputPrice">
+      </div>
+
+     
+     
+    </form>
+
+
+
+    @*TABS*@
+    <div class="additional-info-container">
+         <ul class="nav nav-tabs">
+          <li class="nav-item" >
+            <button class="nav-link custom-tab-button active" aria-current="page" @onclick="(x => this.DisplayTab(1))">
+                <img src="https://cdn-ps-motorcycle.azureedge.net/static-images/chassis_original.jpg" class="card-img-top custom-tab-button-img" alt="chassis">
+                <p>chassis</p>
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link custom-tab-button" @onclick="(x => this.DisplayTab(2))">
+                <img src="https://cdn-ps-motorcycle.azureedge.net/static-images/engine_original.jpg" class="card-img-top custom-tab-button-img" alt="engine">
+                <p>engine</p>
+            </button>
+          </li>
+          <li class="nav-item">
+           <button class="nav-link custom-tab-button" @onclick="(x => this.DisplayTab(3))">
+                <img src="https://cdn-ps-motorcycle.azureedge.net/static-images/suspension_original_1.jpg" class="card-img-top custom-tab-button-img" alt="suspension">
+                <p>suspension</p>
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link custom-tab-button" @onclick="(x => this.DisplayTab(4))">
+                <img src="https://cdn-ps-motorcycle.azureedge.net/static-images/wheel_original.jpg" class="card-img-top custom-tab-button-img" alt="wheels">
+                <p>wheels</p>
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link custom-tab-button" @onclick="(x => this.DisplayTab(5))">
+                <img src="https://cdn-ps-motorcycle.azureedge.net/static-images/Brake_original.jpg" class="card-img-top custom-tab-button-img" alt="brakes">
+                <p>brakes</p>
+            </button>
+          </li>
+        </ul>
+
+        @if(this.tab1)
+    {
+         <div class="tabContent">
+             <h3>CHASSIS</h3>
+
+             <form class="row g-3">
+                 <div class="col-md-4">
+                    <label for="inputLength" class="form-label">Length</label>
+                    <input type="number" class="form-control" id="inputLength">
+                  </div>
+
+                  <div class="col-md-4">
+                    <label for="inputHeight" class="form-label">Height</label>
+                    <input type="number" class="form-control" id="inputHeight">
+                  </div>
+
+                  <div class="col-md-4">
+                    <label for="inputWidth" class="form-label">Width</label>
+                    <input type="number" class="form-control" id="inputWidth">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="inputKerbMass" class="form-label">Kerb Mass</label>
+                    <input type="number" class="form-control" id="inputKerbMass">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="inputSitHeight" class="form-label">Sit Height</label>
+                    <input type="number" class="form-control" id="inputSitHeight">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="inputWheelBase" class="form-label">Wheel Base</label>
+                    <input type="number" class="form-control" id="inputWheelBase">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="inputGroundClearance" class="form-label">Ground Clearance</label>
+                    <input type="number" class="form-control" id="inputGroundClearance">
+                  </div>
+
+              </form>
+         </div>
+    }
+
+        @if(this.tab2)
+    {
+        <div class="tabContent">
+            <h3>ENGINE</h3>
+        </div>
+    }
+
+        @if(this.tab3)
+    {
+         <div class="tabContent">
+             <h3>SUSPENSION</h3>
+         </div>
+    }
+
+    
+        @if(this.tab4)
+    {
+         <div class="tabContent">
+             <h3>WHEELS</h3>
+         </div>
+    }
+
+        @if(this.tab5)
+    {
+         <div class="tabContent">
+             <h3>BREAKS</h3>
+         </div>
+    }
+
+
+    </div>
+
+       
+       
+        
+       
 
 
 </div>
