@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace PS.Motorcycle.Domain.Models
 {
-    public class Break
+    public class Brake
     {
         public string Name { get; set; }
         public string Type { get; set; }
         public int NumberOfDiscs { get; set; }
 
-        public Break()
+        public Brake()
         {
             this.Type = string.Empty;
             this.Name = string.Empty;

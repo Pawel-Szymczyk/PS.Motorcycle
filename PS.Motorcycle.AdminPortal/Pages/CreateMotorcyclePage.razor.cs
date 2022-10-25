@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
+using PS.Motorcycle.Domain.Interfaces;
+using PS.Motorcycle.Domain.Models;
 using PS.Motorcycle.Domain.Models.Components;
 using PS.Motorcycle.Domain.Services;
 using System;
@@ -11,6 +13,39 @@ namespace PS.Motorcycle.AdminPortal.Pages
 {
     public partial class CreateMotorcyclePage
     {
+        public IMotorcycle motorcycle;
+
+        public CreateMotorcyclePage()
+        {
+            this.motorcycle = new PS.Motorcycle.Domain.Models.Motorcycle();
+
+            this.motorcycle.Chassis.Suspensions.Add(new Suspension() { Type = "Front", HasSuspension = true });
+            this.motorcycle.Chassis.Suspensions.Add(new Suspension() { Type = "Rear", HasSuspension = true });
+
+            this.motorcycle.Chassis.Brakes.Add(new Brake() { Type = "Front" });
+            this.motorcycle.Chassis.Brakes.Add(new Brake() { Type = "Rear" });
+
+            this.motorcycle.Chassis.Wheels.Add(new Wheel() { Type = "Front" });
+            this.motorcycle.Chassis.Wheels.Add(new Wheel() { Type = "Rear" });
+        }
+
+        public void HandleValidSubmit()
+        {
+
+            var x = this.motorcycle;
+        }
+
+       
+
+
+
+
+
+
+
+
+
+
         private bool tab1 = true;
         private bool tab2 = false;
         private bool tab3 = false;

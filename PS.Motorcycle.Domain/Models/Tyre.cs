@@ -14,7 +14,7 @@ namespace PS.Motorcycle.Domain.Models
         public int Width { get; set; }
         public int Profile { get; set; }
         public int RimDiameter { get; set; }
-        public int LoadIndexOfTire { get; set; }
+        public int LoadIndexOfTyre { get; set; }
 
         public Tyre()
         {
@@ -23,7 +23,7 @@ namespace PS.Motorcycle.Domain.Models
             this.Width = 0;
             this.Profile = 0;
             this.RimDiameter = 0;
-            this.LoadIndexOfTire = 0;
+            this.LoadIndexOfTyre = 0;
         }
     }
 }

@@ -12,7 +12,7 @@ namespace PS.Motorcycle.Domain.Models
 
         private List<Suspension> suspensions;
         private List<Wheel> wheels;
-        private List<Break> breaks;
+        private List<Brake> breaks;
 
 
         public List<Suspension> Suspensions
@@ -41,7 +41,7 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        public List<Break> Breaks
+        public List<Brake> Brakes
         {
             get
             {
@@ -58,10 +58,10 @@ namespace PS.Motorcycle.Domain.Models
         {
             this.suspensions = new List<Suspension>();
             this.wheels = new List<Wheel>();
-            this.breaks = new List<Break>();
+            this.breaks = new List<Brake>();
         }
 
-        public Chassis(List<Suspension> suspensions, List<Wheel> wheels, List<Break> breaks)
+        public Chassis(List<Suspension> suspensions, List<Wheel> wheels, List<Brake> breaks)
         {
             this.suspensions = suspensions;
             this.wheels = wheels;

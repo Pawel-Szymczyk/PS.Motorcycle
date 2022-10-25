@@ -4,6 +4,19 @@
 
 .additional-info-container {
     margin-top: 5em;
+    margin-bottom: 3em;
+    /*border: 1px solid;*/
+    padding: 10px;
+
+
+    box-shadow: rgb(50 50 93 / 25%) 0px 2px 5px -1px, rgb(0 0 0 / 30%) 0px 1px 3px -1px;
+}
+
+.nav-additional-info {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #d6d6d6;
+    padding-bottom: 5px;
 }
 
 
@@ -30,12 +43,12 @@
         padding-right: 10px;
     }
 
-    .custom-tab-button-img {
-        width: 15.8em;
-        height: 5em;
-        object-fit: cover;
-        transition: .5s;
-    }
+.custom-tab-button-img {
+    width: 14.7em;
+    height: 5em;
+    object-fit: cover;
+    transition: .5s;
+}
 
         .custom-tab-button-img:hover {
             opacity: 0.4;

@@ -19,6 +19,6 @@ namespace PS.Motorcycle.Domain.Interfaces
 
         public List<Wheel> Wheels { get; set; }
 
-        public List<Break> Breaks { get; set; }
+        public List<Brake> Brakes { get; set; }
     }
 }

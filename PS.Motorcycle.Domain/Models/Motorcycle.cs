@@ -19,7 +19,7 @@ namespace PS.Motorcycle.Domain.Models
         private int width;
         private int kerbMass;
         private int sitHeight;
-        private int wheelBase;
+        private int wheelbase;
         private int groundClearance;
         private int productionYear;
         private float price;
@@ -106,17 +106,17 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        [JsonProperty("wheelBase")]
-        public int WheelBase
+        [JsonProperty("wheelbase")]
+        public int Wheelbase
         {
             get
             {
-                return this.wheelBase;
+                return this.wheelbase;
             }
 
             set
             {
-                this.wheelBase = value;
+                this.wheelbase = value;
             }
         }
 
@@ -257,12 +257,14 @@ namespace PS.Motorcycle.Domain.Models
             this.width = 0;
             this.kerbMass = 0;
             this.sitHeight = 0;
-            this.wheelBase = 0;
+            this.wheelbase = 0;
             this.groundClearance = 0;
             this.price = 0;
             this.fuelCapacity = 0;
             this.make = String.Empty;
             this.model = String.Empty;
+
+            // add type: naked , sport, etc.
 
             this.engine = new Engine();
             this.chassis = new Chassis();

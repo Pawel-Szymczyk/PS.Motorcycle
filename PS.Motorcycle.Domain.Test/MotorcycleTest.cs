@@ -29,14 +29,14 @@ namespace PS.Motorcycle.Domain.Test
             };
 
 
-            List<Break> breaks = new List<Break>();
-            Break frontBreak = new Break() 
+            List<Brake> breaks = new List<Brake>();
+            Brake frontBreak = new Brake() 
             { 
                 Name = "Disc, twin",
                 NumberOfDiscs = 2,
                 Type = "Front"
             };
-            Break rearBreak = new Break()
+            Brake rearBreak = new Brake()
             {
                 Name = "Disc",
                 NumberOfDiscs = 1,
@@ -73,7 +73,7 @@ namespace PS.Motorcycle.Domain.Test
                 {
                     Brand = "Michelin",
                     SpeedIndex = "W - up to over 169mph",
-                    LoadIndexOfTire = 58,
+                    LoadIndexOfTyre = 58,
                     Profile = 70,
                     RimDiameter = 17,
                     Width = 120
@@ -87,7 +87,7 @@ namespace PS.Motorcycle.Domain.Test
                 {
                     Brand = "Michelin",
                     SpeedIndex = "W - up to over 169mph",
-                    LoadIndexOfTire = 73,
+                    LoadIndexOfTyre = 73,
                     Profile = 50,
                     RimDiameter = 17,
                     Width = 190
@@ -100,7 +100,7 @@ namespace PS.Motorcycle.Domain.Test
 
             IChassis chassis = new Chassis()
             {
-                Breaks = breaks,
+                Brakes = breaks,
                 Suspensions = suspensions,
                 Wheels = wheels
             };
