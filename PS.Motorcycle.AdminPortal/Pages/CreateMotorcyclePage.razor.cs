@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.AddMotorcycle;
 using PS.Motorcycle.Domain.Interfaces;
 using PS.Motorcycle.Domain.Models;
 using PS.Motorcycle.Domain.Models.Components;
@@ -11,9 +12,15 @@ using System.Threading.Tasks;
 
 namespace PS.Motorcycle.AdminPortal.Pages
 {
-    public partial class CreateMotorcyclePage
+    public partial class CreateMotorcyclePage : ComponentBase
     {
-        public IMotorcycle motorcycle;
+        [Inject]
+        private IBreadcrumbService BreadcrumbService { get; set; }
+        [Inject]
+        private IAddMotorcycleUseCase AddMotorcyclesUseCase { get; set; }
+        private List<IBreadcrumb> Breadcrumbs { get; set; }
+        private IMotorcycle motorcycle;
+
 
         public CreateMotorcyclePage()
         {
@@ -29,10 +36,10 @@ namespace PS.Motorcycle.AdminPortal.Pages
             this.motorcycle.Chassis.Wheels.Add(new Wheel() { Type = "Rear" });
         }
 
-        public void HandleValidSubmit()
+        public async Task HandleValidSubmit()
         {
-
-            var x = this.motorcycle;
+            // TODO: add validation
+            await this.AddMotorcyclesUseCase.Execute(this.motorcycle);
         }
 
        
@@ -44,7 +51,7 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
 
 
-
+        // TODO: REFACTOR ME... this entire logic is so wrong...
 
         private bool tab1 = true;
         private bool tab2 = false;
@@ -96,10 +103,7 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
 
 
-        [Inject]
-        private IBreadcrumbService _breadcrumbService { get; set; }
-
-        public List<IBreadcrumb> Breadcrumbs { get; set; }
+       
 
 
         protected override void OnInitialized()
@@ -112,7 +116,7 @@ namespace PS.Motorcycle.AdminPortal.Pages
                 Url = "/create-motorcycle"
             };
 
-            this.Breadcrumbs = this._breadcrumbService.GetBreadcrumb(breadcrumb);
+            this.Breadcrumbs = this.BreadcrumbService.GetBreadcrumb(breadcrumb);
         }
     }
 }

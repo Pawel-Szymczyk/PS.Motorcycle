@@ -22,4 +22,10 @@
     <Folder Include="Controls\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\scripts\Carousel.js">
+      <SubType>Code</SubType>
+    </Content>
+  </ItemGroup>
+
 </Project>

@@ -18,7 +18,7 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.AddMo
 
         public async Task Execute(IMotorcycle motorcycle)
         {
-            if (!motorcycle.Equals(null))
+            if (motorcycle.Equals(null))
                 return;
 
             Domain.Models.Motorcycle? moto = motorcycle as Domain.Models.Motorcycle;
