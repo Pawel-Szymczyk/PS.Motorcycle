@@ -7,14 +7,17 @@ using System.Threading.Tasks;
 
 namespace PS.Motorcycle.Common.Controls
 {
-    public partial class CancelButtonComponent : ComponentBase
+    public partial class DeleteButtonComponent : ComponentBase
     {
         [Inject]
         private NavigationManager NavigationManager { get; set; }
 
+        [Parameter]
+        public string Id { get; set; }
+
         private void OnClick()
         {
-            this.NavigationManager.NavigateTo("/");
+            //this.NavigationManager.NavigateTo("/create-motorcycle");
         }
     }
 }

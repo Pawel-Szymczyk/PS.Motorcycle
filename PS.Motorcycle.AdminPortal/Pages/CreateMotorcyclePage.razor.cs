@@ -45,67 +45,6 @@ namespace PS.Motorcycle.AdminPortal.Pages
        
 
 
-
-
-
-
-
-
-        // TODO: REFACTOR ME... this entire logic is so wrong...
-
-        private bool tab1 = true;
-        private bool tab2 = false;
-        private bool tab3 = false;
-        private bool tab4 = false;
-        private bool tab5 = false;
-
-        private void DisplayTab(int TabNumber)
-        {
-            switch(TabNumber)
-            {
-                case 1:
-                    this.tab1 = true;
-                    this.tab2 = false;
-                    this.tab3 = false;
-                    this.tab4 = false;
-                    this.tab5 = false;
-                    break;
-                case 2:
-                    this.tab1 = false;
-                    this.tab2 = true;
-                    this.tab3 = false;
-                    this.tab4 = false;
-                    this.tab5 = false;
-                    break;
-                case 3:
-                    this.tab1 = false;
-                    this.tab2 = false;
-                    this.tab3 = true;
-                    this.tab4 = false;
-                    this.tab5 = false;
-                    break;
-                case 4:
-                    this.tab1 = false;
-                    this.tab2 = false;
-                    this.tab3 = false;
-                    this.tab4 = true;
-                    this.tab5 = false;
-                    break;
-                case 5:
-                    this.tab1 = false;
-                    this.tab2 = false;
-                    this.tab3 = false;
-                    this.tab4 = false;
-                    this.tab5 = true;
-                    break;
-            }
-         }
-
-
-
-       
-
-
         protected override void OnInitialized()
         {
             base.OnInitialized();

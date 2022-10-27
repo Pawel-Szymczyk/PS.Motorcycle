@@ -1,0 +1,16 @@
+﻿
+<CascadingValue Value="this">
+    <ul class="nav nav-tabs nav-additional-info">
+            @foreach (TabContentComponent tabPage in this.Pages)
+            {
+                <li class="nav-item" >
+                    <button class="nav-link custom-tab-button @this.GetButtonClass(tabPage)" type="button" aria-current="page" @onclick="@( () => ActivatePage(tabPage) )">
+                        <img src="@tabPage.ImgUrl" class="card-img-top custom-tab-button-img" alt="@tabPage.Title">
+                        <p>@tabPage.Title</p>
+                    </button>
+                </li>
+            }
+    </ul>
+
+    @this.ChildContent
+</CascadingValue>

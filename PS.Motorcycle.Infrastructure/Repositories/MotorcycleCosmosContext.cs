@@ -30,6 +30,8 @@ namespace PS.Motorcycle.Infrastructure.CosmosDB.Repositories
             string cosmos_enpoint = "";
             string cosmos_key = "";
 
+
+
             string databaseName = "PS.MotorcycleDB";
             string containerName = "Motorcycle";
 

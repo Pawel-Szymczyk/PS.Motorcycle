@@ -12,7 +12,7 @@ namespace PS.Motorcycle.Common.Controls
         [Inject]
         private NavigationManager NavigationManager { get; set; }
 
-        private void AddMotorcycle()
+        private void OnClick()
         {
             this.NavigationManager.NavigateTo("/create-motorcycle");
         }

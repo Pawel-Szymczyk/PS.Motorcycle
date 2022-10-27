@@ -6,14 +6,14 @@
     <BreadcrumbComponent Breadcrumbs="@this.Breadcrumbs"></BreadcrumbComponent>
 </div>
 
-    @if(this.motorcycle is null)
-    {
-        <p>Loading...</p>
-    }
-    else
-    {
+@if(this.motorcycle is null)
+{
+    <p>Loading...</p>
+}
+else
+{
 
-<div class="container-fluid">
+    <div class="container-fluid">
 
 
          @*<div class="p-5 mb-4 rounded-3 motorcycle-jumbo-container" bis_skin_checked="1" style="background-color: lightcoral !important;">
@@ -65,8 +65,8 @@
            <div class="toolbar-container">
                 <div class="toolbar">
                     <div class="d-grid gap-2 d-md-block">
-                        <AddButtonComponent />
-                 
+                        <EditButtonComponent  />
+                        <DeleteButtonComponent />
                     </div>
                 </div>
             </div>
@@ -80,318 +80,274 @@
    
 
     
-</div>
-
-<div class="container"> 
-
-    <div class="about">
-        <h2>About</h2>
     </div>
 
+    <div class="container"> 
 
-    <div class="technical-details">
-        <h2>Technical Details</h2>
-        
-        <div class="table-responsive ">
-            <table class="table table-striped table-borderless ">
-                <tbody>
-                    <tr>
-                        <th class="col-md-2">Production Year:</th>
-                        <td class="col-md-10">@this.motorcycle.ProductionYear</td>
-                    </tr>
-                    <tr>
-                        <th>Market Price:</th>
-                        <td>@this.motorcycle.Price</td>
-                    </tr>
+        <div class="about">
+            <h2>About</h2>
 
-              </tbody>
-            </table>
+            <p>Aenean ac risus porta, eleifend mi eu, finibus ligula. Maecenas risus nibh, tristique ac tincidunt et, auctor at metus. Vestibulum venenatis ligula quis magna dignissim, vel cursus libero rutrum. Proin at euismod diam, nec aliquet sem. Vivamus porta dui nec congue maximus. Mauris non lectus luctus, lobortis est eget, malesuada est. In rhoncus lacus in fermentum pellentesque. Integer porta finibus nisi eget accumsan. Etiam suscipit fringilla iaculis. Aenean et sapien vulputate, lacinia lacus nec, convallis mi. Fusce pretium mauris gravida, congue turpis vel, hendrerit ante. Maecenas dignissim orci vel nulla ullamcorper, non pellentesque nulla semper. In hac habitasse platea dictumst. Integer scelerisque augue ac lacus feugiat, quis viverra mauris pulvinar. Sed sed elit finibus, consectetur est at, blandit lorem. Nullam ac dolor faucibus, tempus turpis id, lacinia nisi.</p>
         </div>
 
 
+        <div class="technical-details">
 
-        <div class="additional-info-container">
-            <ul class="nav nav-tabs nav-additional-info">
-                <li class="nav-item" >
-                    <button class="nav-link custom-tab-button active" type="button" aria-current="page" @onclick="(x => this.DisplayTab(1))">
-                        <img src="https://cdn-ps-motorcycle.azureedge.net/static-images/chassis_original.jpg" class="card-img-top custom-tab-button-img" alt="chassis">
-                        <p>chassis</p>
-                    </button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link custom-tab-button" type="button" @onclick="(x => this.DisplayTab(2))">
-                        <img src="https://cdn-ps-motorcycle.azureedge.net/static-images/engine_original.jpg" class="card-img-top custom-tab-button-img" alt="engine">
-                        <p>engine</p>
-                    </button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link custom-tab-button" type="button" @onclick="(x => this.DisplayTab(3))">
-                        <img src="https://cdn-ps-motorcycle.azureedge.net/static-images/suspension_original_1.jpg" class="card-img-top custom-tab-button-img" alt="suspension">
-                        <p>suspension</p>
-                    </button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link custom-tab-button" type="button" @onclick="(x => this.DisplayTab(4))">
-                        <img src="https://cdn-ps-motorcycle.azureedge.net/static-images/wheel_original.jpg" class="card-img-top custom-tab-button-img" alt="wheels">
-                        <p>wheels</p>
-                    </button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link custom-tab-button" type="button" @onclick="(x => this.DisplayTab(5))">
-                        <img src="https://cdn-ps-motorcycle.azureedge.net/static-images/Brake_original.jpg" class="card-img-top custom-tab-button-img" alt="brakes">
-                        <p>brakes</p>
-                    </button>
-                </li>
-            </ul>
+            <h2>Technical Details</h2>
+        
+            <div class="table-responsive ">
+                <table class="table table-striped table-borderless ">
+                    <tbody>
+                        <tr>
+                            <th class="col-md-2">Production Year:</th>
+                            <td class="col-md-10">@this.motorcycle.ProductionYear</td>
+                        </tr>
+                        <tr>
+                            <th>Market Price:</th>
+                            <td>@this.motorcycle.Price</td>
+                        </tr>
 
-                @if(this.tab1)
-                {
-                    <div class="tabContent">
-                        <br />
-                        <h4>DIMENSIONS AND WEIGHTS</h4>
-                        <br />
-
-                        <div class="table-responsive ">
-                            <table class="table table-striped table-borderless ">
-                                <tbody>
-                                    <tr>
-                                        <th class="col-md-2">Overall Length:</th>
-                                        <td class="col-md-10">@this.motorcycle.Length</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="col-md-2">Overall Height:</th>
-                                        <td class="col-md-10">@this.motorcycle.Height</td>
-                                    </tr>
-                                     <tr>
-                                        <th class="col-md-2">Overall Width:</th>
-                                        <td class="col-md-10">@this.motorcycle.Width</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="col-md-2">Wheelbase:</th>
-                                        <td class="col-md-10">@this.motorcycle.Wheelbase</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="col-md-2">Ground Clearance:</th>
-                                        <td class="col-md-10">@this.motorcycle.GroundClearance</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="col-md-2">Sit Height:</th>
-                                        <td class="col-md-10">@this.motorcycle.SitHeight</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="col-md-2">Kerb Mass:</th>
-                                        <td class="col-md-10">@this.motorcycle.KerbMass</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="col-md-2">Fuel Capacity:</th>
-                                        <td class="col-md-10">@this.motorcycle.FuelCapacity</td>
-                                    </tr>
-                              </tbody>
-                            </table>
-                        </div>
-
-
-
-
-                    </div>
-                }
-
-                @if(this.tab2)
-                {
-                    <div class="tabContent">
-                        <br />
-                        <h3>ENGINE</h3>
-                        <br />
-                        <div class="table-responsive ">
-                            <table class="table table-striped table-borderless ">
-                                <tbody>
-                                    <tr>
-                                        <th class="col-md-2">Engine Capacity:</th>
-                                        <td class="col-md-10">@this.motorcycle.Engine.Capacity</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="col-md-2">Engine:</th>
-                                        <td class="col-md-10">@this.motorcycle.Engine.EngineDescription</td>
-                                    </tr>
-                                     <tr>
-                                        <th class="col-md-2">Bore:</th>
-                                        <td class="col-md-10">@this.motorcycle.Engine.Bore</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="col-md-2">Compression Ratio:</th>
-                                        <td class="col-md-10">@this.motorcycle.Engine.CompressionRatio</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="col-md-2">Lubrication:</th>
-                                        <td class="col-md-10">@this.motorcycle.Engine.Lubrication</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="col-md-2">Ignition:</th>
-                                        <td class="col-md-10">@this.motorcycle.Engine.Ignition</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="col-md-2">Fuel System:</th>
-                                        <td class="col-md-10">@this.motorcycle.Engine.FuelSystem</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="col-md-2">Transmission:</th>
-                                        <td class="col-md-10">@this.motorcycle.Engine.Transmission</td>
-                                    </tr>
-
-                                    <tr>
-                                        <th class="col-md-2">Drive:</th>
-                                        <td class="col-md-10">@this.motorcycle.Engine.Drive</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="col-md-2">Starter:</th>
-                                        <td class="col-md-10">@this.motorcycle.Engine.Starter</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="col-md-2">MPG:</th>
-                                        <td class="col-md-10">@this.motorcycle.Engine.Mpg</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="col-md-2">CO2:</th>
-                                        <td class="col-md-10">@this.motorcycle.Engine.Co2</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="col-md-2">Power:</th>
-                                        <td class="col-md-10">@this.motorcycle.Engine.Power</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="col-md-2">Torque:</th>
-                                        <td class="col-md-10">@this.motorcycle.Engine.Torque</td>
-                                    </tr>
-                              </tbody>
-                            </table>
-                        </div>
-                    </div>
-                }
-
-                @if(this.tab3)
-                {
-                    <div class="tabContent">
-                        <br />
-                        <h3>SUSPENSION</h3>
-                        <br />
-
-                        @foreach(var suspension in this.motorcycle.Chassis.Suspensions)
-                        {
-                            <h5>@suspension.Type</h5>
-                            <div class="table-responsive ">
-                                <table class="table table-striped table-borderless ">
-                                    <tbody>
-                                        <tr>
-                                            <th class="col-md-2">Name:</th>
-                                            <td class="col-md-10">@suspension.Name</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Description:</th>
-                                            <td>@suspension.Description</td>
-                                        </tr>
-                                  </tbody>
-                                </table>
-                            </div>
-                        }
-
-                    </div>
-                }
-
-                @if(this.tab4)
-                {
-                    <div class="tabContent">
-                        <br />
-                        <h3>WHEELS</h3>
-                        <br />
-                        @foreach(var wheel in this.motorcycle.Chassis.Wheels)
-                        {
-                            <h5>@wheel.Type</h5>
-                            <div class="table-responsive ">
-                                <table class="table table-striped table-borderless ">
-                                    <tbody>
-                                        <tr>
-                                            <th class="col-md-2">Rim Diameter:</th>
-                                            <td class="col-md-10">@wheel.RimDiameter</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="4">
-                                                <br />
-                                                <h4>Tyre</h4>
-                                                <br />
-                                                <table class="table mb-0">
-                                                  <tbody>
-                                                      <tr>
-                                                        <th class="col-md-2">Brand:</th>
-                                                        <td class="col-md-10">@wheel.Tyre.Brand</td>
-                                                      </tr>
-
-                                                      <tr>
-                                                        <th class="col-md-2">Speed Index:</th>
-                                                        <td class="col-md-10">@wheel.Tyre.SpeedIndex</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <th class="col-md-2">Width:</th>
-                                                        <td class="col-md-10">@wheel.Tyre.Width</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <th class="col-md-2">Profile:</th>
-                                                        <td class="col-md-10">@wheel.Tyre.Profile</td>
-                                                      </tr>
-                                                      <tr>
-                                                        <th class="col-md-2">Load Index Of Tyre:</th>
-                                                        <td class="col-md-10">@wheel.Tyre.LoadIndexOfTyre</td>
-                                                      </tr>
-                                                  </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                  </tbody>
-                                </table>
-                            </div>
-                        }
-
-                    </div>
-                }
-
-                @if(this.tab5)
-                {
-                    <div class="tabContent">
-                        <br />
-                        <h3>BREAKS</h3>
-                        <br />
-                        @foreach(var brake in this.motorcycle.Chassis.Brakes)
-                        {
-                            <h5>@brake.Type</h5>
-                            <div class="table-responsive ">
-                                <table class="table table-striped table-borderless ">
-                                    <tbody>
-                                        <tr>
-                                            <th class="col-md-2">Name:</th>
-                                            <td class="col-md-10">@brake.Name</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Number Of Discs:</th>
-                                            <td>@brake.NumberOfDiscs</td>
-                                        </tr>
-                                  </tbody>
-                                </table>
-                            </div>
-                        }
-                    </div>
-                }
+                  </tbody>
+                </table>
             </div>
 
 
 
-    </div>
+            <div class="additional-info-container">
 
-    <div class="gallery">
-        <h2>Gallery</h2>
-    </div>
+                <TabsControlComponent>
+                    <TabContentComponent Title="chassis" ImgUrl="https://cdn-ps-motorcycle.azureedge.net/static-images/chassis_original.jpg">
+                        <div class="tabContent">
+                            <br />
+                            <h4>DIMENSIONS AND WEIGHTS</h4>
+                            <br />
+                            <div class="table-responsive ">
+                                <table class="table table-striped table-borderless ">
+                                    <tbody>
+                                        <tr>
+                                            <th class="col-md-2">Overall Length:</th>
+                                            <td class="col-md-10">@this.motorcycle.Length</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="col-md-2">Overall Height:</th>
+                                            <td class="col-md-10">@this.motorcycle.Height</td>
+                                        </tr>
+                                         <tr>
+                                            <th class="col-md-2">Overall Width:</th>
+                                            <td class="col-md-10">@this.motorcycle.Width</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="col-md-2">Wheelbase:</th>
+                                            <td class="col-md-10">@this.motorcycle.Wheelbase</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="col-md-2">Ground Clearance:</th>
+                                            <td class="col-md-10">@this.motorcycle.GroundClearance</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="col-md-2">Sit Height:</th>
+                                            <td class="col-md-10">@this.motorcycle.SitHeight</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="col-md-2">Kerb Mass:</th>
+                                            <td class="col-md-10">@this.motorcycle.KerbMass</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="col-md-2">Fuel Capacity:</th>
+                                            <td class="col-md-10">@this.motorcycle.FuelCapacity</td>
+                                        </tr>
+                                  </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </TabContentComponent>
+                    <TabContentComponent Title="engine" ImgUrl="https://cdn-ps-motorcycle.azureedge.net/static-images/engine_original.jpg">
+                        <div class="tabContent">
+                            <br />
+                            <h3>ENGINE</h3>
+                            <br />
+                            <div class="table-responsive ">
+                                <table class="table table-striped table-borderless ">
+                                    <tbody>
+                                        <tr>
+                                            <th class="col-md-2">Engine Capacity:</th>
+                                            <td class="col-md-10">@this.motorcycle.Engine.Capacity</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="col-md-2">Engine:</th>
+                                            <td class="col-md-10">@this.motorcycle.Engine.EngineDescription</td>
+                                        </tr>
+                                         <tr>
+                                            <th class="col-md-2">Bore:</th>
+                                            <td class="col-md-10">@this.motorcycle.Engine.Bore</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="col-md-2">Compression Ratio:</th>
+                                            <td class="col-md-10">@this.motorcycle.Engine.CompressionRatio</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="col-md-2">Lubrication:</th>
+                                            <td class="col-md-10">@this.motorcycle.Engine.Lubrication</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="col-md-2">Ignition:</th>
+                                            <td class="col-md-10">@this.motorcycle.Engine.Ignition</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="col-md-2">Fuel System:</th>
+                                            <td class="col-md-10">@this.motorcycle.Engine.FuelSystem</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="col-md-2">Transmission:</th>
+                                            <td class="col-md-10">@this.motorcycle.Engine.Transmission</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th class="col-md-2">Drive:</th>
+                                            <td class="col-md-10">@this.motorcycle.Engine.Drive</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="col-md-2">Starter:</th>
+                                            <td class="col-md-10">@this.motorcycle.Engine.Starter</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="col-md-2">MPG:</th>
+                                            <td class="col-md-10">@this.motorcycle.Engine.Mpg</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="col-md-2">CO2:</th>
+                                            <td class="col-md-10">@this.motorcycle.Engine.Co2</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="col-md-2">Power:</th>
+                                            <td class="col-md-10">@this.motorcycle.Engine.Power</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="col-md-2">Torque:</th>
+                                            <td class="col-md-10">@this.motorcycle.Engine.Torque</td>
+                                        </tr>
+                                  </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </TabContentComponent>
+                    <TabContentComponent Title="suspension" ImgUrl="https://cdn-ps-motorcycle.azureedge.net/static-images/suspension_original_1.jpg">
+                        <div class="tabContent">
+                            <br />
+                            <h3>SUSPENSION</h3>
+                            <br />
+                            @foreach(var suspension in this.motorcycle.Chassis.Suspensions)
+                            {
+                                <h5>@suspension.Type</h5>
+                                <div class="table-responsive ">
+                                    <table class="table table-striped table-borderless ">
+                                        <tbody>
+                                            <tr>
+                                                <th class="col-md-2">Name:</th>
+                                                <td class="col-md-10">@suspension.Name</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Description:</th>
+                                                <td>@suspension.Description</td>
+                                            </tr>
+                                      </tbody>
+                                    </table>
+                                </div>
+                            }
+                        </div>
+                    </TabContentComponent>
+                    <TabContentComponent Title="wheels" ImgUrl="https://cdn-ps-motorcycle.azureedge.net/static-images/wheel_original.jpg">
+                        <div class="tabContent">
+                            <br />
+                            <h3>WHEELS</h3>
+                            <br />
+                            @foreach(var wheel in this.motorcycle.Chassis.Wheels)
+                            {
+                                <h5>@wheel.Type</h5>
+                                <div class="table-responsive ">
+                                    <table class="table table-striped table-borderless ">
+                                        <tbody>
+                                            <tr>
+                                                <th class="col-md-2">Rim Diameter:</th>
+                                                <td class="col-md-10">@wheel.RimDiameter</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="4">
+                                                    <br />
+                                                    <h4>Tyre</h4>
+                                                    <br />
+                                                    <table class="table mb-0">
+                                                      <tbody>
+                                                          <tr>
+                                                            <th class="col-md-2">Brand:</th>
+                                                            <td class="col-md-10">@wheel.Tyre.Brand</td>
+                                                          </tr>
+
+                                                          <tr>
+                                                            <th class="col-md-2">Speed Index:</th>
+                                                            <td class="col-md-10">@wheel.Tyre.SpeedIndex</td>
+                                                          </tr>
+                                                          <tr>
+                                                            <th class="col-md-2">Width:</th>
+                                                            <td class="col-md-10">@wheel.Tyre.Width</td>
+                                                          </tr>
+                                                          <tr>
+                                                            <th class="col-md-2">Profile:</th>
+                                                            <td class="col-md-10">@wheel.Tyre.Profile</td>
+                                                          </tr>
+                                                          <tr>
+                                                            <th class="col-md-2">Load Index Of Tyre:</th>
+                                                            <td class="col-md-10">@wheel.Tyre.LoadIndexOfTyre</td>
+                                                          </tr>
+                                                      </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                      </tbody>
+                                    </table>
+                                </div>
+                            }
+                        </div>
+                    </TabContentComponent>
+                    <TabContentComponent Title="brakes" ImgUrl="https://cdn-ps-motorcycle.azureedge.net/static-images/Brake_original.jpg">
+                        <div class="tabContent">
+                            <br />
+                            <h3>BREAKS</h3>
+                            <br />
+                            @foreach(var brake in this.motorcycle.Chassis.Brakes)
+                            {
+                                <h5>@brake.Type</h5>
+                                <div class="table-responsive ">
+                                    <table class="table table-striped table-borderless ">
+                                        <tbody>
+                                            <tr>
+                                                <th class="col-md-2">Name:</th>
+                                                <td class="col-md-10">@brake.Name</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Number Of Discs:</th>
+                                                <td>@brake.NumberOfDiscs</td>
+                                            </tr>
+                                      </tbody>
+                                    </table>
+                                </div>
+                            }
+                        </div>
+                    </TabContentComponent>
+                </TabsControlComponent>
+
+            </div>
+
+
+        </div>
+
+        <div class="gallery">
+            <h2>Gallery</h2>
+        </div>
      
 
 
-</div>
+    </div>
 
 
 
@@ -399,4 +355,4 @@
 
 
 
-   }
+}
