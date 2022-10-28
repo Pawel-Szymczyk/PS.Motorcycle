@@ -18,13 +18,12 @@ namespace PS.Motorcycle.AdminPortal.Pages
         [Parameter]
         public Guid Id { get; set; }
 
-        [Inject]
-        public IJSRuntime JS { get; set; }
+       
 
         [Inject]
         private IGetMotorcycleUseCase MotorcycleUseCase { get; set; }
         private IMotorcycle motorcycle;
-        private bool firstRender = true;
+        
 
         [Inject]
         private IBreadcrumbService _breadcrumbService { get; set; }
@@ -49,14 +48,7 @@ namespace PS.Motorcycle.AdminPortal.Pages
             
         }
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (firstRender)
-            {
-                await this.JS.InvokeAsync<object>("initializeCarousel");
-                this.firstRender = false; 
-            }
-        }
+        
 
 
 

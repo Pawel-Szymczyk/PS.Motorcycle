@@ -1,7 +1,8 @@
-﻿@page "/"
+﻿@attribute [Authorize]
+@page "/"
+@page "/motorcycle"
 
 
-@attribute [Authorize]
 
 <div class="breadcrumbs-container">
     <BreadcrumbComponent Breadcrumbs="@this.Breadcrumbs"></BreadcrumbComponent>

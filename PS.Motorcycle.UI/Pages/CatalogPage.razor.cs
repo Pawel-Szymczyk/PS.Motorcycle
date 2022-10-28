@@ -17,15 +17,7 @@ namespace PS.Motorcycle.UserPortal.Pages
     public partial class CatalogPage : ComponentBase
     {
         [Inject]
-        private IJSRuntime js { get; set; }
-
-        [Inject]
         private IGetMotorcyclesUseCase GetMotorcyclesUseCase { get; set; }
-
-        //public List<IBreadcrumb> Breadcrumbs { get; set; }
-        //public IBreadcrumb Breadcrumb { get; set; }
-
-        
 
 
         [Inject]
@@ -35,9 +27,8 @@ namespace PS.Motorcycle.UserPortal.Pages
 
         public CatalogPage()
         {
-            
-        }
 
+        }
 
         protected override void OnInitialized()
         {

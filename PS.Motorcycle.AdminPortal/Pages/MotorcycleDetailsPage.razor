@@ -8,15 +8,17 @@
 
 @if(this.motorcycle is null)
 {
-    <p>Loading...</p>
+    <p>Loading...</p> 
 }
 else
 {
 
+    <JumbotronComponent ImgUrl="https://moto-trips.pl/wp-content/uploads/2020/09/Suzuki-GSXS-750.jpg" Title="@this.motorcycle.Make" SubTitle="@this.motorcycle.Model"  />
+
     <div class="container-fluid">
 
 
-         @*<div class="p-5 mb-4 rounded-3 motorcycle-jumbo-container" bis_skin_checked="1" style="background-color: lightcoral !important;">
+@*         <div class="p-5 mb-4 rounded-3 motorcycle-jumbo-container" bis_skin_checked="1" style="background-color: lightcoral !important;">
             <div class="container-fluid py-5 motorcycle-jumbo-text" bis_skin_checked="1" >
                 <img src="https://moto-trips.pl/wp-content/uploads/2020/09/Suzuki-GSXS-750.jpg" alt="Snow">
 
@@ -25,12 +27,13 @@ else
             </div>
         </div>*@
 
+        
 
-        <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+        @*<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            @*<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>*@
           </div>
 
           <div class="carousel-inner">
@@ -58,7 +61,7 @@ else
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
-        </div>
+        </div>*@
 
 
 
@@ -343,6 +346,8 @@ else
 
         <div class="gallery">
             <h2>Gallery</h2>
+
+            <SlideshowGalleryComponent />
         </div>
      
 
