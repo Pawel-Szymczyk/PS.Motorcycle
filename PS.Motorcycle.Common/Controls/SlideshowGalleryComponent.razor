@@ -1,67 +1,28 @@
-﻿@*<div id="myModal" class="modal">
-  <span class="close">&times;</span>
-  <img class="modal-content" id="img01">
-  <div id="caption"></div>
-</div>*@
-@*
-<h2 style="text-align:center">Slideshow Gallery</h2>*@
-
+﻿
 <div class="container">
-  <div class="mySlides">
-    <div class="numbertext">1 / 6</div>
-    <img id="myImg" src="https://moto-trips.pl/wp-content/uploads/2020/09/Suzuki-GSXS-750.jpg" style="width:100%">
-  </div>
 
-  <div class="mySlides">
-    <div class="numbertext">2 / 6</div>
-    <img src="https://moto-trips.pl/wp-content/uploads/2020/07/Harley-Davidson-Low-Rider-S.jpg" style="width:100%">
-  </div>
+    @for (int index = 0; index < this.Images.Count; index++)
+    {
+        <div class="mySlides">
+            <div class="numbertext"> @($"{index+1}") / @this.Images.Count</div>
+            <img id="myImg" src="@this.Images[index]">
+        </div>
+    }
 
- @* <div class="mySlides">
-    <div class="numbertext">3 / 6</div>
-    <img src="img_mountains_wide.jpg" style="width:100%">
-  </div>
     
-  <div class="mySlides">
-    <div class="numbertext">4 / 6</div>
-    <img src="img_lights_wide.jpg" style="width:100%">
-  </div>
+    <a class="prev" onclick="@(async() => await this.PlusSlides(-1))">❮</a>
+    <a class="next" onclick="@(async() => await this.PlusSlides(1))">❯</a>
 
-  <div class="mySlides">
-    <div class="numbertext">5 / 6</div>
-    <img src="img_nature_wide.jpg" style="width:100%">
-  </div>
-    
-  <div class="mySlides">
-    <div class="numbertext">6 / 6</div>
-    <img src="img_snow_wide.jpg" style="width:100%">
-  </div>*@
-    
-  <a class="prev" onclick="@(async() => await this.PlusSlides(-1))">❮</a>
-  <a class="next" onclick="@(async() => await this.PlusSlides(1))">❯</a>
+    <div class="caption-container">
+        @*<p id="caption"></p>*@
+    </div>
 
-  <div class="caption-container">
-    <p id="caption"></p>
-  </div>
-
-  <div class="row">
-    <div class="column">
-      <img class="demo cursor" src="https://moto-trips.pl/wp-content/uploads/2020/09/Suzuki-GSXS-750.jpg" style="width:100%" onclick="@(async() => await CurrentSlide(1))" alt="The Woods">
+    <div class="row">
+        @for (int index = 0; index < this.Images.Count; index++)
+        {
+            <div class="column">
+                <img class="demo cursor" src="@this.Images[index]" onclick="@(async() => await CurrentSlide(index))" alt="The Woods">
+            </div>
+        }
     </div>
-    <div class="column">
-      <img class="demo cursor" src="https://moto-trips.pl/wp-content/uploads/2020/07/Harley-Davidson-Low-Rider-S.jpg" style="width:100%" onclick="@(async() => await CurrentSlide(2))" alt="Cinque Terre">
-    </div>
-    @*<div class="column">
-      <img class="demo cursor" src="img_mountains.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="img_lights.jpg" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
-    </div>
-    <div class="column">
-      <img class="demo cursor" src="img_nature.jpg" style="width:100%" onclick="currentSlide(5)" alt="Nature and sunrise">
-    </div>    
-    <div class="column">
-      <img class="demo cursor" src="img_snow.jpg" style="width:100%" onclick="currentSlide(6)" alt="Snowy Mountains">
-    </div>*@
-  </div>
 </div>

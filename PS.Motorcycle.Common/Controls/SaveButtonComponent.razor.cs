@@ -20,7 +20,7 @@ namespace PS.Motorcycle.Common.Controls
             this.Type = "button";
         }
 
-        private void SaveMotorcycle()
+        private void OnClick()
         {
             //this.NavigationManager.NavigateTo("/");
         }

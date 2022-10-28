@@ -16,6 +16,8 @@ namespace PS.Motorcycle.Common.Controls
 
 		private List<TabContentComponent> Pages = new List<TabContentComponent>();
 
+		//private string imageGalleryUrls { get; set; }
+
 		public void AddPage(TabContentComponent tabPage)
 		{
 			this.Pages.Add(tabPage);

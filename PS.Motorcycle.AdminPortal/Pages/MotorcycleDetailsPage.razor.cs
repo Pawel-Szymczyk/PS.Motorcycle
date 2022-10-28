@@ -29,12 +29,14 @@ namespace PS.Motorcycle.AdminPortal.Pages
         private IBreadcrumbService _breadcrumbService { get; set; }
         public List<IBreadcrumb> Breadcrumbs { get; set; }
 
+        private List<string> images = new List<string>();
+
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
 
             this.motorcycle = await this.MotorcycleUseCase.Execute(this.Id);
-
+            this.images = this.GetImages(this.motorcycle.ImagesGalleryUrls);
 
 
             IBreadcrumb breadcrumb = new Breadcrumb()
@@ -46,6 +48,11 @@ namespace PS.Motorcycle.AdminPortal.Pages
             this.Breadcrumbs = this._breadcrumbService.GetBreadcrumb(breadcrumb);
 
             
+        }
+
+        private List<string> GetImages(string imagesUrlsString)
+        {
+            return imagesUrlsString.Split(',').ToList();
         }
 
         

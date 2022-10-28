@@ -16,9 +16,9 @@
     background-color: #000000 !important;
 }
 
-    .custom-tab-button.active {
+    /*.custom-tab-button.active {
         opacity: 1 !important;
-    }
+    }*/
 
 
     .custom-tab-button p {
@@ -35,8 +35,16 @@
     height: 5em;
     object-fit: cover;
     transition: .5s;
+    opacity: 0.4;
 }
 
+
+
     .custom-tab-button-img:hover {
-        opacity: 0.4;
+        opacity: 1;
     }
+
+
+.active > .custom-tab-button-img {
+    opacity: 1;
+}

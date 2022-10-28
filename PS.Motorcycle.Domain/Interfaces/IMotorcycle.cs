@@ -11,6 +11,11 @@ namespace PS.Motorcycle.Domain.Interfaces
     public interface IMotorcycle
     {        
         public Guid Id { get; set; }
+
+        public string About { get; set; }
+        public string ImageUrl { get; set; }
+        public string ImagesGalleryUrls { get; set; }
+
         public TwoWheelerType Type { get; }
         public int Length { get; set; }
         public int Height { get; set; }

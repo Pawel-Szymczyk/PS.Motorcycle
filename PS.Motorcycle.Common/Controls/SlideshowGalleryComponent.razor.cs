@@ -15,6 +15,10 @@ namespace PS.Motorcycle.Common.Controls
         public IJSRuntime JS { get; set; }
         private bool firstRender = true;
 
+
+        [Parameter]
+        public List<string> Images { get; set; }
+
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)

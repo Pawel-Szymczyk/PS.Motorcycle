@@ -13,90 +13,30 @@
 else
 {
 
-    <JumbotronComponent ImgUrl="https://moto-trips.pl/wp-content/uploads/2020/09/Suzuki-GSXS-750.jpg" Title="@this.motorcycle.Make" SubTitle="@this.motorcycle.Model"  />
+    <JumbotronComponent ImgUrl="@this.motorcycle.ImageUrl" Title="@this.motorcycle.Make" SubTitle="@this.motorcycle.Model"  />
 
     <div class="container-fluid">
-
-
-@*         <div class="p-5 mb-4 rounded-3 motorcycle-jumbo-container" bis_skin_checked="1" style="background-color: lightcoral !important;">
-            <div class="container-fluid py-5 motorcycle-jumbo-text" bis_skin_checked="1" >
-                <img src="https://moto-trips.pl/wp-content/uploads/2020/09/Suzuki-GSXS-750.jpg" alt="Snow">
-
-                <h1 class="display-5 fw-bold">@this.motorcycle.Make</h1>
-                <p class="col-md-8 fs-4">@this.motorcycle.Model</p>
-            </div>
-        </div>*@
-
-        
-
-
-        @*<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          </div>
-
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="https://moto-trips.pl/wp-content/uploads/2020/09/Suzuki-GSXS-750.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h1>@this.motorcycle.Make</h1>
-                    <p>@this.motorcycle.Model</p>
-                </div>  
-             </div>
-            <div class="carousel-item">
-              <img src="https://moto-trips.pl/wp-content/uploads/2020/07/Harley-Davidson-Low-Rider-S.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption">
-                    <h1>@this.motorcycle.Make</h1>
-                    <p>@this.motorcycle.Model</p>
-                </div>  
-            </div>
-            
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>*@
-
-
-
-           <div class="toolbar-container">
-                <div class="toolbar">
-                    <div class="d-grid gap-2 d-md-block">
-                        <EditButtonComponent  />
-                        <DeleteButtonComponent />
-                    </div>
+        <div class="toolbar-container">
+            <div class="toolbar">
+                <div class="d-grid gap-2 d-md-block">
+                    <EditButtonComponent  />
+                    <DeleteButtonComponent />
                 </div>
             </div>
- 
-
-
-
-
-
-   
-   
-
-    
+        </div>
     </div>
 
     <div class="container"> 
-
         <div class="about">
             <h2>About</h2>
-
-            <p>Aenean ac risus porta, eleifend mi eu, finibus ligula. Maecenas risus nibh, tristique ac tincidunt et, auctor at metus. Vestibulum venenatis ligula quis magna dignissim, vel cursus libero rutrum. Proin at euismod diam, nec aliquet sem. Vivamus porta dui nec congue maximus. Mauris non lectus luctus, lobortis est eget, malesuada est. In rhoncus lacus in fermentum pellentesque. Integer porta finibus nisi eget accumsan. Etiam suscipit fringilla iaculis. Aenean et sapien vulputate, lacinia lacus nec, convallis mi. Fusce pretium mauris gravida, congue turpis vel, hendrerit ante. Maecenas dignissim orci vel nulla ullamcorper, non pellentesque nulla semper. In hac habitasse platea dictumst. Integer scelerisque augue ac lacus feugiat, quis viverra mauris pulvinar. Sed sed elit finibus, consectetur est at, blandit lorem. Nullam ac dolor faucibus, tempus turpis id, lacinia nisi.</p>
+            <br />
+            <p>@this.motorcycle.About</p>
         </div>
-
 
         <div class="technical-details">
 
             <h2>Technical Details</h2>
+            <br />
         
             <div class="table-responsive ">
                 <table class="table table-striped table-borderless ">
@@ -113,8 +53,6 @@ else
                   </tbody>
                 </table>
             </div>
-
-
 
             <div class="additional-info-container">
 
@@ -267,8 +205,8 @@ else
                             @foreach(var wheel in this.motorcycle.Chassis.Wheels)
                             {
                                 <h5>@wheel.Type</h5>
-                                <div class="table-responsive ">
-                                    <table class="table table-striped table-borderless ">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-borderless">
                                         <tbody>
                                             <tr>
                                                 <th class="col-md-2">Rim Diameter:</th>
@@ -279,7 +217,7 @@ else
                                                     <br />
                                                     <h4>Tyre</h4>
                                                     <br />
-                                                    <table class="table mb-0">
+                                                    <table class="table table-striped table-borderless">
                                                       <tbody>
                                                           <tr>
                                                             <th class="col-md-2">Brand:</th>
@@ -321,7 +259,7 @@ else
                             {
                                 <h5>@brake.Type</h5>
                                 <div class="table-responsive ">
-                                    <table class="table table-striped table-borderless ">
+                                    <table class="table table-striped table-borderless">
                                         <tbody>
                                             <tr>
                                                 <th class="col-md-2">Name:</th>
@@ -340,14 +278,12 @@ else
                 </TabsControlComponent>
 
             </div>
-
-
         </div>
 
         <div class="gallery">
             <h2>Gallery</h2>
-
-            <SlideshowGalleryComponent />
+             <br />
+            <SlideshowGalleryComponent Images="@this.images" />
         </div>
      
 

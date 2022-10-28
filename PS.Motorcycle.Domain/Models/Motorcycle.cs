@@ -1,19 +1,62 @@
 ﻿using PS.Motorcycle.Domain.Models.Base;
 using PS.Motorcycle.Domain.Interfaces;
 using PS.Motorcycle.Domain.Types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace PS.Motorcycle.Domain.Models
 {
     public class Motorcycle : TwoWheeler, IMotorcycle
     {
-        
+
         // attributes
+        private string about;
+        private string imageUrl;
+        private string imagesGalleryUrls;
+
+        [JsonProperty("about")]
+        public string About
+        {
+            get
+            {
+                return this.about;
+            }
+
+            set
+            {
+                this.about = value;
+            }
+        }
+
+        [JsonProperty("imageUrl")]
+        public string ImageUrl
+        {
+            get
+            {
+                return this.imageUrl;
+            }
+
+            set
+            {
+                this.imageUrl = value;
+            }
+        }
+
+        [JsonProperty("imagesGalleryUrls")]
+        public string ImagesGalleryUrls
+        {
+            get
+            {
+                return this.imagesGalleryUrls;
+            }
+
+            set
+            {
+                this.imagesGalleryUrls = value;
+            }
+        }
+
+
+
         private int lenght;
         private int height;
         private int width;
@@ -264,6 +307,10 @@ namespace PS.Motorcycle.Domain.Models
             this.make = String.Empty;
             this.model = String.Empty;
 
+            this.about = String.Empty;
+            this.imageUrl = String.Empty;
+            this.imagesGalleryUrls = String.Empty;
+
             // add type: naked , sport, etc.
 
             this.engine = new Engine();
@@ -277,6 +324,10 @@ namespace PS.Motorcycle.Domain.Models
             this.type = TwoWheelerType.MOTORCYCLE;
             this.make = String.Empty;
             this.model = String.Empty;
+
+            this.about = String.Empty;
+            this.imageUrl = String.Empty;
+            this.imagesGalleryUrls = String.Empty;
 
             this.chassis = chassis;
             this.engine = engine;
