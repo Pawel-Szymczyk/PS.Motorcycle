@@ -1,15 +1,9 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
-using Microsoft.JSInterop;
 using PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.GetMotorcycles;
 using PS.Motorcycle.Domain.Interfaces;
 using PS.Motorcycle.Domain.Models.Components;
 using PS.Motorcycle.Domain.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PS.Motorcycle.AdminPortal.Pages
 {
@@ -44,7 +38,7 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
             this.Breadcrumbs = this._breadcrumbService.GetBreadcrumb(breadcrumb);
         }
-
+ 
         //protected override async Task OnAfterRenderAsync(bool firstRender)
         //{
         //    if(firstRender)

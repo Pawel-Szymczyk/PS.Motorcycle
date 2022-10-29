@@ -23,8 +23,10 @@ namespace PS.Motorcycle.Common.Controls
         {
             if (firstRender)
             {
-                //await this.JS.InvokeAsync<object>("initializeCarousel");
-                await this.JS.InvokeAsync<object>("initializeSlides");
+                if(!this.Images.Count.Equals(0))
+                {
+                    await this.JS.InvokeAsync<object>("initializeSlides");
+                }
 
                 this.firstRender = false;
             }
@@ -35,13 +37,11 @@ namespace PS.Motorcycle.Common.Controls
         public async Task PlusSlides(int direction)
         {
             await this.JS.InvokeVoidAsync("plusSlides", direction);
-            //StateHasChanged();
         }
 
         public async Task CurrentSlide(int number)
         {
             await this.JS.InvokeVoidAsync("currentSlide", number);
-            //StateHasChanged();
         }
     }
 }

@@ -5,6 +5,8 @@
 /* Position the image container (needed to position the left and right arrows) */
 .container {
     position: relative;
+    padding: 0;
+    box-shadow: rgb(0 0 0 / 25%) 0px 0.0625em 0.0625em, rgb(0 0 0 / 25%) 0px 0.125em 0.5em, rgb(255 255 255 / 10%) 0px 0px 0px 1px inset;
 }
 
 /* Hide the images by default */
@@ -63,6 +65,10 @@
     color: white;
 }
 
+.row {
+    padding: 0px 12px;
+}
+
 .row:after {
     content: "";
     display: table;
@@ -73,6 +79,7 @@
 .column {
     float: left;
     width: 16.66%;
+    padding: 0;
 }
 
 /* Add a transparency effect for thumnbail images */

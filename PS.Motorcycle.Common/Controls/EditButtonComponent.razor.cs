@@ -13,11 +13,11 @@ namespace PS.Motorcycle.Common.Controls
         private NavigationManager NavigationManager { get; set; }
 
         [Parameter]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         private void OnClick()
         {
-            //this.NavigationManager.NavigateTo("/create-motorcycle");
+            this.NavigationManager.NavigateTo($"/motorcycle/edit/{this.Id}");
         }
     }
 }

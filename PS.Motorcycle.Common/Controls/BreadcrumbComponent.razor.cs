@@ -23,7 +23,7 @@ namespace PS.Motorcycle.Common.Controls
 
         public BreadcrumbComponent()
         {
-
+            this.Breadcrumbs = new List<IBreadcrumb>();
         }
 
         //public BreadcrumbComponent(IBreadcrumbService breadcrumbService)

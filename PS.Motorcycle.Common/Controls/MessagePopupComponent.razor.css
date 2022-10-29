@@ -1,0 +1,38 @@
+﻿
+.modal-header {
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #d6d6d6;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.warning {
+    background-color: red;
+    color: white;
+    
+}
+
+
+
+.btn-custom-alert {
+    text-decoration: none;
+    color: red;
+}
+
+    .btn-custom-alert:hover {
+        color: red;
+        background-color: #e7e4e470;
+    }
+
+
+.btn-custom {
+    text-decoration: none;
+}
+
+    .btn-custom:hover {
+        color: #0071c1;
+        background-color: #e7e4e470;
+    }
