@@ -1,51 +1,48 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 using PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.GetMotorcycles;
 using PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.RemoveMotorcycle;
 using PS.Motorcycle.Domain.Interfaces;
 using PS.Motorcycle.Domain.Models.Components;
 using PS.Motorcycle.Domain.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PS.Motorcycle.AdminPortal.Pages
 {
     public partial class MotorcycleDetailsPage : ComponentBase
     {
-
+        #region Parameters ------------------------------------------------------
         [Parameter]
         public Guid Id { get; set; }
+        #endregion
+
+        #region Use Cases and Services ------------------------------------------
+        [Inject]
+        private NavigationManager NavigationManager { get; set; } = default!;
 
         [Inject]
-        private NavigationManager NavigationManager { get; set; }
+        private IGetMotorcycleUseCase MotorcycleUseCase { get; set; } = default!;
 
         [Inject]
-        private IGetMotorcycleUseCase MotorcycleUseCase { get; set; }
+        private IRemoveMotorcycleUseCase RemoveMotorcycleUseCase { get; set; } = default!;
 
         [Inject]
-        private IRemoveMotorcycleUseCase RemoveMotorcycleUseCase { get; set; }
+        private IBreadcrumbService _breadcrumbService { get; set; } = default!;
+        #endregion
 
-        private IMotorcycle motorcycle;
-        
-
-        [Inject]
-        private IBreadcrumbService _breadcrumbService { get; set; }
-        public List<IBreadcrumb> Breadcrumbs { get; set; }
-
+        #region Properties ------------------------------------------------------
+        private List<IBreadcrumb>? Breadcrumbs { get; set; }
         private List<string> images = new List<string>();
 
+        private IMotorcycle? motorcycle = null;
 
-        private string MessageTitle;
-        private string Message;
-        private string MessageType;
+        private string messageTitle = string.Empty;
+        private string message = string.Empty;
+        private string messageType = string.Empty;
+        private string editPath = string.Empty;
+        #endregion
 
-
-        protected override async Task OnInitializedAsync()
+        protected override async Task OnParametersSetAsync()
         {
-            await base.OnInitializedAsync();
+            await base.OnParametersSetAsync();
 
             this.motorcycle = await this.MotorcycleUseCase.Execute(this.Id);
             this.images = this.GetImages(this.motorcycle.ImagesGalleryUrls);
@@ -59,21 +56,15 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
             this.Breadcrumbs = this._breadcrumbService.GetBreadcrumb(breadcrumb);
 
-            this.MessageTitle = "Delete Motorcycle";
-            this.Message = $"Are you sure you want to DELETE: {this.motorcycle.Make} {this.motorcycle.Model}?";
-            this.MessageType = "warning";
+            this.editPath = $"/motorcycle/edit/{this.motorcycle.Id}";
+
+            this.messageTitle = "Delete Motorcycle";
+            this.message = $"Are you sure you want to DELETE: {this.motorcycle.Make} {this.motorcycle.Model}?";
+            this.messageType = "alert alert-danger";
         }
 
-        private List<string> GetImages(string imagesUrlsString)
-        {
-            if(string.IsNullOrEmpty(imagesUrlsString)) return new List<string>();
-
-            return imagesUrlsString.Split(',').ToList();
-        }
-
-
-
-        private void ClickHandler(bool agreeToDeleteMotorcycle)
+        
+        protected void ClickHandler(bool agreeToDeleteMotorcycle)
         {
             this.RemoveMotorcycleUseCase.Execute(this.motorcycle.Id);
 
@@ -81,7 +72,12 @@ namespace PS.Motorcycle.AdminPortal.Pages
         }
 
 
+        private List<string> GetImages(string imagesUrlsString)
+        {
+            if (string.IsNullOrEmpty(imagesUrlsString)) return new List<string>();
 
+            return imagesUrlsString.Split(',').ToList();
+        }
 
     }
 }

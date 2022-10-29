@@ -2,7 +2,7 @@
 
 namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.UpdateMotorcycleUseCase
 {
-    internal interface IUpdateMotorcycleUseCase
+    public interface IUpdateMotorcycleUseCase
     {
         Task<IMotorcycle> Execute(IMotorcycle motorcycle);
     }

@@ -14,13 +14,17 @@ namespace PS.Motorcycle.AdminPortal.Pages
 {
     public partial class CreateMotorcyclePage : ComponentBase
     {
+        #region Use Cases and Services ------------------------------------------
         [Inject]
-        private IBreadcrumbService BreadcrumbService { get; set; }
+        private IBreadcrumbService BreadcrumbService { get; set; } = default!;
         [Inject]
-        private IAddMotorcycleUseCase AddMotorcyclesUseCase { get; set; }
-        private List<IBreadcrumb> Breadcrumbs { get; set; }
-        private IMotorcycle motorcycle;
+        private IAddMotorcycleUseCase AddMotorcyclesUseCase { get; set; } = default!;
+        #endregion
 
+        #region Properties ------------------------------------------------------
+        private List<IBreadcrumb> Breadcrumbs { get; set; }
+        private IMotorcycle? motorcycle = null;
+        #endregion
 
         public CreateMotorcyclePage()
         {
@@ -36,15 +40,6 @@ namespace PS.Motorcycle.AdminPortal.Pages
             this.motorcycle.Chassis.Wheels.Add(new Wheel() { Type = "Rear" });
         }
 
-        public async Task HandleValidSubmit()
-        {
-            // TODO: add validation
-            await this.AddMotorcyclesUseCase.Execute(this.motorcycle);
-        }
-
-       
-
-
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -57,5 +52,14 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
             this.Breadcrumbs = this.BreadcrumbService.GetBreadcrumb(breadcrumb);
         }
+
+        protected async Task HandleValidSubmit()
+        {
+            // TODO: add validation
+            if(this.motorcycle is not null)
+                await this.AddMotorcyclesUseCase.Execute(this.motorcycle);
+        }
+
+        
     }
 }

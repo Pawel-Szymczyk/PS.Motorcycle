@@ -9,21 +9,24 @@
 
 
 
-<div class="container">
 
-    <EditForm Model="@this.motorcycle" OnValidSubmit="@HandleValidSubmit">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
 
+<EditForm Model="@this.motorcycle" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="container-fluid">
         <div class="toolbar-container">
             <div class="toolbar">
                 <div class="d-grid gap-2 d-md-block">
-                    <SaveButtonComponent Type="submit" />
-                    <CancelButtonComponent />
+                    <SaveButtonComponent Type="submit" Path="/" Text="Save Motorcycle"/>
+                    <CancelButtonComponent Path="/" Text="Cancel" />
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="container">
 
         <br />
         <h3>OVERALL</h3>
@@ -34,13 +37,13 @@
             <div class="form-group col-md-6">
                 <label for="motorcycleMakeInput">Make:</label>
                 <InputText @bind-Value="this.motorcycle.Make" class="form-control" id="motorcycleMakeInput" />
-               @* <ValidationMessage For="this.motorcycle.Make" />*@
+                @* <ValidationMessage For="this.motorcycle.Make" />*@
             </div>
 
             <div class="form-group col-md-6">
                 <label for="motorcycleModelInput">Model:</label>
                 <InputText @bind-Value="this.motorcycle.Model" class="form-control" id="motorcycleModelInput" />
-               @* <ValidationMessage For="this.motorcycle.Make" />*@
+                @* <ValidationMessage For="this.motorcycle.Make" />*@
             </div>
 
             <div class="form-group col-md-6">
@@ -64,13 +67,13 @@
             <div class="form-group col-md-12">
                 <label for="motorcycleImageUrlInput">Image URL:</label>
                 <InputText @bind-Value="this.motorcycle.ImageUrl" class="form-control" id="motorcycleImageUrlInput" />
-               @* <ValidationMessage For="this.motorcycle.Make" />*@
+                @* <ValidationMessage For="this.motorcycle.Make" />*@
             </div>
 
             <div class="form-group col-md-12">
                 <label for="motorcycleImageGalleryUrlInput">Image Gallery URL:</label>
                 <InputText @bind-Value="this.motorcycle.ImagesGalleryUrls" class="form-control" id="motorcycleImageGalleryUrlInput" />
-               @* <ValidationMessage For="this.motorcycle.Make" />*@
+                @* <ValidationMessage For="this.motorcycle.Make" />*@
             </div>
 
 
@@ -141,85 +144,85 @@
                                     <div class="form-group col-md-6">
                                         <label for="engineCapacityInput">Engine Capacity:</label>
                                         <InputNumber @bind-Value="this.motorcycle.Engine.Capacity" class="form-control" id="engineCapacityInput" />
-                                       @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                        @* <ValidationMessage For="this.motorcycle.Make" />*@
                                     </div>
 
-                                     <div class="form-group col-md-6">
+                                        <div class="form-group col-md-6">
                                         <label for="engineInput">Engine:</label>
                                         <InputText @bind-Value="this.motorcycle.Engine.EngineDescription" class="form-control" id="engineInput" />
-                                       @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                        @* <ValidationMessage For="this.motorcycle.Make" />*@
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="engineBoreInput">Bore:</label>
                                         <InputText @bind-Value="this.motorcycle.Engine.Bore" class="form-control" id="engineBoreInput" />
-                                       @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                        @* <ValidationMessage For="this.motorcycle.Make" />*@
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="engineCompressionRatioInput">Compression Ratio:</label>
                                         <InputText @bind-Value="this.motorcycle.Engine.CompressionRatio" class="form-control" id="engineCompressionRatioInput" />
-                                       @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                        @* <ValidationMessage For="this.motorcycle.Make" />*@
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="engineLubricationInput">Lubrication:</label>
                                         <InputText @bind-Value="this.motorcycle.Engine.Lubrication" class="form-control" id="engineLubricationInput" />
-                                       @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                        @* <ValidationMessage For="this.motorcycle.Make" />*@
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="engineIgnitionInput">Ignition:</label>
                                         <InputText @bind-Value="this.motorcycle.Engine.Ignition" class="form-control" id="engineIgnitionInput" />
-                                       @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                        @* <ValidationMessage For="this.motorcycle.Make" />*@
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="engineFuelSystemInput">Fuel System:</label>
                                         <InputText @bind-Value="this.motorcycle.Engine.FuelSystem" class="form-control" id="engineFuelSystemInput" />
-                                       @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                        @* <ValidationMessage For="this.motorcycle.Make" />*@
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="engineTransmissionInput">Transmission:</label>
                                         <InputText @bind-Value="this.motorcycle.Engine.Transmission" class="form-control" id="engineTransmissionInput" />
-                                       @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                        @* <ValidationMessage For="this.motorcycle.Make" />*@
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="engineDriveInput">Drive:</label>
                                         <InputText @bind-Value="this.motorcycle.Engine.Drive" class="form-control" id="engineDriveInput" />
-                                       @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                        @* <ValidationMessage For="this.motorcycle.Make" />*@
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="engineStarterInput">Starter:</label>
                                         <InputText @bind-Value="this.motorcycle.Engine.Starter" class="form-control" id="engineStarterInput" />
-                                       @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                        @* <ValidationMessage For="this.motorcycle.Make" />*@
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="engineMPGInput">MPG:</label>
                                         <InputNumber @bind-Value="this.motorcycle.Engine.Mpg" class="form-control" id="engineMPGInput" />
-                                       @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                        @* <ValidationMessage For="this.motorcycle.Make" />*@
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="engineCO2Input">CO2:</label>
                                         <InputText @bind-Value="this.motorcycle.Engine.Co2" class="form-control" id="engineCO2Input" />
-                                       @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                        @* <ValidationMessage For="this.motorcycle.Make" />*@
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="enginePowerInput">Power:</label>
                                         <InputText @bind-Value="this.motorcycle.Engine.Power" class="form-control" id="enginePowerInput" />
-                                       @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                        @* <ValidationMessage For="this.motorcycle.Make" />*@
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="engineTorqueInput">Torque:</label>
                                         <InputText @bind-Value="this.motorcycle.Engine.Torque" class="form-control" id="engineTorqueInput" />
-                                       @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                        @* <ValidationMessage For="this.motorcycle.Make" />*@
                                     </div>
                                
                                 </div>
@@ -354,7 +357,8 @@
             </div>
 
 
-          </div>
-    </EditForm>
-</div>
+        </div>
+    </div>
+</EditForm>
+
 

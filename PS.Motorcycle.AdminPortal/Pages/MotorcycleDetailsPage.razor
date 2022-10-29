@@ -1,6 +1,5 @@
-﻿@page "/motorcycle/{Id:guid}"
-
-@attribute [Authorize]
+﻿@attribute [Authorize]
+@page "/motorcycle/{Id:guid}"
 
 
 
@@ -8,15 +7,16 @@
     <BreadcrumbComponent Breadcrumbs="@this.Breadcrumbs"></BreadcrumbComponent>
 </div>
 
+
 @if(this.motorcycle is null)
 {
     <p>Loading...</p> 
 }
 else
 {
-    <MessagePopupComponent Title="@this.MessageTitle" 
-                           Message="@this.Message" 
-                           Type="@this.MessageType" 
+    <MessagePopupComponent Title="@this.messageTitle" 
+                           Message="@this.message" 
+                           Type="@this.messageType" 
                            OnClick="ClickHandler" />
 
     <JumbotronComponent ImgUrl="@this.motorcycle.ImageUrl" Title="@this.motorcycle.Make" SubTitle="@this.motorcycle.Model"  />
@@ -25,14 +25,16 @@ else
         <div class="toolbar-container">
             <div class="toolbar">
                 <div class="d-grid gap-2 d-md-block">
-                    <EditButtonComponent Id="@this.motorcycle.Id" />
-                    <DeleteButtonComponent />
+                    <EditButtonComponent Id="@this.motorcycle.Id" Path="@this.editPath" Text="Edit Motorcycle" />
+                    <DeleteButtonComponent Text="Delete Motorcycle" />
                 </div>
             </div>
         </div>
     </div>
 
+
     <div class="container"> 
+
         <div class="about">
             <h2>About</h2>
             <br />
@@ -303,3 +305,5 @@ else
 
 
 }
+
+<FooterComponent />

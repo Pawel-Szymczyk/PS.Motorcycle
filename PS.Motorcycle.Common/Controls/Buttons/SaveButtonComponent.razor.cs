@@ -5,15 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PS.Motorcycle.Common.Controls
+namespace PS.Motorcycle.Common.Controls.Buttons
 {
     public partial class SaveButtonComponent : ComponentBase
     {
-        [Inject]
-        private NavigationManager NavigationManager { get; set; }
+        [Parameter]
+        public string? Type { get; set; }
 
         [Parameter]
-        public string Type { get; set; }
+        public string? Path { get; set; }
+
+        [Parameter]
+        public string? Text { get; set; }
+
+        [Inject]
+        private NavigationManager? NavigationManager { get; set; }
 
         public SaveButtonComponent()
         {
@@ -22,7 +28,7 @@ namespace PS.Motorcycle.Common.Controls
 
         private void OnClick()
         {
-            //this.NavigationManager.NavigateTo("/");
+            this.NavigationManager.NavigateTo($"{this.Path}");
         }
     }
 }

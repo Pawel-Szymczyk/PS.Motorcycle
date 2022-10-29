@@ -9,22 +9,17 @@ namespace PS.Motorcycle.AdminPortal.Pages
 {
     public partial class CatalogPage : ComponentBase
     {
-        //[Inject]
-        //private IJSRuntime js { get; set; }
+        #region Use Cases and Services ------------------------------------------
+        [Inject]
+        private IGetMotorcyclesUseCase GetMotorcyclesUseCase { get; set; } = default!;
 
         [Inject]
-        private IGetMotorcyclesUseCase GetMotorcyclesUseCase { get; set; }
+        private IBreadcrumbService _breadcrumbService { get; set; } = default!;
+        #endregion
 
-
-        [Inject]
-        private IBreadcrumbService _breadcrumbService { get; set; }
-
-        public List<IBreadcrumb> Breadcrumbs { get; set; }
-
-        public CatalogPage()
-        {
-
-        }
+        #region Properties ------------------------------------------------------
+        private List<IBreadcrumb>? Breadcrumbs { get; set; }
+        #endregion
 
         protected override void OnInitialized()
         {
@@ -38,16 +33,6 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
             this.Breadcrumbs = this._breadcrumbService.GetBreadcrumb(breadcrumb);
         }
- 
-        //protected override async Task OnAfterRenderAsync(bool firstRender)
-        //{
-        //    if(firstRender)
-        //    {
-        //        await this.js.InvokeVoidAsync("hideElement");
-        //        StateHasChanged();
-        //    }
-        //    //
-        //}
 
         protected async ValueTask<ItemsProviderResult<IMotorcycle>> LoadMotorcycles(ItemsProviderRequest request)
         {

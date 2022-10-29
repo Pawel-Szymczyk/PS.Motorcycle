@@ -19,7 +19,7 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.Updat
         public async Task<IMotorcycle> Execute(IMotorcycle motorcycle)
         {
 
-            if (!motorcycle.Equals(null))
+            if (motorcycle.Equals(null))
                 return null;
 
 
