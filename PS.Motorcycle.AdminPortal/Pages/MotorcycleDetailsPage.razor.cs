@@ -25,11 +25,12 @@ namespace PS.Motorcycle.AdminPortal.Pages
         private IRemoveMotorcycleUseCase RemoveMotorcycleUseCase { get; set; } = default!;
 
         [Inject]
-        private IBreadcrumbService _breadcrumbService { get; set; } = default!;
+        private IBreadcrumbService BreadcrumbService { get; set; } = default!;
         #endregion
 
         #region Properties ------------------------------------------------------
         private List<IBreadcrumb>? Breadcrumbs { get; set; }
+
         private List<string> images = new List<string>();
 
         private IMotorcycle? motorcycle = null;
@@ -54,7 +55,7 @@ namespace PS.Motorcycle.AdminPortal.Pages
                 Url = $"/motorcycle/{this.motorcycle.Id}"
             };
 
-            this.Breadcrumbs = this._breadcrumbService.GetBreadcrumb(breadcrumb);
+            this.Breadcrumbs = this.BreadcrumbService.GetBreadcrumb(breadcrumb);
 
             this.editPath = $"/motorcycle/edit/{this.motorcycle.Id}";
 

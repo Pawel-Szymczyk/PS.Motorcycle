@@ -12,6 +12,7 @@ namespace PS.Motorcycle.Domain.Models
         private string about;
         private string imageUrl;
         private string imagesGalleryUrls;
+        private string logoUrl;
 
         [JsonProperty("about")]
         public string About
@@ -52,6 +53,20 @@ namespace PS.Motorcycle.Domain.Models
             set
             {
                 this.imagesGalleryUrls = value;
+            }
+        }
+
+        [JsonProperty("logoUrl")]
+        public string LogoUrl
+        {
+            get
+            {
+                return this.logoUrl;
+            }
+
+            set
+            {
+                this.logoUrl = value;
             }
         }
 
@@ -310,6 +325,7 @@ namespace PS.Motorcycle.Domain.Models
             this.about = String.Empty;
             this.imageUrl = String.Empty;
             this.imagesGalleryUrls = String.Empty;
+            this.logoUrl = String.Empty;
 
             // add type: naked , sport, etc.
 
@@ -328,6 +344,7 @@ namespace PS.Motorcycle.Domain.Models
             this.about = String.Empty;
             this.imageUrl = String.Empty;
             this.imagesGalleryUrls = String.Empty;
+            this.logoUrl = String.Empty;
 
             this.chassis = chassis;
             this.engine = engine;

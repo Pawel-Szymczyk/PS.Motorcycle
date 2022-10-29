@@ -1,10 +1,10 @@
 ﻿<div class="col">
-    <div class="card" @onclick="this.GoToDetails">
-        <img src="@this.Motorcycle.ImageUrl" class="card-img-top" alt="...">
+    <div class="card" @onclick="this.OnClick">
+        <img src="@this.Motorcycle.ImageUrl" class="card-img-top" alt="Motorcycle">
 
         <div class="raven-image-container">
 			<div class="raven-image">
-		        <img src="https://moto-trips.pl/wp-content/uploads/elementor/thumbs/suzuki-logo-ok3ama4p4mdlfg1ussqu8uagq13x5ympl6t78c28ac.jpg" title="suzuki-logo" alt="suzuki-logo">	
+		        <img src="@this.Motorcycle.LogoUrl" title="Logo" alt="Logo">	
             </div>
 		</div>
         

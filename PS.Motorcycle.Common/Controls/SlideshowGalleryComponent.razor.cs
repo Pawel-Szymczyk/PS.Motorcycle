@@ -10,14 +10,13 @@ namespace PS.Motorcycle.Common.Controls
 {
     public partial class SlideshowGalleryComponent : ComponentBase
     {
+        [Parameter]
+        public List<string>? Images { get; set; }
 
         [Inject]
-        public IJSRuntime JS { get; set; }
+        public IJSRuntime JS { get; set; } = default!;
+
         private bool firstRender = true;
-
-
-        [Parameter]
-        public List<string> Images { get; set; }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -31,8 +30,6 @@ namespace PS.Motorcycle.Common.Controls
                 this.firstRender = false;
             }
         }
-
-
 
         public async Task PlusSlides(int direction)
         {

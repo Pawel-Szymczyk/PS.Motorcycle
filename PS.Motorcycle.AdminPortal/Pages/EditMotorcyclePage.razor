@@ -70,6 +70,12 @@ else
                 </div>
 
                 <div class="form-group col-md-12">
+                    <label for="motorcycleLogoUrlInput">Logo URL:</label>
+                    <InputText @bind-Value="this.motorcycle.LogoUrl" class="form-control" id="motorcycleLogoUrlInput" />
+                    @* <ValidationMessage For="this.motorcycle.Make" />*@
+                </div>
+
+                <div class="form-group col-md-12">
                     <label for="motorcycleImageUrlInput">Image URL:</label>
                     <InputText @bind-Value="this.motorcycle.ImageUrl" class="form-control" id="motorcycleImageUrlInput" />
                    @* <ValidationMessage For="this.motorcycle.Make" />*@

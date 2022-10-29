@@ -19,7 +19,7 @@ namespace PS.Motorcycle.Common.Controls.Buttons
         public string? Text { get; set; }
 
         [Inject]
-        private NavigationManager? NavigationManager { get; set; }
+        private NavigationManager NavigationManager { get; set; } = default!;
 
         public SaveButtonComponent()
         {

@@ -18,8 +18,8 @@ namespace PS.Motorcycle.Common.Controls.Buttons
         [Parameter]
         public string? Text { get; set; }
 
-        [Inject]
-        private NavigationManager? NavigationManager { get; set; }
+        //[Inject]
+        //private NavigationManager NavigationManager { get; set; } = default!;
 
         //private void OnClick()
         //{

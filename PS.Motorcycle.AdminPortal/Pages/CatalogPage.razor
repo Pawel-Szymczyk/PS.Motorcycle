@@ -42,7 +42,10 @@
 
                  <Virtualize ItemsProvider="@this.LoadMotorcycles" Context="motorcycle">
                     <ItemContent>
-                        <CardComponent Motorcycle="@motorcycle" />
+                        @{
+                            string path = $"/motorcycle/{motorcycle.Id}";
+                        }
+                        <CardComponent Motorcycle="@motorcycle" Path="@path" />
                     </ItemContent>
                     <Placeholder>
                         <p>

@@ -10,16 +10,18 @@ namespace PS.Motorcycle.Common.Controls
 {
     public partial class CardComponent : ComponentBase
     {
-        [Inject]
-        private NavigationManager NavigationManager { get; set; }
+        [Parameter]
+        public IMotorcycle? Motorcycle { get; set; }
 
         [Parameter]
-        public IMotorcycle Motorcycle { get; set; }
+        public string? Path { get; set; }
 
-        public void GoToDetails()
+        [Inject]
+        private NavigationManager NavigationManager { get; set; } = default!;
+
+        private void OnClick()
         {
-
-            this.NavigationManager.NavigateTo($"/motorcycle/{this.Motorcycle.Id}");
+            this.NavigationManager.NavigateTo($"{this.Path}");
         }
     }
 }

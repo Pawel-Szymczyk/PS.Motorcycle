@@ -14,7 +14,7 @@ namespace PS.Motorcycle.AdminPortal.Pages
         private IGetMotorcyclesUseCase GetMotorcyclesUseCase { get; set; } = default!;
 
         [Inject]
-        private IBreadcrumbService _breadcrumbService { get; set; } = default!;
+        private IBreadcrumbService BreadcrumbService { get; set; } = default!;
         #endregion
 
         #region Properties ------------------------------------------------------
@@ -31,7 +31,7 @@ namespace PS.Motorcycle.AdminPortal.Pages
                 Url = "/"
             };
 
-            this.Breadcrumbs = this._breadcrumbService.GetBreadcrumb(breadcrumb);
+            this.Breadcrumbs = this.BreadcrumbService.GetBreadcrumb(breadcrumb);
         }
 
         protected async ValueTask<ItemsProviderResult<IMotorcycle>> LoadMotorcycles(ItemsProviderRequest request)

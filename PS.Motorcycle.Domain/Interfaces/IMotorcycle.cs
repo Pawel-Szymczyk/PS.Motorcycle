@@ -15,6 +15,7 @@ namespace PS.Motorcycle.Domain.Interfaces
         public string About { get; set; }
         public string ImageUrl { get; set; }
         public string ImagesGalleryUrls { get; set; }
+        public string LogoUrl { get; set; }
 
         public TwoWheelerType Type { get; }
         public int Length { get; set; }

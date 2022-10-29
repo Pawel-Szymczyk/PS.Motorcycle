@@ -1,18 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PS.Motorcycle.Common.Controls
 {
     public partial class TabsControlComponent : ComponentBase
     {
 		[Parameter]
-		public RenderFragment ChildContent { get; set; }
-
-		public TabContentComponent ActivePage { get; set; }
+		public RenderFragment? ChildContent { get; set; }
+		public TabContentComponent? ActivePage { get; set; }
 
 		private List<TabContentComponent> Pages = new List<TabContentComponent>();
 

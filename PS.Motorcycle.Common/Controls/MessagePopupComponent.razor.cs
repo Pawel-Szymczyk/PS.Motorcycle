@@ -10,15 +10,16 @@ namespace PS.Motorcycle.Common.Controls
     public partial class MessagePopupComponent : ComponentBase
     {
         [Parameter]
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         [Parameter]
-        public string Message { get; set; }
+        public string? Message { get; set; }
 
         [Parameter]
-        public string Type { get; set; }
+        public string? Type { get; set; }
 
-        [Parameter] public EventCallback<bool> OnClick { get; set; }
+        [Parameter] 
+        public EventCallback<bool> OnClick { get; set; }
 
     }
 }

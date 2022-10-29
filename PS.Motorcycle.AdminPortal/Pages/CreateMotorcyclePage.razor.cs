@@ -23,6 +23,7 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
         #region Properties ------------------------------------------------------
         private List<IBreadcrumb> Breadcrumbs { get; set; }
+
         private IMotorcycle? motorcycle = null;
         #endregion
 

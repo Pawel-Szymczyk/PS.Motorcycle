@@ -10,12 +10,12 @@ namespace PS.Motorcycle.Common.Controls
     public partial class JumbotronComponent : ComponentBase
     {
         [Parameter]
-        public string ImgUrl { get; set;}
+        public string? ImgUrl { get; set;}
 
         [Parameter]
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         [Parameter]
-        public string SubTitle { get; set; }
+        public string? SubTitle { get; set; }
     }
 }
