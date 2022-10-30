@@ -1,31 +1,93 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿
+<nav class="navbar  navbar-expand-lg navbar-dark bg-secondary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">PS.Motorcycle</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</div>
 
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
+
+         <a class="navbar-brand" href="#">LOGO</a>
+
+        
+
+         @*<div class="navbar-collapse nav-items @NavMenuCssClass ">*@
+         <div class="navbar-collapse nav-items navbar-nav @NavMenuCssClass ">
+             
+             <div class="nav-item">
+                <NavLink class="nav-link custom-nav-link" href="/" Match="NavLinkMatch.All" style="padding: 0px;margin: 0 3px;border: none;display: flex;justify-content: flex-end;align-items: flex-end;background-color: #000000 !important;">
+                    <img src="https://images.unsplash.com/photo-1568900311962-66498d9e9daf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="home" style="width: 14.7em;height: 8em;object-fit: cover;" />
+                    <p style="color: #fff;position: absolute;text-transform: uppercase;font-size: 30px;margin: 0;padding-right: 10px;">
+                    Search
+                    </p>
+                </NavLink>
+            </div>
+
+            <div class="nav-item dropdown has-megamenu">
+                <NavLink Match="NavLinkMatch.All">
+                    @*<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Brands</a>*@
+                    <a class="nav-link" data-bs-toggle="dropdown" style="padding: 0px;margin: 0 3px;border: none;display: flex;justify-content: flex-end;align-items: flex-end;">
+                        <img src="https://images.unsplash.com/photo-1568900311962-66498d9e9daf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="home" style="width: 14.7em;height: 8em;object-fit: cover;" />
+                        <p style="color: #fff;position: absolute;text-transform: uppercase;font-size: 30px;margin: 0;padding-right: 10px;">
+                        Brands
+                        </p>
+                    </a>
+
+                    <div class="dropdown-menu megamenu" role="menu">
+                        @*<div class="container-fluid">*@
+					       <div class="nav-item">
+                                <NavLink class="nav-link custom-nav-link" href="/" Match="NavLinkMatch.All" style="padding: 0px;margin: 0 3px;border: none;display: flex;justify-content: flex-end;align-items: flex-end;background-color: #000000 !important;">
+                                    <img src="https://images.unsplash.com/photo-1568900311962-66498d9e9daf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="home" style="width: 14.7em;height: 8em;object-fit: cover;" />
+                                    <p style="color: #fff;position: absolute;text-transform: uppercase;font-size: 30px;margin: 0;padding-right: 10px;">
+                                    Honda
+                                    </p>
+                                </NavLink>
+                            </div>
+                            <div class="nav-item">
+                                <NavLink class="nav-link custom-nav-link" href="/" Match="NavLinkMatch.All" style="padding: 0px;margin: 0 3px;border: none;display: flex;justify-content: flex-end;align-items: flex-end;background-color: #000000 !important;">
+                                    <img src="https://images.unsplash.com/photo-1568900311962-66498d9e9daf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="home" style="width: 14.7em;height: 8em;object-fit: cover;" />
+                                    <p style="color: #fff;position: absolute;text-transform: uppercase;font-size: 30px;margin: 0;padding-right: 10px;">
+                                    Yamaha
+                                    </p>
+                                </NavLink>
+                            </div>
+                       @* </div>*@
+				    </div> <!-- dropdown-mega-menu.// -->
+                </NavLink>
+            </div>
+
+
+
+            </div>
+
+         </div>
+
+
+
+
+
+
+         <div class="nav-item ms-auto auth">
+            <LoginDisplay />
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </div>
-    </nav>
-</div>
+
+         <button class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+
+     
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @code {
     private bool collapseNavMenu = true;

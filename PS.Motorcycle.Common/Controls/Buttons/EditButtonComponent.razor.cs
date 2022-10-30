@@ -22,7 +22,7 @@ namespace PS.Motorcycle.Common.Controls.Buttons
         private NavigationManager NavigationManager { get; set; } = default!;
         private void OnClick()
         {
-            this.NavigationManager.NavigateTo($"{this.Path}");
+            this.NavigationManager.NavigateTo($"{this.Path}", true);
         }
 
     }

@@ -3,6 +3,7 @@
 
 
 
+
 <div class="breadcrumbs-container">
     <BreadcrumbComponent Breadcrumbs="@this.Breadcrumbs"></BreadcrumbComponent>
 </div>
@@ -44,6 +45,17 @@
                 <label for="motorcycleModelInput">Model:</label>
                 <InputText @bind-Value="this.motorcycle.Model" class="form-control" id="motorcycleModelInput" />
                 @* <ValidationMessage For="this.motorcycle.Make" />*@
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="motorcycleBodyTypeInput">Body Type:</label>
+                <InputSelect @bind-Value="@this.motorcycle.BodyType" >
+                    @foreach (var type in Enum.GetValues(typeof(BodyType)))
+                    {
+                        <option value="@type">@type</option>
+                    }
+                </InputSelect>
+                 @*<ValidationMessage For="@(() => comment.Country)" />*@
             </div>
 
             <div class="form-group col-md-6">

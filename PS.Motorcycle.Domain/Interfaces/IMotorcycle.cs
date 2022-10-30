@@ -18,6 +18,7 @@ namespace PS.Motorcycle.Domain.Interfaces
         public string LogoUrl { get; set; }
 
         public TwoWheelerType Type { get; }
+        public BodyType BodyType { get; set; }
         public int Length { get; set; }
         public int Height { get; set; }
         public int Width { get; set; }

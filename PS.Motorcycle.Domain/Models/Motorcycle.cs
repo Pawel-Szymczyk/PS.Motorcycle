@@ -14,64 +14,6 @@ namespace PS.Motorcycle.Domain.Models
         private string imagesGalleryUrls;
         private string logoUrl;
 
-        [JsonProperty("about")]
-        public string About
-        {
-            get
-            {
-                return this.about;
-            }
-
-            set
-            {
-                this.about = value;
-            }
-        }
-
-        [JsonProperty("imageUrl")]
-        public string ImageUrl
-        {
-            get
-            {
-                return this.imageUrl;
-            }
-
-            set
-            {
-                this.imageUrl = value;
-            }
-        }
-
-        [JsonProperty("imagesGalleryUrls")]
-        public string ImagesGalleryUrls
-        {
-            get
-            {
-                return this.imagesGalleryUrls;
-            }
-
-            set
-            {
-                this.imagesGalleryUrls = value;
-            }
-        }
-
-        [JsonProperty("logoUrl")]
-        public string LogoUrl
-        {
-            get
-            {
-                return this.logoUrl;
-            }
-
-            set
-            {
-                this.logoUrl = value;
-            }
-        }
-
-
-
         private int lenght;
         private int height;
         private int width;
@@ -85,6 +27,7 @@ namespace PS.Motorcycle.Domain.Models
         private string make;
         private string model;
         private TwoWheelerType type;
+        private BodyType bodyType;
 
         private IChassis chassis;
         private IEngine engine;
@@ -276,6 +219,21 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
+        [JsonProperty("bodyType")]
+        public BodyType BodyType
+        {
+            get
+            {
+                return this.bodyType;
+            }
+
+            set
+            {
+                this.bodyType = value;
+            }
+        }
+
+
         [JsonProperty("chassis")]
         public IChassis Chassis
         //public Chassis Chassis
@@ -306,10 +264,67 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
+        [JsonProperty("about")]
+        public string About
+        {
+            get
+            {
+                return this.about;
+            }
+
+            set
+            {
+                this.about = value;
+            }
+        }
+
+        [JsonProperty("imageUrl")]
+        public string ImageUrl
+        {
+            get
+            {
+                return this.imageUrl;
+            }
+
+            set
+            {
+                this.imageUrl = value;
+            }
+        }
+
+        [JsonProperty("imagesGalleryUrls")]
+        public string ImagesGalleryUrls
+        {
+            get
+            {
+                return this.imagesGalleryUrls;
+            }
+
+            set
+            {
+                this.imagesGalleryUrls = value;
+            }
+        }
+
+        [JsonProperty("logoUrl")]
+        public string LogoUrl
+        {
+            get
+            {
+                return this.logoUrl;
+            }
+
+            set
+            {
+                this.logoUrl = value;
+            }
+        }
+
         // constructors 
         public Motorcycle()
         {
             this.type = TwoWheelerType.MOTORCYCLE;
+            this.bodyType = BodyType.NONE;
             this.lenght = 0;
             this.height = 0;
             this.width = 0;
@@ -338,6 +353,7 @@ namespace PS.Motorcycle.Domain.Models
         public Motorcycle(IChassis chassis, IEngine engine)
         {
             this.type = TwoWheelerType.MOTORCYCLE;
+            this.bodyType = BodyType.NONE;
             this.make = String.Empty;
             this.model = String.Empty;
 

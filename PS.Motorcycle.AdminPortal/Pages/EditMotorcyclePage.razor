@@ -51,6 +51,17 @@ else
                    @* <ValidationMessage For="this.motorcycle.Make" />*@
                 </div>
 
+                 <div class="form-group col-md-6">
+                    <label for="motorcycleBodyTypeInput">Body Type:</label>
+                    <InputSelect @bind-Value="@this.motorcycle.BodyType" class="form-control" id="motorcycleBodyTypeInput">
+                        @foreach (var type in Enum.GetValues(typeof(BodyType)))
+                        {
+                            <option value="@type">@type</option>
+                        }
+                    </InputSelect>
+                     @*<ValidationMessage For="@(() => comment.Country)" />*@
+                </div>
+
                 <div class="form-group col-md-6">
                     <label for="motorcycleProductionYearInput">Production Year:</label>
                     <InputNumber @bind-Value="this.motorcycle.ProductionYear" class="form-control" id="motorcycleProductionYearInput" />
