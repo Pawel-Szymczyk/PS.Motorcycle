@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.UpdateMotorcycleUseCase
+namespace PS.Motorcycle.Application.AdminPortal.UseCases.MotorcycleUseCases.UpdateMotorcycleUseCase
 {
     internal class UpdateMotorcycleUseCase : IUpdateMotorcycleUseCase
     {

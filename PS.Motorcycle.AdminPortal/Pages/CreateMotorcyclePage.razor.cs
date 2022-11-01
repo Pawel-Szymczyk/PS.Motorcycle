@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.AddMotorcycle;
+using PS.Motorcycle.Application.AdminPortal.UseCases.MotorcycleUseCases.AddMotorcycle;
 using PS.Motorcycle.Domain.Interfaces;
 using PS.Motorcycle.Domain.Models;
 using PS.Motorcycle.Domain.Models.Components;

@@ -20,7 +20,13 @@
 <div class="container">
 
 
+    <button type="button" class="btn btn-link btn-custom" @onclick="this.SearchAsync">
+        Search
+    </button>
 
+    <div class="search-container">
+        <SearchComponent OnHandleValidSubmit="@this.HandleValidSubmit" />
+    </div>
 
 
     <div class="filter-container"></div>

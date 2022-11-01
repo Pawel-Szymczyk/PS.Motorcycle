@@ -2,6 +2,8 @@
 using PS.Motorcycle.Domain.Interfaces;
 using PS.Motorcycle.Domain.Types;
 using Newtonsoft.Json;
+using Azure.Search.Documents.Indexes;
+using System.Text.Json.Serialization;
 
 namespace PS.Motorcycle.Domain.Models
 {
@@ -32,12 +34,15 @@ namespace PS.Motorcycle.Domain.Models
         private IChassis chassis;
         private IEngine engine;
 
+        // TODO: add create date timestamp
+        // TODO: add update date timestamp
 
         // properties
-        [JsonProperty("id")]
+        //[SimpleField(IsKey = true, IsFilterable = true)]
+        [JsonPropertyName("id")]
         public Guid Id { get; set; }
 
-        [JsonProperty("lenght")]
+        [JsonPropertyName("lenght")]
         public override int Length 
         {
             get
@@ -51,7 +56,7 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        [JsonProperty("height")]
+        [JsonPropertyName("height")]
         public override int Height 
         {
             get
@@ -65,7 +70,7 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        [JsonProperty("width")]
+        [JsonPropertyName("width")]
         public override int Width 
         {
             get
@@ -79,7 +84,7 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        [JsonProperty("kerbMass")]
+        [JsonPropertyName("kerbMass")]
         public override int KerbMass 
         {
             get
@@ -93,7 +98,7 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        [JsonProperty("sitHeight")]
+        [JsonPropertyName("sitHeight")]
         public int SitHeight
         {
             get
@@ -107,7 +112,7 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        [JsonProperty("wheelbase")]
+        [JsonPropertyName("wheelbase")]
         public int Wheelbase
         {
             get
@@ -121,7 +126,7 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        [JsonProperty("groundClearance")]
+        [JsonPropertyName("groundClearance")]
         public int GroundClearance
         {
             get
@@ -135,7 +140,7 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        [JsonProperty("year")]
+        [JsonPropertyName("year")]
         public int ProductionYear
         {
             get
@@ -149,7 +154,7 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        [JsonProperty("price")]
+        [JsonPropertyName("price")]
         public override float Price
         {
             get
@@ -163,7 +168,7 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        [JsonProperty("fuelCapacity")]
+        [JsonPropertyName("fuelCapacity")]
         public float FuelCapacity
         {
             get
@@ -177,7 +182,8 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        [JsonProperty("brand")]
+        //[SearchableField(IsSortable = true)]
+        [JsonPropertyName("brand")]
         public override string Make
         {
             get
@@ -191,7 +197,8 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        [JsonProperty("model")]
+        //[SearchableField(IsSortable = true)]
+        [JsonPropertyName("model")]
         public override string Model
         {
             get
@@ -205,7 +212,7 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public override TwoWheelerType Type
         {
             get
@@ -219,7 +226,7 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        [JsonProperty("bodyType")]
+        [JsonPropertyName("bodyType")]
         public BodyType BodyType
         {
             get
@@ -234,7 +241,7 @@ namespace PS.Motorcycle.Domain.Models
         }
 
 
-        [JsonProperty("chassis")]
+        [JsonPropertyName("chassis")]
         public IChassis Chassis
         //public Chassis Chassis
         {
@@ -249,7 +256,7 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        [JsonProperty("engine")]
+        [JsonPropertyName("engine")]
         public IEngine Engine
         //public Engine Engine
         {
@@ -264,7 +271,7 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        [JsonProperty("about")]
+        [JsonPropertyName("about")]
         public string About
         {
             get
@@ -278,7 +285,7 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        [JsonProperty("imageUrl")]
+        [JsonPropertyName("imageUrl")]
         public string ImageUrl
         {
             get
@@ -292,7 +299,7 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        [JsonProperty("imagesGalleryUrls")]
+        [JsonPropertyName("imagesGalleryUrls")]
         public string ImagesGalleryUrls
         {
             get
@@ -306,7 +313,7 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
-        [JsonProperty("logoUrl")]
+        [JsonPropertyName("logoUrl")]
         public string LogoUrl
         {
             get

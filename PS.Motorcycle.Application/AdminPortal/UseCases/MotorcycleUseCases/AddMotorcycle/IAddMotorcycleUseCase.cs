@@ -1,6 +1,6 @@
 ﻿using PS.Motorcycle.Domain.Interfaces;
 
-namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.AddMotorcycle
+namespace PS.Motorcycle.Application.AdminPortal.UseCases.MotorcycleUseCases.AddMotorcycle
 {
     public interface IAddMotorcycleUseCase
     {

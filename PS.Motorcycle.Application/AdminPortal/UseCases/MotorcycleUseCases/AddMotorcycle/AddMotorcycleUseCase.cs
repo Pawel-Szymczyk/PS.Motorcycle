@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.AddMotorcycle
+namespace PS.Motorcycle.Application.AdminPortal.UseCases.MotorcycleUseCases.AddMotorcycle
 {
     public class AddMotorcycleUseCase : IAddMotorcycleUseCase
     {

@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.AddMotorcycle;
+using PS.Motorcycle.Application.AdminPortal.UseCases.MotorcycleUseCases.AddMotorcycle;
 using PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.GetMotorcycles;
-using PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.RemoveMotorcycle;
-using PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.UpdateMotorcycleUseCase;
+using PS.Motorcycle.Application.AdminPortal.UseCases.MotorcycleUseCases.RemoveMotorcycle;
+using PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.SearchMotorcycles;
+using PS.Motorcycle.Application.AdminPortal.UseCases.MotorcycleUseCases.UpdateMotorcycleUseCase;
 
 namespace PS.Motorcycle.Application
 {
@@ -15,6 +16,8 @@ namespace PS.Motorcycle.Application
             services.AddTransient<IAddMotorcycleUseCase, AddMotorcycleUseCase>();
             services.AddTransient<IUpdateMotorcycleUseCase, UpdateMotorcycleUseCase>();
             services.AddTransient<IRemoveMotorcycleUseCase, RemoveMotorcycleUseCase>();
+
+            services.AddTransient<ISearchMotorcyclesUseCase, SearchMotorcyclesUseCase>();
 
             return services;
         }

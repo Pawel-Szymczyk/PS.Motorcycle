@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.GetMotorcycles;
-using PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.RemoveMotorcycle;
+using PS.Motorcycle.Application.AdminPortal.UseCases.MotorcycleUseCases.RemoveMotorcycle;
 using PS.Motorcycle.Domain.Interfaces;
 using PS.Motorcycle.Domain.Models.Components;
 using PS.Motorcycle.Domain.Services;

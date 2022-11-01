@@ -1,6 +1,6 @@
 ﻿using PS.Motorcycle.Domain.Interfaces;
 
-namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.RemoveMotorcycle
+namespace PS.Motorcycle.Application.AdminPortal.UseCases.MotorcycleUseCases.RemoveMotorcycle
 {
     public interface IRemoveMotorcycleUseCase
     {

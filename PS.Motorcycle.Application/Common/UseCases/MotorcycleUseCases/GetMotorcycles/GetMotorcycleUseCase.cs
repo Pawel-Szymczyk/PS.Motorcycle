@@ -11,6 +11,8 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.GetMo
     public class GetMotorcycleUseCase : IGetMotorcycleUseCase
     {
         private readonly IMotorcycleRepository _motorcycleRepository;
+
+
         public GetMotorcycleUseCase(IMotorcycleRepository motorcycleRepository)
         {
             this._motorcycleRepository = motorcycleRepository;
@@ -18,6 +20,7 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.GetMo
 
         public async Task<IMotorcycle> Execute(Guid id)
         {
+            
             var motorcycle = await this._motorcycleRepository.GetByIdAsync(id);
 
             return motorcycle;

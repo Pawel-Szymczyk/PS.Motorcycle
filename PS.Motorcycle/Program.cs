@@ -14,6 +14,7 @@ using PS.Motorcycle.Application;
 using SmartBreadcrumbs.Extensions;
 using System.Reflection;
 using PS.Motorcycle.Domain.Services;
+using PS.Motorcycle.Infrastucture.AzureCognitiveSearch;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,6 +58,7 @@ builder.Services.AddSingleton<IBreadcrumbService, BreadcrumbService>();
 
 
 builder.Services.AddCosmosRepository();
+builder.Services.AddAzureCognitiveAzureService();
 builder.Services.AddApplication();
 
 
