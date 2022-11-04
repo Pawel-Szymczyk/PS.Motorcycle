@@ -1,9 +1,10 @@
 ﻿using PS.Motorcycle.Domain.Interfaces;
+using PS.Motorcycle.Domain.Models;
 
 namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.SearchMotorcycles
 {
     public interface ISearchMotorcyclesUseCase
     {
-        Task<IMotorcycle> Execute();
+        Task<IEnumerable<IMotorcycle>> Execute(Search searchQuery);
     }
 }

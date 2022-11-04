@@ -19,7 +19,7 @@ namespace PS.Motorcycle.Infrastucture.AzureCognitiveSearch.Service
 
 
             string serviceName = "motorcycle-search";
-            string apiKey = ""; // "<your-search-service-admin-api-key>";
+            string apiKey = "<your-search-service-admin-api-key>";
             string indexName = "cosmosdb-index";
 
             // Create a SearchIndexClient to send create/delete index commands

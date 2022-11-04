@@ -183,7 +183,7 @@ namespace PS.Motorcycle.Domain.Models
         }
 
         //[SearchableField(IsSortable = true)]
-        [JsonPropertyName("brand")]
+        [JsonPropertyName("make")]
         public override string Make
         {
             get

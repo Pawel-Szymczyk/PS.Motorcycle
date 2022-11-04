@@ -25,8 +25,9 @@ namespace PS.Motorcycle.AdminPortal.Pages
         #region Properties ------------------------------------------------------
         private List<IBreadcrumb>? Breadcrumbs { get; set; }
 
+        private Virtualize<IMotorcycle> MotorcycleContainer { get; set; }
 
-        private Search? searchData;
+        private IEnumerable<IMotorcycle> searchResults;
         #endregion
 
         protected override void OnInitialized()
@@ -41,25 +42,35 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
             this.Breadcrumbs = this.BreadcrumbService.GetBreadcrumb(breadcrumb);
 
-
-            this.searchData = new Search();
+            this.searchResults = new List<IMotorcycle>();
         }
 
-        protected async Task SearchAsync()
-        {
-           await this.SearchMotorcyclesUseCase.Execute();
-        }
 
         protected async ValueTask<ItemsProviderResult<IMotorcycle>> LoadMotorcycles(ItemsProviderRequest request)
         {
-            var motorcycles = await this.GetMotorcyclesUseCase.Execute();
+            IEnumerable<IMotorcycle> motorcycles = new List<IMotorcycle>();
+
+            if (!this.searchResults.Count().Equals(0))
+            {
+                motorcycles = this.searchResults;                
+            }
+
             return new ItemsProviderResult<IMotorcycle>(motorcycles.Skip(request.StartIndex).Take(request.Count), motorcycles.Count());
+
         }
 
 
         protected async Task HandleValidSubmit(Search search)
         {
-            this.searchData = search;
+            if(!string.IsNullOrWhiteSpace(search.SearchText)) {
+                this.searchResults = await this.SearchMotorcyclesUseCase.Execute(search);
+            }
+            else
+            {
+                this.searchResults = await this.GetMotorcyclesUseCase.Execute();
+            }
+            await this.MotorcycleContainer.RefreshDataAsync();
+            StateHasChanged();
         }
     }
 }

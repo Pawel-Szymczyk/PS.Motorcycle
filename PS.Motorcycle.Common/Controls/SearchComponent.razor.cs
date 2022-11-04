@@ -21,9 +21,6 @@ namespace PS.Motorcycle.Common.Controls
             this.search = new Search();
         }
 
-        //protected async Task HandleValidSubmit()
-        //{
-        //    var x = this.SearchData;
-        //}
+
     }
 }

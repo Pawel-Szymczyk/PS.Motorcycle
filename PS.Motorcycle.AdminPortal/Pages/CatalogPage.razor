@@ -15,14 +15,13 @@
             </div>
         </div>
     </div>
+
+
 </div>
 
 <div class="container">
 
 
-    <button type="button" class="btn btn-link btn-custom" @onclick="this.SearchAsync">
-        Search
-    </button>
 
     <div class="search-container">
         <SearchComponent OnHandleValidSubmit="@this.HandleValidSubmit" />
@@ -44,9 +43,9 @@
 
         <div class="row row-cols-1 row-cols-md-3 g-4 motorcycles-list">
 
+        
 
-
-                 <Virtualize ItemsProvider="@this.LoadMotorcycles" Context="motorcycle">
+                 <Virtualize @ref="MotorcycleContainer" ItemsProvider="@this.LoadMotorcycles" Context="motorcycle">
                     <ItemContent>
                         @{
                             string path = $"/motorcycle/{motorcycle.Id}";

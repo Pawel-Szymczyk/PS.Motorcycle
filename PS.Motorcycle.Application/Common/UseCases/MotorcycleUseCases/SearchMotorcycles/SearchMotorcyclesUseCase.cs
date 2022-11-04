@@ -1,5 +1,6 @@
 ﻿using PS.Motorcycle.Application.Interfaces;
 using PS.Motorcycle.Domain.Interfaces;
+using PS.Motorcycle.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +19,11 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.Searc
             this._azureCognitiveSearchService = azureCognitiveSearchService;
         }
 
-        public async Task<IMotorcycle> Execute()
+        public async Task<IEnumerable<IMotorcycle>> Execute(Search searchQuery)
         {
-            await this._azureCognitiveSearchService.Query();
+            IEnumerable<IMotorcycle> searchResults = await this._azureCognitiveSearchService.Query(searchQuery);
 
-            return null;
+            return searchResults;
         }
     }
 }

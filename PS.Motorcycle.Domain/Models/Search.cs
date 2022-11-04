@@ -1,4 +1,5 @@
 ﻿using Azure.Search.Documents.Models;
+using PS.Motorcycle.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace PS.Motorcycle.Domain.Models
         public string SearchText { get; set; }
 
         // The list of results.
-        public SearchResults<Motorcycle> resultList { get; set; }
+        //public SearchResults<Motorcycle> resultList { get; set; }
+        //public List<IMotorcycle> Results { get; set; }
     }
 }

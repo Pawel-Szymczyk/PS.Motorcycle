@@ -43,3 +43,11 @@
 }
 
 
+.search-container {
+    margin-bottom: 2em;
+    padding: 3em;
+    /*box-shadow: rgb(0 0 0 / 25%) 0px 0.0625em 0.0625em, rgb(0 0 0 / 25%) 0px 0.125em 0.5em, rgb(255 255 255 / 10%) 0px 0px 0px 1px inset;*/
+    border-width: 2px;
+    border-style: solid;
+    border-color: #d6d6d6;
+}
