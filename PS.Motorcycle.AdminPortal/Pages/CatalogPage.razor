@@ -27,22 +27,19 @@
         <SearchComponent OnHandleValidSubmit="@this.HandleValidSubmit" />
     </div>
 
-    <div>
-        <BodyTypeCaruselComponent />
-    </div>
+    @if(this.searchResults.Count().Equals(0))
+    {
+        
+        <div>
+            
+            <BodyTypeCaruselComponent />
+        </div>
+    }
+
 
     <div class="filter-container"></div>
     <div class="results-container">
 
-       @* @if(this.Motorcycles is null)
-        {
-            <p><em>Loading...</em></p>
-        }
-        else
-        {*@
-            <!-- Cards -->
-            
-       @* }*@
 
         <div class="row row-cols-1 row-cols-md-3 g-4 motorcycles-list">
 
@@ -61,16 +58,6 @@
                         </p>
                     </Placeholder>
                 </Virtualize>
-
-
-
-               @* <PS.Motorcycle.UserPortal.Controls.CardComponent />
-                <PS.Motorcycle.UserPortal.Controls.CardComponent />
-                <PS.Motorcycle.UserPortal.Controls.CardComponent />
-                <PS.Motorcycle.UserPortal.Controls.CardComponent />
-                <PS.Motorcycle.UserPortal.Controls.CardComponent />
-                <PS.Motorcycle.UserPortal.Controls.CardComponent />
-                <PS.Motorcycle.UserPortal.Controls.CardComponent />*@
 
 
             </div>

@@ -32,3 +32,56 @@
 .carousel-inner .carousel-item-start {
     transform: translateX(0);
 }
+
+
+/*.img-fluid {
+    width: 20em;
+    height: 10em;
+    object-fit: cover;*/
+/*    transition: .5s;
+    opacity: 0.4;*/
+/*}*/
+
+
+
+
+.custom-tab-button {
+    padding: 0px;
+    margin: 3px;
+    border: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    background-color: #000000 !important;
+}
+
+    /*.custom-tab-button.active {
+        opacity: 1 !important;
+    }*/
+
+
+    .custom-tab-button p {
+        color: #fff;
+        position: absolute;
+        text-transform: uppercase;
+        font-size: 30px;
+        margin: 0;
+        padding-right: 10px;
+    }
+
+.custom-tab-button-img {
+    width: 19.2em;
+    height: 10em;
+    object-fit: cover;
+    transition: .5s;
+    opacity: 0.4;
+}
+
+    .custom-tab-button-img:hover {
+        opacity: 1;
+    }
+
+
+/*.active > .custom-tab-button-img {
+    opacity: 1;
+}*/

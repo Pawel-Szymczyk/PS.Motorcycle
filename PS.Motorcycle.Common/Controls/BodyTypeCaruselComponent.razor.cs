@@ -29,5 +29,8 @@ namespace PS.Motorcycle.Common.Controls
                 this.firstRender = false;
             }
         }
+
+
+        private void OnClickHandler() { }
     }
 }
