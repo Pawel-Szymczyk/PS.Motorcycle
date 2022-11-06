@@ -1,9 +1,5 @@
-﻿@*@page "/"*@
+﻿@page "/"
 
-@using Microsoft.AspNetCore.Authorization
-@using Microsoft.AspNetCore.Components.Web.Virtualization
-
-@*@attribute [AllowAnonymous]*@
 
 <div class="breadcrumbs-container">
     <BreadcrumbComponent Breadcrumbs="@this.Breadcrumbs"></BreadcrumbComponent>
@@ -14,7 +10,23 @@
 
 
 
-    <div class="filter-container"></div>
+    <div class="search-container">
+        <SearchComponent OnHandleValidSubmit="@this.HandleValidSubmit" />
+    </div>
+
+    @if(this.searchResults.Count().Equals(0))
+    {
+        <div>
+            <BodyTypeCaruselComponent />
+        </div>
+    }
+
+
+    <div class="filter-container">
+        @*<SearchFilterComponent />*@
+    </div>
+
+
     <div class="results-container">
 
        @* @if(this.Motorcycles is null)
@@ -31,9 +43,12 @@
 
 
 
-                 <Virtualize ItemsProvider="@this.LoadMotorcycles" Context="motorcycle">
+                 <Virtualize @ref="MotorcycleContainer" ItemsProvider="@this.LoadMotorcycles" Context="motorcycle">
                     <ItemContent>
-                        <CardComponent Motorcycle="@motorcycle" />
+                        @{
+                            string path = $"/motorcycle/{motorcycle.Id}";
+                        }
+                        <CardComponent Motorcycle="@motorcycle" Path="@path" />
                     </ItemContent>
                     <Placeholder>
                         <p>
@@ -59,3 +74,6 @@
 
     </div>
 </div>
+
+
+<FooterComponent />

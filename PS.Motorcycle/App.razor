@@ -1,13 +1,13 @@
 ﻿<CascadingAuthenticationState>
     <Router AppAssembly="@typeof(App).Assembly" PreferExactMatches="@true" 
-            AdditionalAssemblies="new[] { typeof(PS.Motorcycle.UserPortal.Pages.CatalogPage).Assembly,
+            AdditionalAssemblies="new[] { typeof(PS.Motorcycle.UserPortal.Pages.IndexPage).Assembly,
                                           typeof(PS.Motorcycle.AdminPortal.Pages.CatalogPage).Assembly
                                            }"
     >
         <Found Context="routeData">
             <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
                 <NotAuthorized>
-                    <PS.Motorcycle.UserPortal.Pages.CatalogPage />
+                    <PS.Motorcycle.UserPortal.Pages.IndexPage />
                 </NotAuthorized>
                 <Authorizing>
                     <p>Just checking with the boss you can come in.</p>

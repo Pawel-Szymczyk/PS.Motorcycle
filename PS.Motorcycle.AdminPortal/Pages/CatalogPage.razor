@@ -1,7 +1,11 @@
 ﻿@attribute [Authorize]
-@page "/"
-@page "/motorcycle"
 
+@page "/manager/"
+
+<MessagePopupComponent Title="@this.messageTitle" 
+                        Message="@this.message" 
+                        Type="@this.messageType" 
+                        OnClick="ClickHandler" />
 
 <div class="breadcrumbs-container">
     <BreadcrumbComponent Breadcrumbs="@this.Breadcrumbs"></BreadcrumbComponent>
@@ -11,41 +15,104 @@
     <div class="toolbar-container">
         <div class="toolbar">
             <div class="d-grid gap-2 d-md-block">
-                <AddButtonComponent Path="/create-motorcycle" Text="Add Motorcycle" />
+                <AddButtonComponent Path="/manager/create-motorcycle" Text="Add Motorcycle" />
+
+                @if(this.selectedRow)
+                {
+                    <EditButtonComponent Id="@this.selectedRowId" Path="@this.editPath" Text="Edit Motorcycle" />
+                    <DeleteButtonComponent Text="Delete Motorcycle" />
+                }
             </div>
         </div>
     </div>
-
-
 </div>
 
 <div class="container">
 
 
-
+@*
     <div class="search-container">
         <SearchComponent OnHandleValidSubmit="@this.HandleValidSubmit" />
     </div>
 
     @if(this.searchResults.Count().Equals(0))
     {
-        
         <div>
-            
             <BodyTypeCaruselComponent />
         </div>
-    }
+    }*@
 
 
-    <div class="filter-container"></div>
+    <div class="filter-container">
+        @*<SearchFilterComponent />*@
+    </div>
     <div class="results-container">
+
+          @* @if(this.Motorcycles is null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {*@
+            <!-- Cards -->
+            
+       @* }*@
 
 
         <div class="row row-cols-1 row-cols-md-3 g-4 motorcycles-list">
 
+            @if(this.motorcycles is null)
+            {
+                <p><em>Loading...</em></p>
+            }
+            else
+            {
+                <table class="table table-striped table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Id</th>
+                            <th scope="col">Make</th>
+                            <th scope="col">Model</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var motorcycle in this.motorcycles)
+                        {
+                             
+                            //string path = $"/motorcycle/{motorcycle.Id}";
+                               
+                            <tr @onclick="() => this.OnClick(motorcycle.Id)">
+                                <td>
+                                    <div class="form-check">
+                                      <input class="form-check-input" type="checkbox" value="@this.selectedRow">
+                                    </div>
+                                </td>
+                                <td>@motorcycle.Id.ToString()</td>
+                                <td>@motorcycle.Make</td>
+                                <td>@motorcycle.Model</td>
+                            </tr>
+           
+                        }
+                    </tbody>
+                </table>
+            }
         
+            
 
-                 <Virtualize @ref="MotorcycleContainer" ItemsProvider="@this.LoadMotorcycles" Context="motorcycle">
+
+
+
+
+
+
+
+
+
+
+
+
+                @* <Virtualize ItemsProvider="@this.LoadMotorcycles" Context="motorcycle">
                     <ItemContent>
                         @{
                             string path = $"/motorcycle/{motorcycle.Id}";
@@ -57,7 +124,11 @@
                            Loading...
                         </p>
                     </Placeholder>
-                </Virtualize>
+                </Virtualize>*@
+
+
+
+
 
 
             </div>

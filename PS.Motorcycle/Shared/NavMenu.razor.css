@@ -194,8 +194,7 @@
 
 
 .navbar {
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 10px;
 }
 
 .navbar-brand {
@@ -204,7 +203,16 @@
 
 .navbar-toggler {
     background-color: rgba(255, 255, 255, 0.1);
+    margin-left: 10px;
 }
+
+
+
+.custom-container {
+    display: flex;
+    justify-content: center;
+}
+
 
 .custom-nav-link {
     padding: 0px;
@@ -215,6 +223,9 @@
     align-items: flex-end;
     background-color: #000000 !important;
 }
+
+
+
 
 @media (min-width: 992px) {
     .navbar-toggler {
@@ -268,3 +279,18 @@
         display: block !important;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
