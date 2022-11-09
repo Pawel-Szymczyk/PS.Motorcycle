@@ -15,9 +15,19 @@ namespace PS.Motorcycle.Infrastructure.CosmosDB.Repositories
 
         public async Task<Domain.Models.Motorcycle> AddAsync(Domain.Models.Motorcycle motorcycle)
         {
-            var partitionKey = new PartitionKey(motorcycle.Id.ToString());
-            var result = await _cosmosContext.MotorcycleContainer.CreateItemAsync(motorcycle, partitionKey);
-            return result.Resource;
+            try
+            {
+                // TODO: search response DTO required to fix this issue with JSON properites
+                var partitionKey = new PartitionKey(motorcycle.Id.ToString());
+                var result = await _cosmosContext.MotorcycleContainer.CreateItemAsync(motorcycle, partitionKey);
+                return result.Resource;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+           
         }
 
         public async Task<IEnumerable<Domain.Models.Motorcycle>> GetAsync()

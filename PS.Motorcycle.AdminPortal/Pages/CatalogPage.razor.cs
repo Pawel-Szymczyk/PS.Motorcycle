@@ -88,12 +88,20 @@ namespace PS.Motorcycle.AdminPortal.Pages
         }
 
 
-        private void OnClick(Guid id)
+        //private bool selectActiveRow = false;
+
+        //private string? ActiveRow => selectActiveRow ? "table-active" : null;
+
+        private IMotorcycle? SelectedMotorcycle { get; set; }
+
+        private void OnClick(IMotorcycle motorcycle)
         {
             this.selectedRow = true;
-            this.selectedRowId = id;
-            this.editPath = $"manager/motorcycle/edit/{id}";
+            this.selectedRowId = motorcycle.Id;
+            this.editPath = $"manager/motorcycle/edit/{motorcycle.Id}";
             //this.NavigationManager.NavigateTo($"/manager/motorcycle/{id}");
+
+            //selectActiveRow = !selectActiveRow;
         }
 
 
@@ -109,6 +117,27 @@ namespace PS.Motorcycle.AdminPortal.Pages
             //this.NavigationManager.NavigateTo("/");
             StateHasChanged();
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //protected async ValueTask<ItemsProviderResult<IMotorcycle>> LoadMotorcycles(ItemsProviderRequest request)
         //{

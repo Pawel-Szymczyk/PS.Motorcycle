@@ -19,6 +19,9 @@ namespace PS.Motorcycle.AdminPortal.Pages
         private IBreadcrumbService BreadcrumbService { get; set; } = default!;
         [Inject]
         private IAddMotorcycleUseCase AddMotorcyclesUseCase { get; set; } = default!;
+
+        [Inject]
+        private NavigationManager NavigationManager { get; set; } = default!;
         #endregion
 
         #region Properties ------------------------------------------------------
@@ -26,6 +29,8 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
         private IMotorcycle? motorcycle = null;
         #endregion
+
+        
 
         public CreateMotorcyclePage()
         {
@@ -59,6 +64,8 @@ namespace PS.Motorcycle.AdminPortal.Pages
             // TODO: add validation
             if(this.motorcycle is not null)
                 await this.AddMotorcyclesUseCase.Execute(this.motorcycle);
+
+            this.NavigationManager.NavigateTo("/manager");
         }
 
         

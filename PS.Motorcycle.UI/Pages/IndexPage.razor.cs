@@ -4,6 +4,7 @@ using Microsoft.JSInterop;
 using PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.GetMotorcycles;
 using PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.SearchMotorcycles;
 using PS.Motorcycle.Domain.Interfaces;
+using PS.Motorcycle.Domain.Interfaces.DTO;
 using PS.Motorcycle.Domain.Models;
 using PS.Motorcycle.Domain.Models.Components;
 using PS.Motorcycle.Domain.Services;
@@ -31,9 +32,9 @@ namespace PS.Motorcycle.UserPortal.Pages
 
         public List<IBreadcrumb> Breadcrumbs { get; set; }
 
-        private Virtualize<IMotorcycle> MotorcycleContainer { get; set; }
+        private Virtualize<IMotorcycleDTO> MotorcycleContainer { get; set; }
 
-        private IEnumerable<IMotorcycle> searchResults;
+        private IEnumerable<IMotorcycleDTO> searchResults;
 
         public IndexPage()
         {
@@ -52,7 +53,7 @@ namespace PS.Motorcycle.UserPortal.Pages
 
             this.Breadcrumbs = this.BreadcrumbService.GetBreadcrumb(breadcrumb);
 
-            this.searchResults = new List<IMotorcycle>();
+            this.searchResults = new List<IMotorcycleDTO>();
         }
 
         //protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -65,19 +66,19 @@ namespace PS.Motorcycle.UserPortal.Pages
         //    //
         //}
 
-        protected async ValueTask<ItemsProviderResult<IMotorcycle>> LoadMotorcycles(ItemsProviderRequest request)
+        protected async ValueTask<ItemsProviderResult<IMotorcycleDTO>> LoadMotorcycles(ItemsProviderRequest request)
         {
             //var motorcycles = await this.GetMotorcyclesUseCase.Execute();
             //return new ItemsProviderResult<IMotorcycle>(motorcycles.Skip(request.StartIndex).Take(request.Count), motorcycles.Count());
 
-            IEnumerable<IMotorcycle> motorcycles = new List<IMotorcycle>();
+            IEnumerable<IMotorcycleDTO> motorcycles = new List<IMotorcycleDTO>();
 
             if (!this.searchResults.Count().Equals(0))
             {
                 motorcycles = this.searchResults;
             }
 
-            return new ItemsProviderResult<IMotorcycle>(motorcycles.Skip(request.StartIndex).Take(request.Count), motorcycles.Count());
+            return new ItemsProviderResult<IMotorcycleDTO>(motorcycles.Skip(request.StartIndex).Take(request.Count), motorcycles.Count());
 
         }
 
@@ -90,7 +91,7 @@ namespace PS.Motorcycle.UserPortal.Pages
             }
             else
             {
-                this.searchResults = await this.GetMotorcyclesUseCase.Execute();
+                //this.searchResults = await this.GetMotorcyclesUseCase.Execute();
             }
             await this.MotorcycleContainer.RefreshDataAsync();
             StateHasChanged();

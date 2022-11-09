@@ -3,7 +3,9 @@ using Azure.Search.Documents.Indexes;
 using Azure.Search.Documents.Models;
 using PS.Motorcycle.Application.Interfaces;
 using PS.Motorcycle.Domain.Interfaces;
+using PS.Motorcycle.Domain.Interfaces.DTO;
 using PS.Motorcycle.Domain.Models;
+using PS.Motorcycle.Domain.Models.DTO;
 using PS.Motorcycle.Infrastucture.AzureCognitiveSearch.Interfaces;
 using System.Text.Json.Serialization;
 
@@ -18,7 +20,7 @@ namespace PS.Motorcycle.Infrastucture.AzureCognitiveSearch.Service
             this._azureContext = azureContext;
         }
 
-        public async Task<IEnumerable<IMotorcycle>> Query(Search search)
+        public async Task<IEnumerable<IMotorcycleDTO>> Query(Search search)
         {
 
             var options = new SearchOptions()
@@ -27,11 +29,11 @@ namespace PS.Motorcycle.Infrastucture.AzureCognitiveSearch.Service
             };
 
             //options.Select.Add("id");
-            var response = await this._azureContext.SearchClient.SearchAsync<PS.Motorcycle.Domain.Models.Motorcycle>(search.SearchText, options);
+            var response = await this._azureContext.SearchClient.SearchAsync<MotorcycleDTO>(search.SearchText, options);
 
             var results = response.Value.GetResults().ToList();
 
-            List<Domain.Interfaces.IMotorcycle> motorcycles = new List<Domain.Interfaces.IMotorcycle>();
+            List<IMotorcycleDTO> motorcycles = new List<IMotorcycleDTO>();
             foreach(var result in results)
             {
                 motorcycles.Add(result.Document);

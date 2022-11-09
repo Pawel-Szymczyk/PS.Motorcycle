@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using PS.Motorcycle.Domain.Interfaces;
+using PS.Motorcycle.Domain.Interfaces.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace PS.Motorcycle.Common.Controls
     public partial class CardComponent : ComponentBase
     {
         [Parameter]
-        public IMotorcycle? Motorcycle { get; set; }
+        public IMotorcycleDTO? Motorcycle { get; set; }
 
         [Parameter]
         public string? Path { get; set; }
