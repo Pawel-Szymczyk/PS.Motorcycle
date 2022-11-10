@@ -1,5 +1,6 @@
 ﻿using Microsoft.Azure.Cosmos;
 using PS.Motorcycle.Application.Interfaces;
+using PS.Motorcycle.Domain.Models.DTO;
 using PS.Motorcycle.Infrastructure.CosmosDB.Interfaces;
 
 namespace PS.Motorcycle.Infrastructure.CosmosDB.Repositories
@@ -30,12 +31,12 @@ namespace PS.Motorcycle.Infrastructure.CosmosDB.Repositories
            
         }
 
-        public async Task<IEnumerable<Domain.Models.Motorcycle>> GetAsync()
+        public async Task<IEnumerable<MotorcycleDTO>> GetAsync()
         {
             var queryDefination = new QueryDefinition("SELECT * FROM Motorcycle");
-            var query = _cosmosContext.MotorcycleContainer.GetItemQueryIterator<Domain.Models.Motorcycle>(queryDefination);
+            var query = _cosmosContext.MotorcycleContainer.GetItemQueryIterator<MotorcycleDTO>(queryDefination);
 
-            var result = new List<PS.Motorcycle.Domain.Models.Motorcycle>();
+            var result = new List<MotorcycleDTO>();
 
             while (query.HasMoreResults)
             {
@@ -45,6 +46,22 @@ namespace PS.Motorcycle.Infrastructure.CosmosDB.Repositories
 
             return result;
         }
+
+        //public async Task<IEnumerable<Domain.Models.Motorcycle>> GetAsync()
+        //{
+        //    var queryDefination = new QueryDefinition("SELECT * FROM Motorcycle");
+        //    var query = _cosmosContext.MotorcycleContainer.GetItemQueryIterator<Domain.Models.Motorcycle>(queryDefination);
+
+        //    var result = new List<PS.Motorcycle.Domain.Models.Motorcycle>();
+
+        //    while (query.HasMoreResults)
+        //    {
+        //        var response = await query.ReadNextAsync();
+        //        result.AddRange(response.ToList());
+        //    }
+
+        //    return result;
+        //}
 
         public async Task<Domain.Models.Motorcycle> GetByIdAsync(Guid id)
         {

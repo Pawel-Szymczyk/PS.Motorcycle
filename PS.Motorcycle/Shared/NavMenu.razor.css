@@ -33,3 +33,19 @@
 
 
 
+
+.login-container,
+.logout-container {
+    display: flex;
+}
+
+    .logout-container p {
+        margin: 0;
+        color: white;
+    }
+
+    .login-container a,
+    .logout-container a {
+        color: white;
+        text-decoration: none;
+    }

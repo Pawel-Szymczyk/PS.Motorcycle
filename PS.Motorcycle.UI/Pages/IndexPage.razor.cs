@@ -36,14 +36,20 @@ namespace PS.Motorcycle.UserPortal.Pages
 
         private IEnumerable<IMotorcycleDTO> searchResults;
 
+        [Inject]
+        private NavigationManager NavigationManager { get; set; } = default!;
+
         public IndexPage()
         {
 
         }
 
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
-            base.OnInitialized();
+            
+            await base.OnInitializedAsync();
+
+
 
             IBreadcrumb breadcrumb = new Breadcrumb()
             {
@@ -54,7 +60,41 @@ namespace PS.Motorcycle.UserPortal.Pages
             this.Breadcrumbs = this.BreadcrumbService.GetBreadcrumb(breadcrumb);
 
             this.searchResults = new List<IMotorcycleDTO>();
+
+
+
+            await this.IsLoggedInAsync();
         }
+
+        private async Task IsLoggedInAsync()
+        {
+            var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+            var user = authState.User;
+
+            if (user.Identity.IsAuthenticated)
+            {
+                this.NavigationManager.NavigateTo("/manager");
+            }
+        }
+
+        //protected override void OnInitialized()
+        //{
+           
+
+
+
+        //    base.OnInitialized();
+
+        //    IBreadcrumb breadcrumb = new Breadcrumb()
+        //    {
+        //        Text = "Home",
+        //        Url = "/"
+        //    };
+
+        //    this.Breadcrumbs = this.BreadcrumbService.GetBreadcrumb(breadcrumb);
+
+        //    this.searchResults = new List<IMotorcycleDTO>();
+        //}
 
         //protected override async Task OnAfterRenderAsync(bool firstRender)
         //{
@@ -91,7 +131,7 @@ namespace PS.Motorcycle.UserPortal.Pages
             }
             else
             {
-                //this.searchResults = await this.GetMotorcyclesUseCase.Execute();
+                this.searchResults = await this.GetMotorcyclesUseCase.Execute();
             }
             await this.MotorcycleContainer.RefreshDataAsync();
             StateHasChanged();

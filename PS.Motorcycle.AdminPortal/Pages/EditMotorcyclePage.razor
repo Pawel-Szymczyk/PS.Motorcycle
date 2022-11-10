@@ -2,387 +2,395 @@
 @page "/manager/motorcycle/edit/{Id:guid}"
 
 
-
-<div class="breadcrumbs-container">
-    <BreadcrumbComponent Breadcrumbs="@this.Breadcrumbs"></BreadcrumbComponent>
-</div>
-
-
-@if(this.motorcycle is null)
-{
-    <p>Loading...</p>
-}
-else
-{
+<div style="height: inherit;">
     
+    <div class="breadcrumbs-container">
+        <BreadcrumbComponent Breadcrumbs="@this.Breadcrumbs"></BreadcrumbComponent>
+    </div>
 
-    <EditForm Model="@this.motorcycle" OnValidSubmit="@HandleValidSubmit">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
 
-        <div class="container-fluid">
-            <div class="toolbar-container">
-                <div class="toolbar">
-                    <div class="d-grid gap-2 d-md-block">
-                        <SaveButtonComponent Type="submit" Path="@this.path" Text="Save Motorcycle" />
-                        <CancelButtonComponent Path="@this.path" Text="Cancel" />
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-
-            <br />
-            <h3>OVERALL</h3>
-            <br />
-            <div class="row g-3">
+    <div class="container-fluid" style="background-color: white; height: inherit; border-radius: 10px; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; overflow-y: auto;">
 
         
-                <div class="form-group col-md-6">
-                    <label for="motorcycleMakeInput">Make:</label>
-                    <InputText @bind-Value="this.motorcycle.Make" class="form-control" id="motorcycleMakeInput" />
-                   @* <ValidationMessage For="this.motorcycle.Make" />*@
-                </div>
+        @if(this.motorcycle is null)
+        {
+            <p>Loading...</p>
+        }
+        else
+        {
+    
+            <EditForm Model="@this.motorcycle" OnValidSubmit="@HandleValidSubmit">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
 
-                <div class="form-group col-md-6">
-                    <label for="motorcycleModelInput">Model:</label>
-                    <InputText @bind-Value="this.motorcycle.Model" class="form-control" id="motorcycleModelInput" />
-                   @* <ValidationMessage For="this.motorcycle.Make" />*@
-                </div>
-
-                 <div class="form-group col-md-6">
-                    <label for="motorcycleBodyTypeInput">Body Type:</label>
-                    <InputSelect @bind-Value="@this.motorcycle.BodyType" class="form-control" id="motorcycleBodyTypeInput">
-                        @foreach (var type in Enum.GetValues(typeof(BodyType)))
-                        {
-                            <option value="@type">@type</option>
-                        }
-                    </InputSelect>
-                     @*<ValidationMessage For="@(() => comment.Country)" />*@
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label for="motorcycleProductionYearInput">Production Year:</label>
-                    <InputNumber @bind-Value="this.motorcycle.ProductionYear" class="form-control" id="motorcycleProductionYearInput" />
-                    @* <ValidationMessage For="this.motorcycle.Make" />*@
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label for="motorcycleMarketPriceInput">Market Price:</label>
-                    <InputNumber @bind-Value="this.motorcycle.Price" class="form-control" id="motorcycleMarketPriceInput" />
-                    @* <ValidationMessage For="this.motorcycle.Make" />*@
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="motorcycleAboutInput">About:</label>
-                    <InputTextArea @bind-Value="this.motorcycle.About" class="form-control" id="motorcycleAboutInput" />
-                    @* <ValidationMessage For="this.motorcycle.Make" />*@
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="motorcycleLogoUrlInput">Logo URL:</label>
-                    <InputText @bind-Value="this.motorcycle.LogoUrl" class="form-control" id="motorcycleLogoUrlInput" />
-                    @* <ValidationMessage For="this.motorcycle.Make" />*@
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="motorcycleImageUrlInput">Image URL:</label>
-                    <InputText @bind-Value="this.motorcycle.ImageUrl" class="form-control" id="motorcycleImageUrlInput" />
-                   @* <ValidationMessage For="this.motorcycle.Make" />*@
-                </div>
-
-                <div class="form-group col-md-12">
-                    <label for="motorcycleImageGalleryUrlInput">Image Gallery URL:</label>
-                    <InputText @bind-Value="this.motorcycle.ImagesGalleryUrls" class="form-control" id="motorcycleImageGalleryUrlInput" />
-                   @* <ValidationMessage For="this.motorcycle.Make" />*@
-                </div>
-
-
-
-
-                <div class="additional-info-container">
-
-                    <TabsControlComponent>
-                        <TabContentComponent Title="chassis" ImgUrl="https://cdn-ps-motorcycle.azureedge.net/static-images/chassis_original.jpg">
-                            <div class="tabContent">
-                                <br />
-                                <h4>DIMENSIONS AND WEIGHTS</h4>
-                                <br />
-                                <div>
-                                    <div class="row g-3">
-                                        <div class="form-group col-md-4">
-                                            <label for="motorcycleLengthInput">Overall Length:</label>
-                                            <InputNumber @bind-Value="this.motorcycle.Length" class="form-control" id="motorcycleLengthInput" />
-                                            @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="motorcycleHeightInput">Overall Height:</label>
-                                            <InputNumber @bind-Value="this.motorcycle.Height" class="form-control" id="motorcycleHeightInput" />
-                                            @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="motorcycleWidthInput">Overall Width:</label>
-                                            <InputNumber @bind-Value="this.motorcycle.Width" class="form-control" id="motorcycleWidthInput" />
-                                            @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="motorcycleWheelbaseInput">Wheelbase:</label>
-                                            <InputNumber @bind-Value="this.motorcycle.Wheelbase" class="form-control" id="motorcycleWheelbaseInput" />
-                                            @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="motorcycleGroundClearanceInput">Ground Clearance:</label>
-                                            <InputNumber @bind-Value="this.motorcycle.GroundClearance" class="form-control" id="motorcycleGroundClearanceInput" />
-                                            @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="motorcycleSitHeightInput">Sit Height:</label>
-                                            <InputNumber @bind-Value="this.motorcycle.SitHeight" class="form-control" id="motorcycleSitHeightInput" />
-                                            @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="motorcycleKerbMassInput">Kerb Mass:</label>
-                                            <InputNumber @bind-Value="this.motorcycle.KerbMass" class="form-control" id="motorcycleKerbMassInput" />
-                                            @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="motorcycleFuelCapacityInput">Fuel Capacity:</label>
-                                            <InputNumber @bind-Value="this.motorcycle.FuelCapacity" class="form-control" id="motorcycleFuelCapacityInput" />
-                                            @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
-                                    </div>
-                                </div>
+                <div class="container-fluid">
+                    <div class="toolbar-container">
+                        <div class="toolbar">
+                            <div class="d-grid gap-2 d-md-block">
+                                <SaveButtonComponent Type="submit" Path="@this.path" Text="Save Motorcycle" />
+                                <CancelButtonComponent Path="@this.path" Text="Cancel" />
                             </div>
-                        </TabContentComponent>
-                        <TabContentComponent Title="engine" ImgUrl="https://cdn-ps-motorcycle.azureedge.net/static-images/engine_original.jpg">
-                            <div class="tabContent">
-                                <br />
-                                <h3>ENGINE</h3>
-                                <br />
-                                <div>
-                                    <div class="row g-3">
+                        </div>
+                    </div>
+                </div>
 
-                                        <div class="form-group col-md-6">
-                                            <label for="engineCapacityInput">Engine Capacity:</label>
-                                            <InputNumber @bind-Value="this.motorcycle.Engine.Capacity" class="form-control" id="engineCapacityInput" />
-                                           @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
+                <div class="container">
 
-                                         <div class="form-group col-md-6">
-                                            <label for="engineInput">Engine:</label>
-                                            <InputText @bind-Value="this.motorcycle.Engine.EngineDescription" class="form-control" id="engineInput" />
-                                           @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
+                    <br />
+                    <h3>OVERALL</h3>
+                    <br />
+                    <div class="row g-3">
 
-                                        <div class="form-group col-md-6">
-                                            <label for="engineBoreInput">Bore:</label>
-                                            <InputText @bind-Value="this.motorcycle.Engine.Bore" class="form-control" id="engineBoreInput" />
-                                           @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
+        
+                        <div class="form-group col-md-6">
+                            <label for="motorcycleMakeInput">Make:</label>
+                            <InputText @bind-Value="this.motorcycle.Make" class="form-control" id="motorcycleMakeInput" />
+                           @* <ValidationMessage For="this.motorcycle.Make" />*@
+                        </div>
 
-                                        <div class="form-group col-md-6">
-                                            <label for="engineCompressionRatioInput">Compression Ratio:</label>
-                                            <InputText @bind-Value="this.motorcycle.Engine.CompressionRatio" class="form-control" id="engineCompressionRatioInput" />
-                                           @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="motorcycleModelInput">Model:</label>
+                            <InputText @bind-Value="this.motorcycle.Model" class="form-control" id="motorcycleModelInput" />
+                           @* <ValidationMessage For="this.motorcycle.Make" />*@
+                        </div>
 
-                                        <div class="form-group col-md-6">
-                                            <label for="engineLubricationInput">Lubrication:</label>
-                                            <InputText @bind-Value="this.motorcycle.Engine.Lubrication" class="form-control" id="engineLubricationInput" />
-                                           @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
-
-                                        <div class="form-group col-md-6">
-                                            <label for="engineIgnitionInput">Ignition:</label>
-                                            <InputText @bind-Value="this.motorcycle.Engine.Ignition" class="form-control" id="engineIgnitionInput" />
-                                           @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
-
-                                        <div class="form-group col-md-6">
-                                            <label for="engineFuelSystemInput">Fuel System:</label>
-                                            <InputText @bind-Value="this.motorcycle.Engine.FuelSystem" class="form-control" id="engineFuelSystemInput" />
-                                           @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
-
-                                        <div class="form-group col-md-6">
-                                            <label for="engineTransmissionInput">Transmission:</label>
-                                            <InputText @bind-Value="this.motorcycle.Engine.Transmission" class="form-control" id="engineTransmissionInput" />
-                                           @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
-
-                                        <div class="form-group col-md-6">
-                                            <label for="engineDriveInput">Drive:</label>
-                                            <InputText @bind-Value="this.motorcycle.Engine.Drive" class="form-control" id="engineDriveInput" />
-                                           @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
-
-                                        <div class="form-group col-md-6">
-                                            <label for="engineStarterInput">Starter:</label>
-                                            <InputText @bind-Value="this.motorcycle.Engine.Starter" class="form-control" id="engineStarterInput" />
-                                           @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
-
-                                        <div class="form-group col-md-6">
-                                            <label for="engineMPGInput">MPG:</label>
-                                            <InputNumber @bind-Value="this.motorcycle.Engine.Mpg" class="form-control" id="engineMPGInput" />
-                                           @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
-
-                                        <div class="form-group col-md-6">
-                                            <label for="engineCO2Input">CO2:</label>
-                                            <InputText @bind-Value="this.motorcycle.Engine.Co2" class="form-control" id="engineCO2Input" />
-                                           @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
-
-                                        <div class="form-group col-md-6">
-                                            <label for="enginePowerInput">Power:</label>
-                                            <InputText @bind-Value="this.motorcycle.Engine.Power" class="form-control" id="enginePowerInput" />
-                                           @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
-
-                                        <div class="form-group col-md-6">
-                                            <label for="engineTorqueInput">Torque:</label>
-                                            <InputText @bind-Value="this.motorcycle.Engine.Torque" class="form-control" id="engineTorqueInput" />
-                                           @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                        </div>
-                               
-                                    </div>
-                                </div>
-                            </div>
-                        </TabContentComponent>
-                        <TabContentComponent Title="suspension" ImgUrl="https://cdn-ps-motorcycle.azureedge.net/static-images/suspension_original_1.jpg">
-                            <div class="tabContent">
-                                <br />
-                                <h3>SUSPENSION</h3>
-                                <br />
-                                @foreach(var suspension in this.motorcycle.Chassis.Suspensions)
+                         <div class="form-group col-md-6">
+                            <label for="motorcycleBodyTypeInput">Body Type:</label>
+                            <InputSelect @bind-Value="@this.motorcycle.BodyType" class="form-control" id="motorcycleBodyTypeInput">
+                                @foreach (var type in Enum.GetValues(typeof(BodyType)))
                                 {
-                                    <div class="tabSubContent">
-                                        <h5>@suspension.Type</h5>
-                                        <br />
-                                        <div class="row g-3">
-
-                                            <div class="form-group col-md-6">
-                                                <label for="suspensionNameInput">Name:</label>
-                                                <InputText @bind-Value="@suspension.Name" class="form-control" id="suspensionNameInput" />
-                                                @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                            </div>
-
-                                            <div class="form-group col-md-6">
-                                                <label for="suspensionDescriptionInput">Description:</label>
-                                                <InputText @bind-Value="@suspension.Description" class="form-control" id="suspensionDescriptionInput" />
-                                                @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                            </div>
-
-                                        </div>
-                                    </div>
+                                    <option value="@type">@type</option>
                                 }
-                            </div>
-                        </TabContentComponent>
-                        <TabContentComponent Title="wheels" ImgUrl="https://cdn-ps-motorcycle.azureedge.net/static-images/wheel_original.jpg">
-                            <div class="tabContent">
-                                <br />
-                                <h3>WHEELS</h3>
-                                <br />
-                                @foreach(var wheel in this.motorcycle.Chassis.Wheels)
-                                {
-                                    <div class="tabSubContent">
-                               
-                                        <h5>@wheel.Type</h5>
+                            </InputSelect>
+                             @*<ValidationMessage For="@(() => comment.Country)" />*@
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="motorcycleProductionYearInput">Production Year:</label>
+                            <InputNumber @bind-Value="this.motorcycle.ProductionYear" class="form-control" id="motorcycleProductionYearInput" />
+                            @* <ValidationMessage For="this.motorcycle.Make" />*@
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="motorcycleMarketPriceInput">Market Price:</label>
+                            <InputNumber @bind-Value="this.motorcycle.Price" class="form-control" id="motorcycleMarketPriceInput" />
+                            @* <ValidationMessage For="this.motorcycle.Make" />*@
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="motorcycleAboutInput">About:</label>
+                            <InputTextArea @bind-Value="this.motorcycle.About" class="form-control" id="motorcycleAboutInput" />
+                            @* <ValidationMessage For="this.motorcycle.Make" />*@
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="motorcycleLogoUrlInput">Logo URL:</label>
+                            <InputText @bind-Value="this.motorcycle.LogoUrl" class="form-control" id="motorcycleLogoUrlInput" />
+                            @* <ValidationMessage For="this.motorcycle.Make" />*@
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="motorcycleImageUrlInput">Image URL:</label>
+                            <InputText @bind-Value="this.motorcycle.ImageUrl" class="form-control" id="motorcycleImageUrlInput" />
+                           @* <ValidationMessage For="this.motorcycle.Make" />*@
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="motorcycleImageGalleryUrlInput">Image Gallery URL:</label>
+                            <InputText @bind-Value="this.motorcycle.ImagesGalleryUrls" class="form-control" id="motorcycleImageGalleryUrlInput" />
+                           @* <ValidationMessage For="this.motorcycle.Make" />*@
+                        </div>
+
+
+
+
+                        <div class="additional-info-container">
+
+                            <TabsControlComponent>
+                                <TabContentComponent Title="chassis" ImgUrl="https://cdn-ps-motorcycle.azureedge.net/static-images/chassis_original.jpg">
+                                    <div class="tabContent">
                                         <br />
-                                        <div class="row g-3">
-
-                                            <div class="form-group col-md-6">
-                                                <label for="wheelRimDiameterInput">Rim Diameter:</label>
-                                                <InputNumber @bind-Value="@wheel.RimDiameter" class="form-control" id="wheelRimDiameterInput" />
-                                                @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                            </div>
-
+                                        <h4>DIMENSIONS AND WEIGHTS</h4>
+                                        <br />
+                                        <div>
                                             <div class="row g-3">
-                                                <br />
-                                                <h4>Tyre</h4>
-                                                <br />
-                                                <div class="form-group col-md-6">
-                                                    <label for="tyreBrandInput">Brand:</label>
-                                                    <InputText @bind-Value="@wheel.Tyre.Brand" class="form-control" id="tyreBrandInput" />
+                                                <div class="form-group col-md-4">
+                                                    <label for="motorcycleLengthInput">Overall Length:</label>
+                                                    <InputNumber @bind-Value="this.motorcycle.Length" class="form-control" id="motorcycleLengthInput" />
                                                     @* <ValidationMessage For="this.motorcycle.Make" />*@
                                                 </div>
-
-                                                <div class="form-group col-md-6">
-                                                    <label for="tyreSpeedIndexInput">Speed Index:</label>
-                                                    <InputText @bind-Value="@wheel.Tyre.SpeedIndex" class="form-control" id="tyreSpeedIndexInput" />
+                                                <div class="form-group col-md-4">
+                                                    <label for="motorcycleHeightInput">Overall Height:</label>
+                                                    <InputNumber @bind-Value="this.motorcycle.Height" class="form-control" id="motorcycleHeightInput" />
                                                     @* <ValidationMessage For="this.motorcycle.Make" />*@
                                                 </div>
-
-                                                <div class="form-group col-md-6">
-                                                    <label for="tyreRimDiameterInput">Rim Diameter:</label>
-                                                    <InputNumber @bind-Value="@wheel.Tyre.RimDiameter" class="form-control" id="tyreRimDiameterInput" />
+                                                <div class="form-group col-md-4">
+                                                    <label for="motorcycleWidthInput">Overall Width:</label>
+                                                    <InputNumber @bind-Value="this.motorcycle.Width" class="form-control" id="motorcycleWidthInput" />
                                                     @* <ValidationMessage For="this.motorcycle.Make" />*@
                                                 </div>
-
                                                 <div class="form-group col-md-6">
-                                                    <label for="tyreWidthInput">Width:</label>
-                                                    <InputNumber @bind-Value="@wheel.Tyre.Width" class="form-control" id="tyreWidthInput" />
+                                                    <label for="motorcycleWheelbaseInput">Wheelbase:</label>
+                                                    <InputNumber @bind-Value="this.motorcycle.Wheelbase" class="form-control" id="motorcycleWheelbaseInput" />
                                                     @* <ValidationMessage For="this.motorcycle.Make" />*@
                                                 </div>
-
                                                 <div class="form-group col-md-6">
-                                                    <label for="tyreProfileInput">Profile:</label>
-                                                    <InputNumber @bind-Value="@wheel.Tyre.Profile" class="form-control" id="tyreProfileInput" />
+                                                    <label for="motorcycleGroundClearanceInput">Ground Clearance:</label>
+                                                    <InputNumber @bind-Value="this.motorcycle.GroundClearance" class="form-control" id="motorcycleGroundClearanceInput" />
                                                     @* <ValidationMessage For="this.motorcycle.Make" />*@
                                                 </div>
-
                                                 <div class="form-group col-md-6">
-                                                    <label for="tyreLoadIndexOfTireInput">Load Index Of Tyre:</label>
-                                                    <InputNumber @bind-Value="@wheel.Tyre.LoadIndexOfTyre" class="form-control" id="tyreLoadIndexOfTireInput" />
+                                                    <label for="motorcycleSitHeightInput">Sit Height:</label>
+                                                    <InputNumber @bind-Value="this.motorcycle.SitHeight" class="form-control" id="motorcycleSitHeightInput" />
+                                                    @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="motorcycleKerbMassInput">Kerb Mass:</label>
+                                                    <InputNumber @bind-Value="this.motorcycle.KerbMass" class="form-control" id="motorcycleKerbMassInput" />
+                                                    @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="motorcycleFuelCapacityInput">Fuel Capacity:</label>
+                                                    <InputNumber @bind-Value="this.motorcycle.FuelCapacity" class="form-control" id="motorcycleFuelCapacityInput" />
                                                     @* <ValidationMessage For="this.motorcycle.Make" />*@
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                }
-                            </div>
-                        </TabContentComponent>
-                        <TabContentComponent Title="brakes" ImgUrl="https://cdn-ps-motorcycle.azureedge.net/static-images/Brake_original.jpg">
-                            <div class="tabContent">
-                                <br />
-                                <h3>BREAKS</h3>
-                                <br />
-                                @foreach(var brake in this.motorcycle.Chassis.Brakes)
-                                {
-                                    <div class="tabSubContent">
-                                
-                                        <h5>@brake.Type</h5>
+                                </TabContentComponent>
+                                <TabContentComponent Title="engine" ImgUrl="https://cdn-ps-motorcycle.azureedge.net/static-images/engine_original.jpg">
+                                    <div class="tabContent">
                                         <br />
-                                        <div class="row g-3">
+                                        <h3>ENGINE</h3>
+                                        <br />
+                                        <div>
+                                            <div class="row g-3">
 
-                                            <div class="form-group col-md-6">
-                                                <label for="brakeNameInput">Name:</label>
-                                                <InputText @bind-Value="@brake.Name" class="form-control" id="brakeNameInput" />
-                                                @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                <div class="form-group col-md-6">
+                                                    <label for="engineCapacityInput">Engine Capacity:</label>
+                                                    <InputNumber @bind-Value="this.motorcycle.Engine.Capacity" class="form-control" id="engineCapacityInput" />
+                                                   @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                </div>
+
+                                                 <div class="form-group col-md-6">
+                                                    <label for="engineInput">Engine:</label>
+                                                    <InputText @bind-Value="this.motorcycle.Engine.EngineDescription" class="form-control" id="engineInput" />
+                                                   @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="engineBoreInput">Bore:</label>
+                                                    <InputText @bind-Value="this.motorcycle.Engine.Bore" class="form-control" id="engineBoreInput" />
+                                                   @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="engineCompressionRatioInput">Compression Ratio:</label>
+                                                    <InputText @bind-Value="this.motorcycle.Engine.CompressionRatio" class="form-control" id="engineCompressionRatioInput" />
+                                                   @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="engineLubricationInput">Lubrication:</label>
+                                                    <InputText @bind-Value="this.motorcycle.Engine.Lubrication" class="form-control" id="engineLubricationInput" />
+                                                   @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="engineIgnitionInput">Ignition:</label>
+                                                    <InputText @bind-Value="this.motorcycle.Engine.Ignition" class="form-control" id="engineIgnitionInput" />
+                                                   @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="engineFuelSystemInput">Fuel System:</label>
+                                                    <InputText @bind-Value="this.motorcycle.Engine.FuelSystem" class="form-control" id="engineFuelSystemInput" />
+                                                   @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="engineTransmissionInput">Transmission:</label>
+                                                    <InputText @bind-Value="this.motorcycle.Engine.Transmission" class="form-control" id="engineTransmissionInput" />
+                                                   @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="engineDriveInput">Drive:</label>
+                                                    <InputText @bind-Value="this.motorcycle.Engine.Drive" class="form-control" id="engineDriveInput" />
+                                                   @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="engineStarterInput">Starter:</label>
+                                                    <InputText @bind-Value="this.motorcycle.Engine.Starter" class="form-control" id="engineStarterInput" />
+                                                   @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="engineMPGInput">MPG:</label>
+                                                    <InputNumber @bind-Value="this.motorcycle.Engine.Mpg" class="form-control" id="engineMPGInput" />
+                                                   @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="engineCO2Input">CO2:</label>
+                                                    <InputText @bind-Value="this.motorcycle.Engine.Co2" class="form-control" id="engineCO2Input" />
+                                                   @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="enginePowerInput">Power:</label>
+                                                    <InputText @bind-Value="this.motorcycle.Engine.Power" class="form-control" id="enginePowerInput" />
+                                                   @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="engineTorqueInput">Torque:</label>
+                                                    <InputText @bind-Value="this.motorcycle.Engine.Torque" class="form-control" id="engineTorqueInput" />
+                                                   @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                </div>
+                               
                                             </div>
-
-                                            <div class="form-group col-md-6">
-                                                <label for="brakeNumberOfDiscsInput">Number Of Discs:</label>
-                                                <InputNumber @bind-Value="@brake.NumberOfDiscs" class="form-control" id="brakeNumberOfDiscsInput" />
-                                                @* <ValidationMessage For="this.motorcycle.Make" />*@
-                                            </div>
-
                                         </div>
                                     </div>
-                                }
-                            </div>
-                        </TabContentComponent>
-                    </TabsControlComponent>
+                                </TabContentComponent>
+                                <TabContentComponent Title="suspension" ImgUrl="https://cdn-ps-motorcycle.azureedge.net/static-images/suspension_original_1.jpg">
+                                    <div class="tabContent">
+                                        <br />
+                                        <h3>SUSPENSION</h3>
+                                        <br />
+                                        @foreach(var suspension in this.motorcycle.Chassis.Suspensions)
+                                        {
+                                            <div class="tabSubContent">
+                                                <h5>@suspension.Type</h5>
+                                                <br />
+                                                <div class="row g-3">
 
+                                                    <div class="form-group col-md-6">
+                                                        <label for="suspensionNameInput">Name:</label>
+                                                        <InputText @bind-Value="@suspension.Name" class="form-control" id="suspensionNameInput" />
+                                                        @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="suspensionDescriptionInput">Description:</label>
+                                                        <InputText @bind-Value="@suspension.Description" class="form-control" id="suspensionDescriptionInput" />
+                                                        @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </TabContentComponent>
+                                <TabContentComponent Title="wheels" ImgUrl="https://cdn-ps-motorcycle.azureedge.net/static-images/wheel_original.jpg">
+                                    <div class="tabContent">
+                                        <br />
+                                        <h3>WHEELS</h3>
+                                        <br />
+                                        @foreach(var wheel in this.motorcycle.Chassis.Wheels)
+                                        {
+                                            <div class="tabSubContent">
+                               
+                                                <h5>@wheel.Type</h5>
+                                                <br />
+                                                <div class="row g-3">
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="wheelRimDiameterInput">Rim Diameter:</label>
+                                                        <InputNumber @bind-Value="@wheel.RimDiameter" class="form-control" id="wheelRimDiameterInput" />
+                                                        @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                    </div>
+
+                                                    <div class="row g-3">
+                                                        <br />
+                                                        <h4>Tyre</h4>
+                                                        <br />
+                                                        <div class="form-group col-md-6">
+                                                            <label for="tyreBrandInput">Brand:</label>
+                                                            <InputText @bind-Value="@wheel.Tyre.Brand" class="form-control" id="tyreBrandInput" />
+                                                            @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                        </div>
+
+                                                        <div class="form-group col-md-6">
+                                                            <label for="tyreSpeedIndexInput">Speed Index:</label>
+                                                            <InputText @bind-Value="@wheel.Tyre.SpeedIndex" class="form-control" id="tyreSpeedIndexInput" />
+                                                            @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                        </div>
+
+                                                        <div class="form-group col-md-6">
+                                                            <label for="tyreRimDiameterInput">Rim Diameter:</label>
+                                                            <InputNumber @bind-Value="@wheel.Tyre.RimDiameter" class="form-control" id="tyreRimDiameterInput" />
+                                                            @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                        </div>
+
+                                                        <div class="form-group col-md-6">
+                                                            <label for="tyreWidthInput">Width:</label>
+                                                            <InputNumber @bind-Value="@wheel.Tyre.Width" class="form-control" id="tyreWidthInput" />
+                                                            @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                        </div>
+
+                                                        <div class="form-group col-md-6">
+                                                            <label for="tyreProfileInput">Profile:</label>
+                                                            <InputNumber @bind-Value="@wheel.Tyre.Profile" class="form-control" id="tyreProfileInput" />
+                                                            @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                        </div>
+
+                                                        <div class="form-group col-md-6">
+                                                            <label for="tyreLoadIndexOfTireInput">Load Index Of Tyre:</label>
+                                                            <InputNumber @bind-Value="@wheel.Tyre.LoadIndexOfTyre" class="form-control" id="tyreLoadIndexOfTireInput" />
+                                                            @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </TabContentComponent>
+                                <TabContentComponent Title="brakes" ImgUrl="https://cdn-ps-motorcycle.azureedge.net/static-images/Brake_original.jpg">
+                                    <div class="tabContent">
+                                        <br />
+                                        <h3>BREAKS</h3>
+                                        <br />
+                                        @foreach(var brake in this.motorcycle.Chassis.Brakes)
+                                        {
+                                            <div class="tabSubContent">
+                                
+                                                <h5>@brake.Type</h5>
+                                                <br />
+                                                <div class="row g-3">
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="brakeNameInput">Name:</label>
+                                                        <InputText @bind-Value="@brake.Name" class="form-control" id="brakeNameInput" />
+                                                        @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                    </div>
+
+                                                    <div class="form-group col-md-6">
+                                                        <label for="brakeNumberOfDiscsInput">Number Of Discs:</label>
+                                                        <InputNumber @bind-Value="@brake.NumberOfDiscs" class="form-control" id="brakeNumberOfDiscsInput" />
+                                                        @* <ValidationMessage For="this.motorcycle.Make" />*@
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </TabContentComponent>
+                            </TabsControlComponent>
+
+                        </div>
+
+
+                    </div>
                 </div>
+            </EditForm>
+
+        }
+
+        <FooterComponent />
+
+    </div>
 
 
-            </div>
-        </div>
-    </EditForm>
-
-}
-
-<FooterComponent />
+</div>

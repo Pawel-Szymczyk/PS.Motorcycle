@@ -4,6 +4,7 @@ using PS.Motorcycle.Application.AdminPortal.UseCases.MotorcycleUseCases.RemoveMo
 using PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.GetMotorcycles;
 using PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.SearchMotorcycles;
 using PS.Motorcycle.Domain.Interfaces;
+using PS.Motorcycle.Domain.Interfaces.DTO;
 using PS.Motorcycle.Domain.Models;
 using PS.Motorcycle.Domain.Models.Components;
 using PS.Motorcycle.Domain.Services;
@@ -34,7 +35,7 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
         //private Virtualize<IMotorcycle> MotorcycleContainer { get; set; }
 
-        private IEnumerable<IMotorcycle> motorcycles;
+        private IEnumerable<IMotorcycleDTO> motorcycles;
 
         private bool selectedRow;
         private Guid selectedRowId;
@@ -92,9 +93,9 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
         //private string? ActiveRow => selectActiveRow ? "table-active" : null;
 
-        private IMotorcycle? SelectedMotorcycle { get; set; }
+        private IMotorcycleDTO? SelectedMotorcycle { get; set; }
 
-        private void OnClick(IMotorcycle motorcycle)
+        private void OnClick(IMotorcycleDTO motorcycle)
         {
             this.selectedRow = true;
             this.selectedRowId = motorcycle.Id;

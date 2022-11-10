@@ -1,79 +1,90 @@
 ﻿@page "/"
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
-
-<div class="breadcrumbs-container">
-    <BreadcrumbComponent Breadcrumbs="@this.Breadcrumbs"></BreadcrumbComponent>
-</div>
-
-
-<div class="container">
-
-
-
-    <div class="search-container">
-        <SearchComponent OnHandleValidSubmit="@this.HandleValidSubmit" />
+<div style="height: inherit;">
+    
+    <div class="breadcrumbs-container">
+        <BreadcrumbComponent Breadcrumbs="@this.Breadcrumbs"></BreadcrumbComponent>
     </div>
 
-    @if(this.searchResults.Count().Equals(0))
-    {
-        <div>
-            <BodyTypeCaruselComponent />
+    <div class="container-fluid" style="background-color: white; padding-top: 50px; border-radius: 10px; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; height: inherit; overflow-y: auto;">
+
+        <div class="container">
+
+
+
+        <div class="search-container">
+            <SearchComponent OnHandleValidSubmit="@this.HandleValidSubmit" />
         </div>
-    }
 
-
-    <div class="filter-container">
-        @*<SearchFilterComponent />*@
-    </div>
-
-
-    <div class="results-container">
-
-       @* @if(this.Motorcycles is null)
+        @if(this.searchResults.Count().Equals(0))
         {
-            <p><em>Loading...</em></p>
+            <div>
+                <BodyTypeCaruselComponent />
+            </div>
         }
-        else
-        {*@
-            <!-- Cards -->
+
+
+        <div class="filter-container">
+            @*<SearchFilterComponent />*@
+        </div>
+
+
+        <div class="results-container">
+
+           @* @if(this.Motorcycles is null)
+            {
+                <p><em>Loading...</em></p>
+            }
+            else
+            {*@
+                <!-- Cards -->
             
-       @* }*@
+           @* }*@
 
-        <div class="row row-cols-1 row-cols-md-3 g-4 motorcycles-list">
-
-
-
-                 <Virtualize @ref="MotorcycleContainer" ItemsProvider="@this.LoadMotorcycles" Context="motorcycle">
-                    <ItemContent>
-                        @{
-                            string path = $"/motorcycle/{motorcycle.Id}";
-                        }
-                        <CardComponent Motorcycle="@motorcycle" Path="@path" />
-                    </ItemContent>
-                    <Placeholder>
-                        <p>
-                           Loading...
-                        </p>
-                    </Placeholder>
-                </Virtualize>
+            <div class="row row-cols-1 row-cols-md-3 g-4 motorcycles-list">
 
 
 
-               @* <PS.Motorcycle.UserPortal.Controls.CardComponent />
-                <PS.Motorcycle.UserPortal.Controls.CardComponent />
-                <PS.Motorcycle.UserPortal.Controls.CardComponent />
-                <PS.Motorcycle.UserPortal.Controls.CardComponent />
-                <PS.Motorcycle.UserPortal.Controls.CardComponent />
-                <PS.Motorcycle.UserPortal.Controls.CardComponent />
-                <PS.Motorcycle.UserPortal.Controls.CardComponent />*@
+                     <Virtualize @ref="MotorcycleContainer" ItemsProvider="@this.LoadMotorcycles" Context="motorcycle">
+                        <ItemContent>
+                            @{
+                                string path = $"/motorcycle/{motorcycle.Id}";
+                            }
+                            <CardComponent Motorcycle="@motorcycle" Path="@path" />
+                        </ItemContent>
+                        <Placeholder>
+                            <p>
+                               Loading...
+                            </p>
+                        </Placeholder>
+                    </Virtualize>
+
+
+
+                       @* <PS.Motorcycle.UserPortal.Controls.CardComponent />
+                        <PS.Motorcycle.UserPortal.Controls.CardComponent />
+                        <PS.Motorcycle.UserPortal.Controls.CardComponent />
+                        <PS.Motorcycle.UserPortal.Controls.CardComponent />
+                        <PS.Motorcycle.UserPortal.Controls.CardComponent />
+                        <PS.Motorcycle.UserPortal.Controls.CardComponent />
+                        <PS.Motorcycle.UserPortal.Controls.CardComponent />*@
+
+
+                    </div>
+
 
 
             </div>
-
-
-
+        </div>
     </div>
+
+    
+
+
+    <FooterComponent />
 </div>
 
 
-<FooterComponent />

@@ -2,14 +2,21 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    height: inherit;
 }
 
 main {
     flex: 1;
+    height: inherit;
 }
 
 .sidebar {
     background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+}
+
+.content {
+    background-color: lightgray;
+    height: calc(100% - 4rem);
 }
 
 .top-row {

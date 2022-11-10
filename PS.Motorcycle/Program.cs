@@ -47,6 +47,7 @@ builder.Services.AddAuthorization(options =>
 {
     // By default, all incoming requests will be authorized according to the default policy
     options.FallbackPolicy = options.DefaultPolicy;
+
 });
 
 builder.Services.AddRazorPages();
@@ -60,6 +61,7 @@ builder.Services.AddSingleton<IBreadcrumbService, BreadcrumbService>();
 builder.Services.AddCosmosRepository();
 builder.Services.AddAzureCognitiveAzureService();
 builder.Services.AddApplication();
+
 
 
 var app = builder.Build();

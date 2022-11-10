@@ -1,4 +1,5 @@
 ﻿using PS.Motorcycle.Domain.Interfaces;
+using PS.Motorcycle.Domain.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace PS.Motorcycle.Application.Interfaces
 {
     public interface IMotorcycleRepository
     {
-        Task<IEnumerable<Domain.Models.Motorcycle>> GetAsync();
+        Task<IEnumerable<MotorcycleDTO>> GetAsync();
         Task<Domain.Models.Motorcycle> GetByIdAsync(Guid id);
         Task<Domain.Models.Motorcycle> AddAsync(Domain.Models.Motorcycle motorcycle);
         Task<Domain.Models.Motorcycle> UpdateAsync(Domain.Models.Motorcycle motorcycle);

@@ -2,10 +2,10 @@
     <Router AppAssembly="@typeof(App).Assembly" PreferExactMatches="@true" 
             AdditionalAssemblies="new[] { typeof(PS.Motorcycle.UserPortal.Pages.IndexPage).Assembly,
                                           typeof(PS.Motorcycle.AdminPortal.Pages.CatalogPage).Assembly
-                                           }"
+                                          }"
     >
         <Found Context="routeData">
-            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+            <AuthorizeRouteView  RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
                 <NotAuthorized>
                     <PS.Motorcycle.UserPortal.Pages.IndexPage />
                 </NotAuthorized>

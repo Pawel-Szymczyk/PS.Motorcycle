@@ -1,5 +1,6 @@
 ﻿using PS.Motorcycle.Application.Interfaces;
 using PS.Motorcycle.Domain.Interfaces;
+using PS.Motorcycle.Domain.Interfaces.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.GetMo
             this._motorcycleRepository = motorcycleRepository;
         }
 
-        public async Task<IEnumerable<IMotorcycle>> Execute()
+        public async Task<IEnumerable<IMotorcycleDTO>> Execute()
         {
             var motorcycleslist = await this._motorcycleRepository.GetAsync();
 
