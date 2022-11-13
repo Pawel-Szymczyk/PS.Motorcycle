@@ -15,6 +15,7 @@ using SmartBreadcrumbs.Extensions;
 using System.Reflection;
 using PS.Motorcycle.Domain.Services;
 using PS.Motorcycle.Infrastucture.AzureCognitiveSearch;
+using PS.Motorcycle.Common.Managers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,6 +57,8 @@ builder.Services.AddServerSideBlazor()
 builder.Services.AddSingleton<WeatherForecastService>();
 
 builder.Services.AddSingleton<IBreadcrumbService, BreadcrumbService>();
+
+//builder.Services.AddSingleton<EventManager>();
 
 
 builder.Services.AddCosmosRepository();

@@ -1,6 +1,7 @@
 ﻿using PS.Motorcycle.Application.Interfaces;
 using PS.Motorcycle.Domain.Interfaces;
 using PS.Motorcycle.Domain.Interfaces.DTO;
+using PS.Motorcycle.Domain.Models.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +18,12 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.GetMo
             this._motorcycleRepository = motorcycleRepository;
         }
 
-        public async Task<IEnumerable<IMotorcycleDTO>> Execute()
+        public async Task<PagedItems<IMotorcycleDTO>> Execute(int currentPage)
         {
-            var motorcycleslist = await this._motorcycleRepository.GetAsync();
+            var motorcycleslist = await this._motorcycleRepository.GetAsync(currentPage);
 
             return motorcycleslist;
         }
+
     }
 }

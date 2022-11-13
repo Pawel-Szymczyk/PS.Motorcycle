@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Components.Web.Virtualization;
 using PS.Motorcycle.Application.AdminPortal.UseCases.MotorcycleUseCases.RemoveMotorcycle;
 using PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.GetMotorcycles;
 using PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.SearchMotorcycles;
+using PS.Motorcycle.Common.Managers;
 using PS.Motorcycle.Domain.Interfaces;
 using PS.Motorcycle.Domain.Interfaces.DTO;
 using PS.Motorcycle.Domain.Models;
 using PS.Motorcycle.Domain.Models.Components;
+using PS.Motorcycle.Domain.Models.DTO;
 using PS.Motorcycle.Domain.Services;
 
 namespace PS.Motorcycle.AdminPortal.Pages
@@ -35,7 +37,9 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
         //private Virtualize<IMotorcycle> MotorcycleContainer { get; set; }
 
-        private IEnumerable<IMotorcycleDTO> motorcycles;
+        private PagedItems<IMotorcycleDTO>? pagedItems;
+
+        //Task<PagedItems<MotorcycleDTO>> Execute(int currentPage)
 
         private bool selectedRow;
         private Guid selectedRowId;
@@ -49,6 +53,10 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
 
         #endregion
+
+
+       
+
 
         //protected override void OnInitialized()
         //{
@@ -69,11 +77,11 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
         protected override async Task OnInitializedAsync()
         {
+
             await base.OnInitializedAsync();
 
             this.selectedRow = false;
 
-            
 
             IBreadcrumb breadcrumb = new Breadcrumb()
             {
@@ -85,7 +93,7 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
             //this.searchResults = new List<IMotorcycle>();
 
-            this.motorcycles = await this.GetMotorcyclesUseCase.Execute();
+            this.pagedItems = await this.GetMotorcyclesUseCase.Execute(1);
         }
 
 
@@ -108,10 +116,7 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
         protected void ClickHandler(bool agreeToDeleteMotorcycle)
         {
-            this.messageTitle = "Delete Motorcycle";
-            //this.message = $"Are you sure you want to DELETE: {this.motorcycle.Make} {this.motorcycle.Model}?";
-            this.message = $"Are you sure you want to DELETE: ?";
-            this.messageType = "alert alert-danger";
+           
 
             this.RemoveMotorcycleUseCase.Execute(this.selectedRowId);
 
@@ -119,14 +124,40 @@ namespace PS.Motorcycle.AdminPortal.Pages
             StateHasChanged();
         }
 
+        protected void DeleteClickHandler(bool state)
+        {
+            this.messageTitle = "Delete Motorcycle";
+            this.message = $"Are you sure you want to DELETE: {this.SelectedMotorcycle.Make} {this.SelectedMotorcycle.Model}?";
+            this.messageType = "alert alert-danger";
+
+            StateHasChanged();
+        }
 
 
+        protected async Task ReturnPageClickHandler(int page)
+        {
+            this.pagedItems = await this.GetMotorcyclesUseCase.Execute(page);
+            StateHasChanged();
+        }
 
+        protected async Task ReturnPreviousPageClickHandler()
+        {
+            if(this.pagedItems.Paging.CurrentPage > this.pagedItems.Paging.StartPage)
+            {
+                this.pagedItems = await this.GetMotorcyclesUseCase.Execute(this.pagedItems.Paging.CurrentPage-1);
+                StateHasChanged();
+            }
+        }
 
+        protected async Task ReturnNextPageClickHandler()
+        {
 
-
-
-
+            if (this.pagedItems.Paging.CurrentPage < this.pagedItems.Paging.EndPage)
+            {
+                this.pagedItems = await this.GetMotorcyclesUseCase.Execute(this.pagedItems.Paging.CurrentPage + 1);
+                StateHasChanged();
+            }
+        }
 
 
 

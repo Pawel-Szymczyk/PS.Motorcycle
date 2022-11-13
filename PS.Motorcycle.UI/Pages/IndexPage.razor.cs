@@ -20,8 +20,8 @@ namespace PS.Motorcycle.UserPortal.Pages
     public partial class IndexPage : ComponentBase
     {
         #region Use Cases and Services ------------------------------------------
-        [Inject]
-        private IGetMotorcyclesUseCase GetMotorcyclesUseCase { get; set; } = default!;
+        //[Inject]
+        //private IGetMotorcyclesUseCase GetMotorcyclesUseCase { get; set; } = default!;
 
         [Inject]
         private ISearchMotorcyclesUseCase SearchMotorcyclesUseCase { get; set; } = default!;
@@ -131,7 +131,7 @@ namespace PS.Motorcycle.UserPortal.Pages
             }
             else
             {
-                this.searchResults = await this.GetMotorcyclesUseCase.Execute();
+                //this.searchResults = await this.GetMotorcyclesUseCase.Execute();
             }
             await this.MotorcycleContainer.RefreshDataAsync();
             StateHasChanged();

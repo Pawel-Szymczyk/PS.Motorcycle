@@ -24,7 +24,7 @@ namespace PS.Motorcycle.Application.AdminPortal.UseCases.MotorcycleUseCases.Upda
 
 
             Domain.Models.Motorcycle moto = motorcycle as Domain.Models.Motorcycle;
-
+            moto.UpdateDate = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
 
             var result = await this._motorcycleRepository.UpdateAsync(moto);
 

@@ -35,5 +35,11 @@ namespace PS.Motorcycle.Domain.Interfaces
         public IEngine Engine { get; set; }
         //public Chassis Chassis { get; set; }
         //public Engine Engine { get; set; }
+
+
+        public long CreateDate { get; set; }
+        public long UpdateDate { get; set; }
+        public string Opinion { get; set; }
+        public int Rate { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using PS.Motorcycle.Common.Managers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,34 @@ namespace PS.Motorcycle.Common.Controls
 
         [Parameter] 
         public EventCallback<bool> OnClick { get; set; }
+
+
+
+
+
+
+        //[Inject]
+        //public EventManager EventManager { get; set; }
+
+        protected override void OnInitialized()
+        {
+
+            base.OnInitialized();
+
+            //this.EventManager.OnDeleteChangeEvent += this.OnDeleteChangeEventHandler;
+        }
+
+        //public void Dispose()
+        //{
+        //    this.EventManager.OnDeleteChangeEvent -= this.OnDeleteChangeEventHandler;
+        //}
+
+        //private async void OnDeleteChangeEventHandler(object sender, DeleteChangeEventArgs args)
+        //{
+        //    await InvokeAsync(() => {
+        //        StateHasChanged();
+        //    });
+        //}
 
     }
 }

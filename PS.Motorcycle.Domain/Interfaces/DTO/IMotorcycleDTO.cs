@@ -14,5 +14,8 @@ namespace PS.Motorcycle.Domain.Interfaces.DTO
         float Price { get; set; }
         int ProductionYear { get; set; }
         TwoWheelerType Type { get; set; }
+        string CreateDate { get; set; }
+        string UpdateDate { get; set; }
+        int Rate { get; set; }
     }
 }

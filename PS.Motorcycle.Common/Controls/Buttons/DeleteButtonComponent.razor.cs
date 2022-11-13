@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using PS.Motorcycle.Common.Managers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +11,36 @@ namespace PS.Motorcycle.Common.Controls.Buttons
     public partial class DeleteButtonComponent : ComponentBase
     {
         [Parameter]
-        public string? Id { get; set; }
+        public EventCallback<bool> OnClick { get; set; }
 
-        //[Parameter]
-        //public string? Path { get; set; }
+        //[Inject]
+        //public EventManager EventManager { get; set; }
 
-        [Parameter]
-        public string? Text { get; set; }
+        //private void OnClick()
+        //{
+        //    this.EventManager.RequestDeletionOfMotorcycle(true);
+        //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //[Inject]
         //private NavigationManager NavigationManager { get; set; } = default!;

@@ -3,9 +3,12 @@
 @page "/manager/"
 
 <MessagePopupComponent Title="@this.messageTitle" 
-                        Message="@this.message" 
-                        Type="@this.messageType" 
-                        OnClick="ClickHandler" />
+                       Message="@this.message" 
+                       Type="@this.messageType" 
+                       OnClick="ClickHandler" />
+
+
+
 
 
 <div style="height: inherit;">
@@ -14,7 +17,7 @@
         <BreadcrumbComponent Breadcrumbs="@this.Breadcrumbs"></BreadcrumbComponent>
     </div>
 
-    <div class="container-fluid" style="background-color: white; border-radius: 10px; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;">
+    <div class="container-fluid">
         <div class="toolbar-container">
             <div class="toolbar">
                 <div class="d-grid gap-2 d-md-block">
@@ -23,7 +26,7 @@
                     @if(this.selectedRow)
                     {
                         <EditButtonComponent Id="@this.selectedRowId" Path="@this.editPath" Text="Edit Motorcycle" />
-                        <DeleteButtonComponent Text="Delete Motorcycle" />
+                        <DeleteButtonComponent OnClick="DeleteClickHandler" />
                     }
 
                 </div>
@@ -31,130 +34,96 @@
         </div>
     </div>
 
-    <div class="container-fluid" style="background-color: white; border-radius: 10px; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; height: calc(100% - 10rem); overflow-y: auto;">
-
-        <div class="container">
-
-            @*
-            <div class="search-container">
-                <SearchComponent OnHandleValidSubmit="@this.HandleValidSubmit" />
-            </div>
-
-            @if(this.searchResults.Count().Equals(0))
-            {
-                <div>
-                    <BodyTypeCaruselComponent />
-                </div>
-            }*@
-
+    @if(this.pagedItems is null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <div class="container-fluid" style="height: calc(100% - 10rem); overflow-y: auto;">
 
             <div class="filter-container">
                 @*<SearchFilterComponent />*@
             </div>
+
             <div class="results-container">
-
-                  @* @if(this.Motorcycles is null)
-                {
-                    <p><em>Loading...</em></p>
-                }
-                else
-                {*@
-                    <!-- Cards -->
-            
-               @* }*@
-
-
                 <div class="row row-cols-1 row-cols-md-3 g-4 motorcycles-list">
 
-                    @if(this.motorcycles is null)
-                    {
-                        <p><em>Loading...</em></p>
-                    }
-                    else
-                    {
-                        @*<table class="table table-striped table-hover">*@
-                        <table class="table table-hover">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">Make</th>
-                                    <th scope="col">Model</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var motorcycle in this.motorcycles)
-                                {
+                    @*<table class="table table-striped table-hover">*@
+                    <table class="table table-hover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Id</th>
+                                <th scope="col">Make</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">Create Date</th>
+                                <th scope="col">Update Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var motorcycle in this.pagedItems.Items)
+                            {
                              
-                                    //string path = $"/motorcycle/{motorcycle.Id}";
+                                //string path = $"/motorcycle/{motorcycle.Id}";
 
-                                    string activeRow = motorcycle.Equals(this.SelectedMotorcycle) ? "table-active" : null;
-                                    bool activeCheckbox = motorcycle.Equals(this.SelectedMotorcycle) ? true : false;
+                                string activeRow = motorcycle.Equals(this.SelectedMotorcycle) ? "table-active" : null;
+                                bool activeCheckbox = motorcycle.Equals(this.SelectedMotorcycle) ? true : false;
 
-                                    // TODO: There maybe need to update this code to allow to select multiple rows at once.
+                                // TODO: There maybe need to update this code to allow to select multiple rows at once.
                                
-                                    <tr class="@activeRow" @onclick="() => { this.OnClick(motorcycle); this.SelectedMotorcycle = motorcycle; }">
-                                        <td>
-                                            <div class="form-check">
-                                              <input class="form-check-input" type="checkbox" checked="@activeCheckbox" >
-                                            </div>
-                                        </td>
-                                        <td>@motorcycle.Id.ToString()</td>
-                                        <td>@motorcycle.Make</td>
-                                        <td>@motorcycle.Model</td>
-                                    </tr>
+                                <tr class="@activeRow" @onclick="() => { this.OnClick(motorcycle); this.SelectedMotorcycle = motorcycle; }">
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" checked="@activeCheckbox" >
+                                        </div>
+                                    </td>
+                                    <td>@motorcycle.Id.ToString()</td>
+                                    <td>@motorcycle.Make</td>
+                                    <td>@motorcycle.Model</td>
+                                    <td>@motorcycle.CreateDate</td>
+                                    <td>@motorcycle.UpdateDate</td>
+                                </tr>
            
-                                }
-                            </tbody>
-                        </table>
-                    }
-        
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        @* <Virtualize ItemsProvider="@this.LoadMotorcycles" Context="motorcycle">
-                            <ItemContent>
-                                @{
-                                    string path = $"/motorcycle/{motorcycle.Id}";
-                                }
-                                <CardComponent Motorcycle="@motorcycle" Path="@path" />
-                            </ItemContent>
-                            <Placeholder>
-                                <p>
-                                   Loading...
-                                </p>
-                            </Placeholder>
-                        </Virtualize>*@
-
-
-
-
-
+                            }
+                        </tbody>
+                    </table>
+                    
+                </div>
 
             </div>
-
-
-
         </div>
 
-    </div>
+        <div class="container-fluid">
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination" style="padding: 5px 0; justify-content: flex-end;">
+                <li class="page-item">
+                    <a class="page-link" aria-label="Previous" onclick="@(async () => await this.ReturnPreviousPageClickHandler())">
+                    <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+
+                    @for(int i = this.pagedItems.Paging.StartPage; i <= this.pagedItems.Paging.TotalPages; i++)
+                    {
+                        int index = i;
+                        <li class="page-item"><a class="page-link @i" onclick="@(async () => await this.ReturnPageClickHandler(index))">@i</a></li>
+                    }
 
 
-</div>
+                <li class="page-item">
+                    <a class="page-link" aria-label="Next" onclick="@(async () => await this.ReturnNextPageClickHandler())">
+                    <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                </ul>
+            </nav>
+       
+        </div>
 
-
-<FooterComponent />
+    }
+        
+    <FooterComponent />
 
 </div>
 

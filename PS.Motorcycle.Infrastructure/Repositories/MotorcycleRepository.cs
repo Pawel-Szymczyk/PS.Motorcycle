@@ -1,5 +1,7 @@
 ﻿using Microsoft.Azure.Cosmos;
 using PS.Motorcycle.Application.Interfaces;
+using PS.Motorcycle.Domain.DTO;
+using PS.Motorcycle.Domain.Interfaces.DTO;
 using PS.Motorcycle.Domain.Models.DTO;
 using PS.Motorcycle.Infrastructure.CosmosDB.Interfaces;
 
@@ -31,37 +33,55 @@ namespace PS.Motorcycle.Infrastructure.CosmosDB.Repositories
            
         }
 
-        public async Task<IEnumerable<MotorcycleDTO>> GetAsync()
+        public async Task<PagedItems<IMotorcycleDTO>> GetAsync(int currentPage)
         {
-            var queryDefination = new QueryDefinition("SELECT * FROM Motorcycle");
-            var query = _cosmosContext.MotorcycleContainer.GetItemQueryIterator<MotorcycleDTO>(queryDefination);
-
-            var result = new List<MotorcycleDTO>();
-
-            while (query.HasMoreResults)
+            try
             {
-                var response = await query.ReadNextAsync();
-                result.AddRange(response.ToList());
+                int pageCounter = 0;
+                int totalCount = 0;
+
+                // set additional options 
+                QueryRequestOptions options = new QueryRequestOptions()
+                {
+                    MaxItemCount = 10
+                };
+
+                var queryDefination = new QueryDefinition("SELECT * FROM Motorcycle");
+                var query = _cosmosContext.MotorcycleContainer.GetItemQueryIterator<MotorcycleDTO>(queryDefination, requestOptions: options);
+
+                var items = new List<MotorcycleDTO>();
+
+                // get data, count pages
+                while (query.HasMoreResults)
+                {
+                    pageCounter++;
+
+                    var response = await query.ReadNextAsync();
+                    totalCount = totalCount + response.Count();
+                    if (pageCounter == currentPage)
+                    {
+                        items.AddRange(response.ToList());
+                    }
+
+                }
+
+                // create 
+                var paging = new Paging(totalCount, currentPage, 10);
+
+                return new PagedItems<IMotorcycleDTO>
+                {
+                    Items = items,
+                    Paging = paging
+                };
+
             }
-
-            return result;
+            catch(Exception)
+            {
+                // TODO: fix me ...
+                return new PagedItems<IMotorcycleDTO> { };
+            }
+            
         }
-
-        //public async Task<IEnumerable<Domain.Models.Motorcycle>> GetAsync()
-        //{
-        //    var queryDefination = new QueryDefinition("SELECT * FROM Motorcycle");
-        //    var query = _cosmosContext.MotorcycleContainer.GetItemQueryIterator<Domain.Models.Motorcycle>(queryDefination);
-
-        //    var result = new List<PS.Motorcycle.Domain.Models.Motorcycle>();
-
-        //    while (query.HasMoreResults)
-        //    {
-        //        var response = await query.ReadNextAsync();
-        //        result.AddRange(response.ToList());
-        //    }
-
-        //    return result;
-        //}
 
         public async Task<Domain.Models.Motorcycle> GetByIdAsync(Guid id)
         {

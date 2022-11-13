@@ -35,8 +35,12 @@ namespace PS.Motorcycle.Domain.Models
         private IChassis chassis;
         private IEngine engine;
 
-        // TODO: add create date timestamp
-        // TODO: add update date timestamp
+
+        private long createDate;
+        private long updateDate;
+
+        private int rate;
+        private string opinion;
 
         // properties
         //[SimpleField(IsKey = true, IsFilterable = true)]
@@ -338,6 +342,70 @@ namespace PS.Motorcycle.Domain.Models
             }
         }
 
+
+
+
+
+     
+
+
+        [JsonProperty("createDate")]
+        public long CreateDate
+        {
+            get
+            {
+                return this.createDate;
+            }
+
+            set
+            {
+                this.createDate = value;
+            }
+        }
+
+        [JsonProperty("updateDate")]
+        public long UpdateDate
+        {
+            get
+            {
+                return this.updateDate;
+            }
+
+            set
+            {
+                this.updateDate = value;
+            }
+        }
+
+        [JsonProperty("opinion")]
+        public string Opinion
+        {
+            get
+            {
+                return this.opinion;
+            }
+
+            set
+            {
+                this.opinion = value;
+            }
+        }
+
+        [JsonProperty("rate")]
+        public int Rate
+        {
+            get
+            {
+                return this.rate;
+            }
+
+            set
+            {
+                this.rate = value;
+            }
+        }
+
+
         // constructors 
         public Motorcycle()
         {
@@ -364,6 +432,11 @@ namespace PS.Motorcycle.Domain.Models
 
             this.engine = new Engine();
             this.chassis = new Chassis();
+
+            this.createDate = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
+            this.updateDate = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
+            this.rate = 0;
+            this.opinion = string.Empty;
         }
 
 
@@ -382,6 +455,11 @@ namespace PS.Motorcycle.Domain.Models
 
             this.chassis = chassis;
             this.engine = engine;
+
+            this.createDate = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
+            this.updateDate = new DateTimeOffset(DateTime.UtcNow).ToUnixTimeSeconds();
+            this.rate = 0;
+            this.opinion = string.Empty;
         }
 
 

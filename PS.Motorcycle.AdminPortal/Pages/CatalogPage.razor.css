@@ -25,12 +25,33 @@
 
 
 
-/*TODO: move to toolbar later*/
 
+
+
+
+.container-fluid {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: rgb(0 0 0 / 10%) 0px 0.3px 0.9px, rgb(0 0 0 / 13%) 0px 1.6px 3.6px;
+    margin-top: 1em;
+}
+
+
+
+
+.motorcycles-list {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+
+
+
+/*TODO: move to toolbar later*/
 .toolbar-container {
-    margin-bottom: 2em;
-    margin-top: 2em;
-   /* border-bottom-width: 2px;
+    /* margin-bottom: 1em;
+    margin-top: 1em;*/
+    /* border-bottom-width: 2px;
     border-bottom-style: solid;
     border-bottom-color: #d6d6d6;*/
     padding: 5px 0;
@@ -51,4 +72,10 @@
     border-style: solid;
     border-color: #d6d6d6;*/
     box-shadow: rgb(0 0 0 / 10%) 0px 0.3px 0.9px, rgb(0 0 0 / 13%) 0px 1.6px 3.6px;
+}
+
+
+
+.page-link {
+    border: none;
 }

@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Azure.Search.Documents.Indexes;
 using System.Text.Json.Serialization;
 using PS.Motorcycle.Domain.Interfaces.DTO;
+using System.Globalization;
 
 namespace PS.Motorcycle.Domain.Models.DTO
 {
@@ -22,6 +23,11 @@ namespace PS.Motorcycle.Domain.Models.DTO
         private BodyType bodyType;
         private string imageUrl;
         private string logoUrl;
+
+        private string createDate;
+        private string updateDate;
+
+        private int rate;
 
 
         // properties
@@ -168,6 +174,53 @@ namespace PS.Motorcycle.Domain.Models.DTO
             }
         }
 
+
+
+        [JsonPropertyName("createDate")]
+        public string CreateDate
+        {
+            get
+            {
+                
+                return this.createDate;
+            }
+
+            set
+            {
+                var dateTime = DateTimeOffset.FromUnixTimeSeconds((long)Convert.ToDouble(value)).UtcDateTime.ToString();
+                this.createDate = dateTime;
+            }
+        }
+
+        [JsonPropertyName("updateDate")]
+        public string UpdateDate
+        {
+            get
+            {
+                return this.updateDate;
+            }
+
+            set
+            {
+                var dateTime = DateTimeOffset.FromUnixTimeSeconds((long)Convert.ToDouble(value)).UtcDateTime.ToString();
+                this.updateDate = dateTime;
+            }
+        }
+
+        [JsonPropertyName("rate")]
+        public int Rate
+        {
+            get
+            {
+                return this.rate;
+            }
+
+            set
+            {
+                this.rate = value;
+            }
+        }
+
         // constructors 
         public MotorcycleDTO()
         {
@@ -179,6 +232,10 @@ namespace PS.Motorcycle.Domain.Models.DTO
             this.model = String.Empty;
             this.imageUrl = String.Empty;
             this.logoUrl = String.Empty;
+
+            this.createDate = string.Empty;
+            this.updateDate = string.Empty;
+            this.rate = 0;
         }
 
 
