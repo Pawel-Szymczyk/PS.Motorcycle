@@ -42,8 +42,33 @@
     {
         <div class="container-fluid" style="height: calc(100% - 10rem); overflow-y: auto; padding-top: 1em; padding-bottom: 1em;">
 
-            <div class="filter-container">
+            <div class="filter-container" style="padding: 10px 30px;">
                 @*<SearchFilterComponent />*@
+                
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label style="display: flex; align-items: center; justify-content: flex-start; align-content: center; max-width: 9em;">
+                                Show&nbsp;
+                                <select class="form-control" value="@this.defaultPageSize" @onchange="@this.OnChangePageSize">
+                                    <option>10</option>
+                                    <option>25</option>
+                                    <option>50</option>
+                                    <option>100</option>
+                                </select>&nbsp;entries  
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <input placeholder="Search..." type="text" class="form-control" @onchange="@this.OnChangeSearch"/>
+                    </div>
+                    
+                
+                    
+                </div>
+                
+ 
+
             </div>
 
             <div class="results-container">
@@ -55,7 +80,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 @*<th scope="col">Id</th>*@
-                                <th scope="col">Make</th>
+                                <th scope="col" asp-route-sortOrder="@this.OnChangeOrder">Make</th>
                                 <th scope="col">Model</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">Fuel Capacity</th>
@@ -106,30 +131,43 @@
 
         <div class="container-fluid">
 
-            @*<caption>Showing 1 to 20 of 50 entires</caption>*@
 
-            <nav aria-label="Page navigation example">
-                <ul class="pagination" style="padding: 5px 0; justify-content: flex-end;">
-                <li class="page-item">
-                    <a class="page-link" aria-label="Previous" onclick="@(async () => await this.ReturnPreviousPageClickHandler())">
-                    <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
+            <div>
+                 <div class="row">
+                     <div class="col" style="display: flex; align-content: center; align-items: center; justify-content: flex-start;">
+                         <caption>Showing @this.pagedItems.Paging.CurrentPage to @this.defaultPageSize of @this.pagedItems.Paging.TotalItems entires</caption>
+                     </div>
+                     <div class="col">
 
-                    @for(int i = this.pagedItems.Paging.StartPage; i <= this.pagedItems.Paging.TotalPages; i++)
-                    {
-                        int index = i;
-                        <li class="page-item"><a class="page-link @i" onclick="@(async () => await this.ReturnPageClickHandler(index))">@i</a></li>
-                    }
+                         <nav aria-label="Page navigation example">
+                            <ul class="pagination" style="padding: 5px 0; justify-content: flex-end; margin: 0;">
+                            <li class="page-item">
+                                <a class="page-link" aria-label="Previous" onclick="@(async () => await this.ReturnPreviousPageClickHandler())">
+                                <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+
+                                @for(int i = this.pagedItems.Paging.StartPage; i <= this.pagedItems.Paging.TotalPages; i++)
+                                {
+                                    int index = i;
+                                    <li class="page-item"><a class="page-link @i" onclick="@(async () => await this.ReturnPageClickHandler(index))">@i</a></li>
+                                }
 
 
-                <li class="page-item">
-                    <a class="page-link" aria-label="Next" onclick="@(async () => await this.ReturnNextPageClickHandler())">
-                    <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-                </ul>
-            </nav>
+                            <li class="page-item">
+                                <a class="page-link" aria-label="Next" onclick="@(async () => await this.ReturnNextPageClickHandler())">
+                                <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                            </ul>
+                        </nav>
+
+                     </div>
+                 </div>
+            </div>
+
+
+            
        
         </div>
 

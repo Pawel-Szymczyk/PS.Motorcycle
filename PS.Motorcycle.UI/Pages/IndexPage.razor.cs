@@ -77,35 +77,6 @@ namespace PS.Motorcycle.UserPortal.Pages
             }
         }
 
-        //protected override void OnInitialized()
-        //{
-           
-
-
-
-        //    base.OnInitialized();
-
-        //    IBreadcrumb breadcrumb = new Breadcrumb()
-        //    {
-        //        Text = "Home",
-        //        Url = "/"
-        //    };
-
-        //    this.Breadcrumbs = this.BreadcrumbService.GetBreadcrumb(breadcrumb);
-
-        //    this.searchResults = new List<IMotorcycleDTO>();
-        //}
-
-        //protected override async Task OnAfterRenderAsync(bool firstRender)
-        //{
-        //    if(firstRender)
-        //    {
-        //        await this.js.InvokeVoidAsync("hideElement");
-        //        StateHasChanged();
-        //    }
-        //    //
-        //}
-
         protected async ValueTask<ItemsProviderResult<IMotorcycleDTO>> LoadMotorcycles(ItemsProviderRequest request)
         {
             //var motorcycles = await this.GetMotorcyclesUseCase.Execute();

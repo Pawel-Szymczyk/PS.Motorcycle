@@ -6,6 +6,6 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.GetMo
 {
     public interface IGetMotorcyclesUseCase
     {
-        Task<MotorcycleResponse<IMotorcycleDTO>> Execute(int currentPage);
+        Task<MotorcycleResponse<IMotorcycleDTO>> Execute(MotorcycleRequest request);
     }
 }

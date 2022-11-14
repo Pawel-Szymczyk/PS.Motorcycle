@@ -141,16 +141,25 @@ namespace PS.Motorcycle.Infrastructure.CosmosDB.Repositories
 
                     var searchItems = this.Search(items, request.SearchPhrase);
 
-                    var newList = SplitList(searchItems, request.PageSize);
-
-                    foreach (List<MotorcycleDTO> list in newList)
+                    if (searchItems.Count > 0)
                     {
-                        pageCounter++;
-                        totalCount = totalCount + list.Count();
-                        if (pageCounter.Equals(request.PageNumber))
+                        var newList = SplitList(searchItems, request.PageSize);
+
+                        foreach (List<MotorcycleDTO> list in newList)
                         {
-                            items = list;
+                            pageCounter++;
+                            totalCount = totalCount + list.Count();
+                            if (pageCounter.Equals(request.PageNumber))
+                            {
+                                items = list;
+                            }
                         }
+                    }
+                    else
+                    {
+                        pageCounter = 1;
+                        items = new List<MotorcycleDTO>();
+
                     }
 
                 }
@@ -216,12 +225,12 @@ namespace PS.Motorcycle.Infrastructure.CosmosDB.Repositories
 
         private List<MotorcycleDTO> SearchByMake(List<MotorcycleDTO> motorcycles, string searchPhrase)
         {
-            return motorcycles.Where(character => character.Make.Contains(searchPhrase)).ToList();
+            return motorcycles.Where(character => character.Make.Contains(searchPhrase, StringComparison.CurrentCultureIgnoreCase)).ToList();
         }
 
         private List<MotorcycleDTO> SearchByModel(List<MotorcycleDTO> motorcycles, string searchPhrase)
         {
-            return motorcycles.Where(character => character.Model.Contains(searchPhrase)).ToList();
+            return motorcycles.Where(character => character.Model.Contains(searchPhrase, StringComparison.CurrentCultureIgnoreCase)).ToList();
         }
 
 

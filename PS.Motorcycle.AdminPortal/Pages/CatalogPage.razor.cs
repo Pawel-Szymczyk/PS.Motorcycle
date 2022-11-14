@@ -51,11 +51,12 @@ namespace PS.Motorcycle.AdminPortal.Pages
         private string message = string.Empty;
         private string messageType = string.Empty;
 
+        private MotorcycleRequest request = null;
 
+        private string defaultPageSize = "25";
         #endregion
 
 
-       
 
 
         //protected override void OnInitialized()
@@ -93,7 +94,16 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
             //this.searchResults = new List<IMotorcycle>();
 
-            this.pagedItems = await this.GetMotorcyclesUseCase.Execute(1);
+            this.request = new MotorcycleRequest
+            {
+                AscendingOrder = true,
+                OrderBy = "Make",
+                PageNumber = 1,
+                PageSize = int.Parse(this.defaultPageSize),
+                SearchPhrase = ""
+            };
+
+            this.pagedItems = await this.GetMotorcyclesUseCase.Execute(request);
         }
 
 
@@ -131,37 +141,111 @@ namespace PS.Motorcycle.AdminPortal.Pages
         }
 
 
-        protected async Task ReturnPageClickHandler(int page)
+        protected async Task ReturnPageClickHandler(int pageNumber)
         {
-            this.pagedItems = await this.GetMotorcyclesUseCase.Execute(page);
+            //MotorcycleRequest request = new MotorcycleRequest
+            //{
+            //    AscendingOrder = true,
+            //    OrderBy = "Make",
+            //    PageNumber = pageNumber,
+            //    PageSize = 10,
+            //    SearchPhrase = ""
+            //};
+
+            this.request.PageNumber = pageNumber;
+
+            this.pagedItems = await this.GetMotorcyclesUseCase.Execute(request);
             StateHasChanged();
         }
 
         protected async Task ReturnPreviousPageClickHandler()
         {
-            if(this.pagedItems.Paging.CurrentPage > this.pagedItems.Paging.StartPage)
+            
+
+            if (this.pagedItems.Paging.CurrentPage > this.pagedItems.Paging.StartPage)
             {
-                this.pagedItems = await this.GetMotorcyclesUseCase.Execute(this.pagedItems.Paging.CurrentPage-1);
+                //MotorcycleRequest request = new MotorcycleRequest
+                //{
+                //    AscendingOrder = true,
+                //    OrderBy = "Make",
+                //    PageNumber = (this.pagedItems.Paging.CurrentPage - 1),
+                //    PageSize = 10,
+                //    SearchPhrase = ""
+                //};
+
+                this.request.PageNumber = (this.pagedItems.Paging.CurrentPage - 1);
+
+                this.pagedItems = await this.GetMotorcyclesUseCase.Execute(request);
                 StateHasChanged();
             }
         }
 
         protected async Task ReturnNextPageClickHandler()
         {
-
+            
             if (this.pagedItems.Paging.CurrentPage < this.pagedItems.Paging.EndPage)
             {
-                this.pagedItems = await this.GetMotorcyclesUseCase.Execute(this.pagedItems.Paging.CurrentPage + 1);
+                //MotorcycleRequest request = new MotorcycleRequest
+                //{
+                //    AscendingOrder = true,
+                //    OrderBy = "Make",
+                //    PageNumber = (this.pagedItems.Paging.CurrentPage + 1),
+                //    PageSize = 10,
+                //    SearchPhrase = ""
+                //};
+
+                this.request.PageNumber = (this.pagedItems.Paging.CurrentPage + 1);
+
+                this.pagedItems = await this.GetMotorcyclesUseCase.Execute(request);
                 StateHasChanged();
             }
         }
 
 
 
+        private async Task OnChangeSearch(ChangeEventArgs e)
+        {
+            string searchPhrase = e.Value as string;
+
+            //MotorcycleRequest request = new MotorcycleRequest
+            //{
+            //    AscendingOrder = true,
+            //    OrderBy = "Make",
+            //    PageNumber = 1,
+            //    PageSize = 10,
+            //    SearchPhrase = searchPhrase
+            //};
+
+            this.request.SearchPhrase = searchPhrase;
+
+            this.pagedItems = await this.GetMotorcyclesUseCase.Execute(request);
+        }
+
+        private async Task OnChangePageSize(ChangeEventArgs e)
+        {
+            string pageSize = e.Value as string;
+
+            this.defaultPageSize = pageSize;
+
+            //MotorcycleRequest request = new MotorcycleRequest
+            //{
+            //    AscendingOrder = true,
+            //    OrderBy = "Make",
+            //    PageNumber = 1,
+            //    PageSize = int.Parse(pageSize),
+            //    SearchPhrase = ""
+            //};
+
+            this.request.PageSize = int.Parse(pageSize);
+
+            this.pagedItems = await this.GetMotorcyclesUseCase.Execute(request);
+        }
 
 
-
-
+        private void OnChangeOrder()
+        {
+            var x = "";
+        }
 
 
 
