@@ -37,7 +37,7 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
         //private Virtualize<IMotorcycle> MotorcycleContainer { get; set; }
 
-        private PagedItems<IMotorcycleDTO>? pagedItems;
+        private MotorcycleResponse<IMotorcycleDTO>? pagedItems;
 
         //Task<PagedItems<MotorcycleDTO>> Execute(int currentPage)
 
@@ -108,9 +108,6 @@ namespace PS.Motorcycle.AdminPortal.Pages
             this.selectedRow = true;
             this.selectedRowId = motorcycle.Id;
             this.editPath = $"manager/motorcycle/edit/{motorcycle.Id}";
-            //this.NavigationManager.NavigateTo($"/manager/motorcycle/{id}");
-
-            //selectActiveRow = !selectActiveRow;
         }
 
 

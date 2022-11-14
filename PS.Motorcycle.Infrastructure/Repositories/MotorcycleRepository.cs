@@ -4,6 +4,7 @@ using PS.Motorcycle.Domain.DTO;
 using PS.Motorcycle.Domain.Interfaces.DTO;
 using PS.Motorcycle.Domain.Models.DTO;
 using PS.Motorcycle.Infrastructure.CosmosDB.Interfaces;
+using System.ComponentModel;
 
 namespace PS.Motorcycle.Infrastructure.CosmosDB.Repositories
 {
@@ -33,17 +34,18 @@ namespace PS.Motorcycle.Infrastructure.CosmosDB.Repositories
            
         }
 
-        public async Task<PagedItems<IMotorcycleDTO>> GetAsync(int currentPage)
+        public async Task<MotorcycleResponse<IMotorcycleDTO>> GetAsync(int currentPage)
         {
             try
             {
                 int pageCounter = 0;
                 int totalCount = 0;
+                int maxItemCount = 20;
 
                 // set additional options 
                 QueryRequestOptions options = new QueryRequestOptions()
                 {
-                    MaxItemCount = 10
+                    MaxItemCount = maxItemCount
                 };
 
                 var queryDefination = new QueryDefinition("SELECT * FROM Motorcycle");
@@ -65,12 +67,14 @@ namespace PS.Motorcycle.Infrastructure.CosmosDB.Repositories
 
                 }
 
-                // create 
-                var paging = new Paging(totalCount, currentPage, 10);
 
-                return new PagedItems<IMotorcycleDTO>
+
+                // create 
+                var paging = new Paging(totalCount, currentPage, maxItemCount);
+
+                return new MotorcycleResponse<IMotorcycleDTO>
                 {
-                    Items = items,
+                    Items = items.OrderBy(item => item.CreateDate),
                     Paging = paging
                 };
 
@@ -78,10 +82,160 @@ namespace PS.Motorcycle.Infrastructure.CosmosDB.Repositories
             catch(Exception)
             {
                 // TODO: fix me ...
-                return new PagedItems<IMotorcycleDTO> { };
+                return new MotorcycleResponse<IMotorcycleDTO> { };
             }
             
         }
+
+
+
+
+
+        public async Task<MotorcycleResponse<IMotorcycleDTO>> GetAsync(MotorcycleRequest request)
+        {
+            try
+            {
+                int pageCounter = 0;
+                int totalCount = 0;
+                //int maxItemCount = 20;
+
+                // set additional options 
+                QueryRequestOptions options = new QueryRequestOptions()
+                {
+                    MaxItemCount = request.PageSize
+                };
+
+                var queryDefination = new QueryDefinition("SELECT * FROM Motorcycle");
+                var query = _cosmosContext.MotorcycleContainer.GetItemQueryIterator<MotorcycleDTO>(queryDefination, requestOptions: options);
+
+                var items = new List<MotorcycleDTO>();
+
+                // get data, count pages
+                if (string.IsNullOrWhiteSpace(request.SearchPhrase))
+                {
+                    // get paged items
+                    while (query.HasMoreResults)
+                    {
+                        pageCounter++;
+
+                        var response = await query.ReadNextAsync();
+                        totalCount = totalCount + response.Count();
+                        if (pageCounter.Equals(request.PageNumber))
+                        {
+                            items.AddRange(response.ToList());
+                        }
+                    }
+                }
+                else
+                {
+                    // get all items 
+                    while (query.HasMoreResults)
+                    {
+                        var response = await query.ReadNextAsync();
+                        items.AddRange(response.ToList());
+                    }
+
+
+                    // ------------------------------------
+                    // search
+
+                    var searchItems = this.Search(items, request.SearchPhrase);
+
+                    var newList = SplitList(searchItems, request.PageSize);
+
+                    foreach (List<MotorcycleDTO> list in newList)
+                    {
+                        pageCounter++;
+                        totalCount = totalCount + list.Count();
+                        if (pageCounter.Equals(request.PageNumber))
+                        {
+                            items = list;
+                        }
+                    }
+
+                }
+
+
+
+
+
+
+                
+
+
+                // ------------------------------------
+                // order by and sorting asc / desc
+                // https://stackoverflow.com/questions/1689199/c-sharp-code-to-order-by-a-property-using-the-property-name-as-a-string
+                PropertyDescriptor prop = TypeDescriptor.GetProperties(typeof(MotorcycleDTO)).Find(request.OrderBy, true);
+                
+                if(request.AscendingOrder)
+                    items = items.OrderBy(item => prop.GetValue(item)).ToList(); // ascending
+                else
+                    items = items.OrderByDescending(item => prop.GetValue(item)).ToList();
+
+
+
+                // paging
+                // 
+                var paging = new Paging(totalCount, request.PageNumber, request.PageSize);
+
+                return new MotorcycleResponse<IMotorcycleDTO>
+                {
+                    Items = items,
+                    Paging = paging
+                };
+
+            }
+            catch (Exception)
+            {
+                // TODO: fix me ...
+                return new MotorcycleResponse<IMotorcycleDTO> { };
+            }
+
+        }
+
+
+        public static IEnumerable<List<T>> SplitList<T>(List<T> locations, int nSize = 30)
+        {
+            for (int i = 0; i < locations.Count; i += nSize)
+            {
+                yield return locations.GetRange(i, Math.Min(nSize, locations.Count - i));
+            }
+        }
+
+        private List<MotorcycleDTO> Search(List<MotorcycleDTO> motorcycles, string searchPhrase)
+        {
+
+            List<MotorcycleDTO> list = new List<MotorcycleDTO>();
+            list.AddRange(this.SearchByMake(motorcycles, searchPhrase));
+            list.AddRange(this.SearchByModel(motorcycles, searchPhrase));
+
+
+            return list;
+        }
+
+        private List<MotorcycleDTO> SearchByMake(List<MotorcycleDTO> motorcycles, string searchPhrase)
+        {
+            return motorcycles.Where(character => character.Make.Contains(searchPhrase)).ToList();
+        }
+
+        private List<MotorcycleDTO> SearchByModel(List<MotorcycleDTO> motorcycles, string searchPhrase)
+        {
+            return motorcycles.Where(character => character.Model.Contains(searchPhrase)).ToList();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public async Task<Domain.Models.Motorcycle> GetByIdAsync(Guid id)
         {

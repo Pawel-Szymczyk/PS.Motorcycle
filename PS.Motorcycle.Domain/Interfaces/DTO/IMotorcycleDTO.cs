@@ -12,7 +12,7 @@ namespace PS.Motorcycle.Domain.Interfaces.DTO
         string Make { get; set; }
         string Model { get; set; }
         float Price { get; set; }
-        int ProductionYear { get; set; }
+        int Year { get; set; }
         TwoWheelerType Type { get; set; }
         string CreateDate { get; set; }
         string UpdateDate { get; set; }

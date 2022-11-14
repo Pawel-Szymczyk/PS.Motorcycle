@@ -14,7 +14,7 @@ namespace PS.Motorcycle.Domain.Models.DTO
 
         // attributes
         private Guid id;
-        private int productionYear;
+        private int year;
         private float price;
         private float fuelCapacity;
         private string make;
@@ -47,16 +47,16 @@ namespace PS.Motorcycle.Domain.Models.DTO
         }
 
         [JsonPropertyName("year")]
-        public int ProductionYear
+        public int Year
         {
             get
             {
-                return this.productionYear;
+                return this.year;
             }
 
             set
             {
-                this.productionYear = value;
+                this.year = value;
             }
         }
 

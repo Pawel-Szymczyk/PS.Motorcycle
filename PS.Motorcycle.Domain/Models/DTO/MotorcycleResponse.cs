@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PS.Motorcycle.Domain.Models.DTO
 {
-    public  class PagedItems<T>
+    public class MotorcycleResponse<T>
     {
         public IEnumerable<T> Items { get; set; }
 

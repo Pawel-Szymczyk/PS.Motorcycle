@@ -18,10 +18,20 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.GetMo
             this._motorcycleRepository = motorcycleRepository;
         }
 
-        public async Task<PagedItems<IMotorcycleDTO>> Execute(int currentPage)
+        public async Task<MotorcycleResponse<IMotorcycleDTO>> Execute(int currentPage)
         {
-            var motorcycleslist = await this._motorcycleRepository.GetAsync(currentPage);
+            //var motorcycleslist = await this._motorcycleRepository.GetAsync(currentPage);
 
+            MotorcycleRequest request = new MotorcycleRequest
+            {
+                AscendingOrder = true,
+                OrderBy = "Make",
+                PageNumber = currentPage,
+                PageSize = 10,
+                SearchPhrase = ""
+            };
+            var motorcycleslist = await this._motorcycleRepository.GetAsync(request);
+            
             return motorcycleslist;
         }
 

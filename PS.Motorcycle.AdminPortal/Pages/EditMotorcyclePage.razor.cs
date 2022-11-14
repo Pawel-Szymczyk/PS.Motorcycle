@@ -28,6 +28,9 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
         [Inject]
         private IUpdateMotorcycleUseCase? UpdateMotorcycleUseCase { get; set; } = default!;
+
+        [Inject]
+        private NavigationManager NavigationManager { get; set; } = default!;
         #endregion
 
         #region Properties ------------------------------------------------------
@@ -52,7 +55,7 @@ namespace PS.Motorcycle.AdminPortal.Pages
 
             this.Breadcrumbs = this.BreadcrumbService.GetBreadcrumb(breadcrumb);
 
-            this.path = $"/motorcycle/{this.motorcycle.Id}";
+            this.path = $"/manager";
         }
 
         protected async Task HandleValidSubmit()
@@ -60,6 +63,8 @@ namespace PS.Motorcycle.AdminPortal.Pages
             // TODO: add validation
             if(this.motorcycle is not null)
                 await this.UpdateMotorcycleUseCase.Execute(this.motorcycle);
+
+            this.NavigationManager.NavigateTo("/manager");
         }
     }
 }

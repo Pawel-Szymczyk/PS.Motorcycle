@@ -15,7 +15,7 @@ main {
 }
 
 .content {
-    background-color: lightgray;
+    background-color: #ecf0f5;
     height: calc(100% - 4rem);
 }
 
