@@ -44,11 +44,197 @@
             
            @* }*@
 
-            <div class="row row-cols-1 row-cols-md-3 g-4 motorcycles-list">
+                <div class="row row-cols-1 row-cols-md-3 g-4 motorcycles-list">
 
 
 
-                     <Virtualize @ref="MotorcycleContainer" ItemsProvider="@this.LoadMotorcycles" Context="motorcycle">
+                    @if(this.searchData != null)
+                    {
+                        <p class="sampleText">
+                            @this.searchData.resultList.TotalCount Results
+                        </p>
+
+                        var results = this.searchData.resultList.GetResults().ToList();
+
+                        @for (var i = 0; i < results.Count; i++)
+                        {
+                            <div>
+                                <div>
+                                    @results[i].Document.Make
+                                </div>
+                                <div>
+                                    @results[i].Document.Model
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    <div class="facetchecks">
+                        @if (this.searchData != null && this.searchData.resultList != null)
+                        {
+                            List<string> categories = this.searchData.resultList.Facets["bodyType"].Select(x => x.Value.ToString()).ToList();
+
+                                // repeat if more facets
+                            if (categories.Count > 0)
+                            {
+                                <h5 class="facetheader">Body Types Categories:</h5>
+                                <ul class="facetlist">
+                                    @for (var c = 0; c < categories.Count; c++)
+                                    {
+                                        string facetName = $"{categories[c]}";
+                                        var facetLink = $"{categories[c]} ({this.searchData.resultList.Facets["bodyType"][c].Count})";
+                                        <li>
+                                            @*@Html.ActionLink(facetLink, "FacetAsync", "Home", new { categoryFilter = $"Category eq '{categories[c]}'" }, null)*@
+                                            <button class="btn btn-link" @onclick="@(e => SearchFacet(facetName, this.searchData.searchText))"> @facetLink </button>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+
+                            
+                        }
+                    </div>
+
+
+
+
+
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                @*pagination*@
+
+                                    @if(this.searchData != null && this.searchData.pageCount > 1)
+                                    {
+                                        // If there is more than one page of results, show the paging buttons.
+
+                                        <table class="col">
+                                            <tr class="col">
+                                                <td>
+                                                    @if (this.searchData.currentPage > 0)
+                                                    {
+                                                        <p class="pageButton">
+                                                             <button class="btn btn-link" @onclick="@(e => SearchPager(0.ToString(), this.searchData.searchText))">
+                                                                |&#60;
+                                                            </button>
+                                                        </p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="pageButtonDisabled">|&lt;</p>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @if (this.searchData.currentPage > 0)
+                                                    {
+                                                        var prev = "prev";
+                                                        <p class="pageButton">
+                                                            <button class="btn btn-link" @onclick="@(e => SearchPager(prev, this.searchData.searchText))">&#60;</button>                                      
+                                                        </p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="pageButtonDisabled">|&lt;</p>
+                                                    }
+                                                </td>
+
+                                                @for (var pn = this.searchData.leftMostPage; pn < this.searchData.leftMostPage + this.searchData.pageRange; pn++)
+                                                {
+                                                    <td>
+                                                        @if (this.searchData.currentPage == pn)
+                                                        {
+                                                            // Convert displayed page numbers to 1-based and not 0-based.
+                                                            <p class="pageSelected">@(pn + 1)</p>
+                                                        }
+                                                        else
+                                                        {
+                                                            <p class="pageButton">
+                                                                @{
+                                                                    var p1 = this.searchData.pageCount - 1;
+                                                                    var plink = pn.ToString();
+                                                                }
+                                                                <button class="btn btn-link"
+                                                                        @onclick="@(e => SearchPager(plink, this.searchData.searchText))">
+                                                                    @(pn + 1)
+                                                                </button>
+                                                            </p>
+                                                        }
+                                                    </td>
+                                                }
+
+                                                <td>
+                                                    @if (this.searchData.currentPage < this.searchData.pageCount - 1)
+                                                    {
+                                                        <p class="pageButton">
+                                                           @{
+                                                                var p1 = this.searchData.pageCount - 1;
+                                                                var next = "next";
+                                                            }
+                                                            <button class="btn btn-link"
+                                                                    @onclick="@(e => SearchPager(next, this.searchData.searchText))">
+                                                                &#62;
+                                                            </button>
+                                                        </p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="pageButtonDisabled">&gt;</p>
+                                                    }
+                                                </td>
+
+                                                <td>
+                                                    @if (this.searchData.currentPage < this.searchData.pageCount - 1)
+                                                    {
+                                                         <p class="pageButton">
+                                                            @{var p7 = this.searchData.pageCount - 1;}
+                                                            <button class="btn btn-link"
+                                                                    @onclick="@(e => SearchPager(p7.ToString(), this.searchData.searchText))">
+                                                                &#62;|
+                                                            </button>
+                                                        </p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="pageButtonDisabled">&gt;|</p>
+                                                    }
+                                                </td>
+
+                                            </tr>
+
+
+                                        </table>
+                                    }
+                            </div>
+                        </div>
+                    </div>
+
+
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                     @*<Virtualize @ref="MotorcycleContainer" ItemsProvider="@this.LoadMotorcycles" Context="motorcycle">
                         <ItemContent>
                             @{
                                 string path = $"/motorcycle/{motorcycle.Id}";
@@ -60,7 +246,7 @@
                                Loading...
                             </p>
                         </Placeholder>
-                    </Virtualize>
+                    </Virtualize>*@
 
 
 
@@ -73,7 +259,7 @@
                         <PS.Motorcycle.UserPortal.Controls.CardComponent />*@
 
 
-                    </div>
+                </div>
 
 
 

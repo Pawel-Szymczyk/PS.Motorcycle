@@ -23,15 +23,13 @@ namespace PS.Motorcycle.Domain.Models.DTO
         private BodyType bodyType;
         private string imageUrl;
         private string logoUrl;
-
         private string createDate;
         private string updateDate;
-
         private int rate;
 
 
         // properties
-        //[SimpleField(IsKey = true, IsFilterable = true)]
+        [SimpleField(IsKey = true)]
         [JsonPropertyName("id")]
         public Guid Id
         {
@@ -46,6 +44,7 @@ namespace PS.Motorcycle.Domain.Models.DTO
             }
         }
 
+        [SimpleField(IsFilterable = true, IsSortable = true)]
         [JsonPropertyName("year")]
         public int Year
         {
@@ -60,6 +59,7 @@ namespace PS.Motorcycle.Domain.Models.DTO
             }
         }
 
+        [SimpleField(IsFilterable = true, IsSortable = true)]
         [JsonPropertyName("price")]
         public float Price
         {
@@ -74,6 +74,7 @@ namespace PS.Motorcycle.Domain.Models.DTO
             }
         }
 
+        [SimpleField(IsFilterable = true, IsSortable = true, IsFacetable = true)]
         [JsonPropertyName("fuelCapacity")]
         public float FuelCapacity
         {
@@ -88,7 +89,7 @@ namespace PS.Motorcycle.Domain.Models.DTO
             }
         }
 
-        //[SearchableField(IsSortable = true)]
+        [SearchableField(IsFilterable = true, IsSortable = true, IsFacetable = true)]
         [JsonPropertyName("make")]
         public string Make
         {
@@ -103,7 +104,7 @@ namespace PS.Motorcycle.Domain.Models.DTO
             }
         }
 
-        //[SearchableField(IsSortable = true)]
+        [SearchableField(IsFilterable = true, IsSortable = true, IsFacetable = true)]
         [JsonPropertyName("model")]
         public string Model
         {
@@ -118,6 +119,7 @@ namespace PS.Motorcycle.Domain.Models.DTO
             }
         }
 
+        [SimpleField(IsFilterable = true, IsSortable = true, IsFacetable = true)]
         [JsonPropertyName("type")]
         public TwoWheelerType Type
         {
@@ -130,8 +132,9 @@ namespace PS.Motorcycle.Domain.Models.DTO
             {
                 this.type = value;
             }
-        }
+        } // we do not need it...
 
+        [SimpleField(IsFilterable = true, IsSortable = true, IsFacetable = true)]
         [JsonPropertyName("bodyType")]
         public BodyType BodyType
         {
@@ -173,8 +176,6 @@ namespace PS.Motorcycle.Domain.Models.DTO
                 this.logoUrl = value;
             }
         }
-
-
 
         [JsonPropertyName("createDate")]
         public string CreateDate
@@ -220,6 +221,7 @@ namespace PS.Motorcycle.Domain.Models.DTO
                 this.rate = value;
             }
         }
+
 
         // constructors 
         public MotorcycleDTO()

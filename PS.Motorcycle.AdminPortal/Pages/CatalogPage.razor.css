@@ -79,3 +79,51 @@
 .page-link {
     border: none;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.pageButton {
+    border: none;
+    color: darkblue;
+    font-weight: normal;
+    width: 50px;
+}
+
+.pageSelected {
+    border: none;
+    color: black;
+    font-weight: bold;
+    width: 50px;
+}
+
+.pageButtonDisabled {
+    border: none;
+    color: lightgray;
+    font-weight: bold;
+    width: 50px;
+}
