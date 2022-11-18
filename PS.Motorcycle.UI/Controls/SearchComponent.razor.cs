@@ -6,21 +6,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PS.Motorcycle.Common.Controls
+namespace PS.Motorcycle.UserPortal.Controls
 {
     public partial class SearchComponent : ComponentBase
     {
         [Parameter]
-        public EventCallback<Search> OnHandleValidSubmit { get; set; }
+        public EventCallback<string> OnSearchClick { get; set; }
 
-        //[Parameter]
-        public Search? search;
+        public string? searchPhrase;
 
         public SearchComponent()
         {
-            this.search = new Search();
+            this.searchPhrase = string.Empty;
         }
 
+        private async Task OnClickHandler(string searchPhrase)
+        {
+            await this.OnSearchClick.InvokeAsync(searchPhrase);
+        }
 
     }
 }

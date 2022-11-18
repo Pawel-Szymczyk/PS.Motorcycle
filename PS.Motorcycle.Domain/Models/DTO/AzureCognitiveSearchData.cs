@@ -1,4 +1,5 @@
 ﻿using Azure.Search.Documents.Models;
+using PS.Motorcycle.Domain.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,12 @@ using System.Threading.Tasks;
 namespace PS.Motorcycle.Domain.Models.DTO
 {
     // class used in Azure Cognitive search (SearchMotorcycles)...
-    public class SearchData
+    public class AzureCognitiveSearchData
     {
         // The text to search for.
         public string searchText { get; set; }
+
+        public BodyType bodyType { get; set; }
 
         // The current page being displayed.
         public int currentPage { get; set; }
@@ -34,14 +37,15 @@ namespace PS.Motorcycle.Domain.Models.DTO
         // The list of results.
         public SearchResults<MotorcycleDTO> resultList;
 
-        public SearchData()
+        public AzureCognitiveSearchData()
         {
-            this.searchText = String.Empty;
+            this.searchText = string.Empty;
+            this.bodyTypeFilter = string.Empty;
         }
     }
 
 
-
+    // filter: *&filter="bodyType eq 4"
 
 
 
@@ -51,7 +55,7 @@ namespace PS.Motorcycle.Domain.Models.DTO
         {
             get
             {
-                return 3;
+                return 12;
             }
         }
         public static int MaxPageRange

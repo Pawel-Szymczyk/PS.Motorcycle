@@ -7,13 +7,15 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.Searc
 {
     public interface ISearchMotorcyclesUseCase
     {
-        Task<IEnumerable<IMotorcycleDTO>> Execute(Search searchQuery);
+        //Task<IEnumerable<IMotorcycleDTO>> Execute(Search searchQuery);
 
 
-        Task<SearchData> Execute(SearchData model);
+        Task<AzureCognitiveSearchData> Execute(AzureCognitiveSearchData model);
 
-        Task<SearchData> ExecutePageAsync(SearchData model);
-        Task<SearchData> ExecuteFacetAsync(SearchData model);
+        Task<AzureCognitiveSearchData> ExecuteByBodyTypeFilterAsync(AzureCognitiveSearchData model);
+
+        Task<AzureCognitiveSearchData> ExecutePageAsync(AzureCognitiveSearchData model);
+        Task<AzureCognitiveSearchData> ExecuteFacetAsync(AzureCognitiveSearchData model);
 
     }
 }

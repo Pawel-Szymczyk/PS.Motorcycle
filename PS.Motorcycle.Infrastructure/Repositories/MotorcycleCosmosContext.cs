@@ -1,43 +1,23 @@
 ﻿using Microsoft.Azure.Cosmos;
-using Microsoft.Extensions.Options;
-using PS.Motorcycle.Domain.Models;
+using Microsoft.Extensions.Configuration;
 using PS.Motorcycle.Infrastructure.CosmosDB.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PS.Motorcycle.Infrastructure.CosmosDB.Repositories
 {
     internal class MotorcycleCosmosContext : IMotorcycleCosmosContext
-    {
-
+{
+        private readonly IConfiguration _config;
         public Container MotorcycleContainer { get; }
 
-        //private readonly DatabaseConfig _config;
-
-        //public MotorcycleCosmosContext(IOptions<DatabaseConfig> config)
-        public MotorcycleCosmosContext()
+        public MotorcycleCosmosContext(IConfiguration config)
         {
-            //this._config = config.Value;
-            ////string cosmos_enpoint = builder.Configuration["environmentVariables:COSMOS_ENDPOINT"];
-            ////string cosmos_key = builder.Configuration["environmentVariables:COSMOS_KEY"];
+            this._config = config;
 
-            //string cosmos_enpoint = this._config.COSMOS_ENDPOINT;
-            //string cosmos_key = this._config.COSMOS_KEY;
+            string cosmos_enpoint = this._config["AzureCosmosDBEndpoint"];
+            string cosmos_key = this._config["AzureCosmosDBAccessKey"];
 
-            string cosmos_enpoint = "";
-            string cosmos_key = "";
-
-            string databaseName = "PS.MotorcycleDB";
-            string containerName = "Motorcycle";
-
-            // New instance of CosmosClient class
-            //using CosmosClient client = new(
-            //    accountEndpoint: cosmos_enpoint,
-            //    authKeyOrResourceToken: cosmos_key
-            //);
+            string databaseName = this._config["DatabaseName"];
+            string containerName = this._config["ContainerName"];
 
             CosmosClient client = new CosmosClient(cosmos_enpoint, cosmos_key);
 

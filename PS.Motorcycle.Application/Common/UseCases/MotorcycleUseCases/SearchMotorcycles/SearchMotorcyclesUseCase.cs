@@ -21,15 +21,15 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.Searc
             this._azureCognitiveSearchService = azureCognitiveSearchService;
         }
 
-        public async Task<IEnumerable<IMotorcycleDTO>> Execute(Search searchQuery)
-        {
-            IEnumerable<IMotorcycleDTO> searchResults = await this._azureCognitiveSearchService.Query(searchQuery);
+        //public async Task<IEnumerable<IMotorcycleDTO>> Execute(Search searchQuery)
+        //{
+        //    IEnumerable<IMotorcycleDTO> searchResults = await this._azureCognitiveSearchService.Query(searchQuery);
 
-            return searchResults;
-        }
+        //    return searchResults;
+        //}
 
 
-        public async Task<SearchData> Execute(SearchData model)
+        public async Task<AzureCognitiveSearchData> Execute(AzureCognitiveSearchData model)
         {
             try
             {
@@ -40,18 +40,64 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.Searc
                     model.searchText = "";
                 }
 
+                if(string.IsNullOrEmpty(model.searchText))
+                {
+                    model.searchText = "*";
+                }
+
                 return await this._azureCognitiveSearchService.RunQueryAsync(model, 0, 0, "");
                 
             }
             catch 
             {
                 //return View("Error", new ErrorViewModel { RequestId = "1" });
-                return new SearchData();
+                return new AzureCognitiveSearchData();
             }
 
         }
 
-        public async Task<SearchData> ExecutePageAsync(SearchData model)
+        public async Task<AzureCognitiveSearchData> ExecuteByBodyTypeFilterAsync(AzureCognitiveSearchData model)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(model.searchText))
+                {
+                    model.searchText = "*";
+                }
+
+                // Filters set by the model override those stored in temporary data.
+                string bodyTypeFilter = string.Empty;
+
+                int bodyType = (int)model.bodyType;
+                if(!bodyType.Equals(0))
+                {
+                    bodyTypeFilter = bodyType.ToString();
+                }
+
+                
+
+
+                return await this._azureCognitiveSearchService.RunQueryAsync(model, 0, 0, bodyTypeFilter);
+
+            }
+            catch
+            {
+                //return View("Error", new ErrorViewModel { RequestId = "1" });
+                return new AzureCognitiveSearchData();
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+        public async Task<AzureCognitiveSearchData> ExecutePageAsync(AzureCognitiveSearchData model)
         {
             try
             {
@@ -86,11 +132,11 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.Searc
             catch
             {
                 //return View("Error", new ErrorViewModel { RequestId = "1" });
-                return new SearchData();
+                return new AzureCognitiveSearchData();
             }
         }
 
-        public async Task<SearchData> ExecuteFacetAsync(SearchData model)
+        public async Task<AzureCognitiveSearchData> ExecuteFacetAsync(AzureCognitiveSearchData model)
         {
             try
             {
@@ -108,7 +154,7 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.Searc
             catch
             {
                 //return View("Error", new ErrorViewModel { RequestId = "1" });
-                return new SearchData();
+                return new AzureCognitiveSearchData();
             }
         }
 

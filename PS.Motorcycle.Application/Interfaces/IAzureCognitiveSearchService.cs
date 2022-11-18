@@ -11,6 +11,6 @@ namespace PS.Motorcycle.Application.Interfaces
         Task<IEnumerable<IMotorcycleDTO>> Query(Search search);
 
 
-        Task<SearchData> RunQueryAsync(SearchData model, int page, int leftMostPage, string bodyTypeFilter);
+        Task<AzureCognitiveSearchData> RunQueryAsync(AzureCognitiveSearchData model, int page, int leftMostPage, string bodyTypeFilter);
     }
 }

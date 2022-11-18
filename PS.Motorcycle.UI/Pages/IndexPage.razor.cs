@@ -9,6 +9,7 @@ using PS.Motorcycle.Domain.Models;
 using PS.Motorcycle.Domain.Models.Components;
 using PS.Motorcycle.Domain.Models.DTO;
 using PS.Motorcycle.Domain.Services;
+using PS.Motorcycle.Domain.Types;
 using SmartBreadcrumbs.Attributes;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace PS.Motorcycle.UserPortal.Pages
         private IEnumerable<IMotorcycleDTO> searchResults;
 
 
-        private SearchData searchData;
+        private AzureCognitiveSearchData searchData;
 
         [Inject]
         private NavigationManager NavigationManager { get; set; } = default!;
@@ -83,56 +84,63 @@ namespace PS.Motorcycle.UserPortal.Pages
             }
         }
 
-        protected async ValueTask<ItemsProviderResult<IMotorcycleDTO>> LoadMotorcycles(ItemsProviderRequest request)
+        protected async Task OnSearchCLick(string searchPhrase)
         {
-            //var motorcycles = await this.GetMotorcyclesUseCase.Execute();
-            //return new ItemsProviderResult<IMotorcycle>(motorcycles.Skip(request.StartIndex).Take(request.Count), motorcycles.Count());
-            List<IMotorcycleDTO> moto = new List<IMotorcycleDTO>();
-            IEnumerable<IMotorcycleDTO> motorcycles = new List<IMotorcycleDTO>();
-
-            //if (!this.searchResults.Count().Equals(0))
-            //{
-            //    motorcycles = this.searchResults;
-            //}
-
-            //if(!this.searchData.resultList.TotalCount.Equals(0))
-            if (this.searchData is not null)
+            AzureCognitiveSearchData model = new AzureCognitiveSearchData()
             {
-                var x = this.searchData.resultList.GetResults().ToList();
-                foreach (var item in x)
-                {
-                    moto.Add(item.Document);
-                }
-                motorcycles = (IEnumerable<IMotorcycleDTO>)moto;
-            }
-                
+                searchText = searchPhrase,
+            };
 
-            return new ItemsProviderResult<IMotorcycleDTO>(motorcycles.Skip(request.StartIndex).Take(request.Count), motorcycles.Count());
+            this.searchData = await this.SearchMotorcyclesUseCase.Execute(model);
 
-        }
-
-
-        protected async Task HandleValidSubmit(Search search)
-        {
-            if (!string.IsNullOrWhiteSpace(search.SearchText))
-            {
-                //this.searchResults = await this.SearchMotorcyclesUseCase.Execute(search);
-
-                SearchData model = new SearchData()
-                {
-                    searchText = search.SearchText,
-                };
-
-                this.searchData = await this.SearchMotorcyclesUseCase.Execute(model);
-
-            }
-            else
-            {
-                //this.searchResults = await this.GetMotorcyclesUseCase.Execute();
-            }
-            //await this.MotorcycleContainer.RefreshDataAsync();
             StateHasChanged();
         }
+
+        protected async Task OnBodyTypeClick(BodyType bodyType)
+        {
+            AzureCognitiveSearchData model = new AzureCognitiveSearchData()
+            {
+                searchText = string.Empty,
+                bodyType = bodyType
+            };
+
+            this.searchData = await this.SearchMotorcyclesUseCase.ExecuteByBodyTypeFilterAsync(model);
+
+            StateHasChanged();
+        }
+
+
+
+        //protected async ValueTask<ItemsProviderResult<IMotorcycleDTO>> LoadMotorcycles(ItemsProviderRequest request)
+        //{
+        //    //var motorcycles = await this.GetMotorcyclesUseCase.Execute();
+        //    //return new ItemsProviderResult<IMotorcycle>(motorcycles.Skip(request.StartIndex).Take(request.Count), motorcycles.Count());
+        //    List<IMotorcycleDTO> moto = new List<IMotorcycleDTO>();
+        //    IEnumerable<IMotorcycleDTO> motorcycles = new List<IMotorcycleDTO>();
+
+        //    //if (!this.searchResults.Count().Equals(0))
+        //    //{
+        //    //    motorcycles = this.searchResults;
+        //    //}
+
+        //    //if(!this.searchData.resultList.TotalCount.Equals(0))
+        //    if (this.searchData is not null)
+        //    {
+        //        var x = this.searchData.resultList.GetResults().ToList();
+        //        foreach (var item in x)
+        //        {
+        //            moto.Add(item.Document);
+        //        }
+        //        motorcycles = (IEnumerable<IMotorcycleDTO>)moto;
+        //    }
+
+
+        //    return new ItemsProviderResult<IMotorcycleDTO>(motorcycles.Skip(request.StartIndex).Take(request.Count), motorcycles.Count());
+
+        //}
+
+
+
 
 
 
@@ -141,7 +149,7 @@ namespace PS.Motorcycle.UserPortal.Pages
             this.searchData.bodyTypeFilter = facetName;
             this.searchData.searchText = searchText;
 
-            SearchData model = new SearchData()
+            AzureCognitiveSearchData model = new AzureCognitiveSearchData()
             {
                 searchText = this.searchData.searchText,
                 currentPage = this.searchData.currentPage,
@@ -190,7 +198,7 @@ namespace PS.Motorcycle.UserPortal.Pages
 
             int leftMostPage = this.searchData.leftMostPage;
 
-            SearchData model = new SearchData()
+            AzureCognitiveSearchData model = new AzureCognitiveSearchData()
             {
                 searchText = this.searchData.searchText,
                 currentPage = this.searchData.currentPage,
@@ -198,6 +206,7 @@ namespace PS.Motorcycle.UserPortal.Pages
                 leftMostPage = this.searchData.leftMostPage,
                 pageRange = this.searchData.pageRange,
                 paging = this.searchData.paging,
+                bodyTypeFilter = this.searchData.bodyTypeFilter,
             };
 
             this.PageNo = page;

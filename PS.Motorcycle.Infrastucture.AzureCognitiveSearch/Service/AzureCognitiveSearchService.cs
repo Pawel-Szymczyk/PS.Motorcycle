@@ -40,9 +40,10 @@ namespace PS.Motorcycle.Infrastucture.AzureCognitiveSearch.Service
             return motorcycles;
         }
     
-        public async Task<SearchData> RunQueryAsync(SearchData model, int page, int leftMostPage, string bodyTypeFilter)
+        public async Task<AzureCognitiveSearchData> RunQueryAsync(AzureCognitiveSearchData model, int page, int leftMostPage, string bodyTypeFilter)
         {
             string facetFilter = "";
+
 
             if(bodyTypeFilter.Length > 0)
             {
@@ -54,6 +55,7 @@ namespace PS.Motorcycle.Infrastucture.AzureCognitiveSearch.Service
             var options = new SearchOptions()
             {
                 Filter = facetFilter,
+                
 
                 SearchMode = SearchMode.All,
 
@@ -72,9 +74,13 @@ namespace PS.Motorcycle.Infrastucture.AzureCognitiveSearch.Service
 
             // Enter MotorcycleDTO property names into this list so only these values will be returned.
             // If Select is empty, all values will be returned, which can be inefficient.
+            options.Select.Add("id");
+            options.Select.Add("year");
             options.Select.Add("make");
             options.Select.Add("model");
             options.Select.Add("bodyType");
+            options.Select.Add("imageUrl");
+            options.Select.Add("logoUrl");
 
             // For efficiency, the search call should be asynchronous, so use SearchAsync rather than Search.
             model.resultList = await this._azureContext.SearchClient.SearchAsync<MotorcycleDTO>(model.searchText, options);

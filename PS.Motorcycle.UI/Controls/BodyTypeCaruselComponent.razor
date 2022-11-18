@@ -1,0 +1,91 @@
+﻿
+<div class="container text-center my-3">
+    <div class="row mx-auto my-auto justify-content-center">
+
+        <div id="carouselExampleControls" class="carousel" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+                <button class="nav-link custom-tab-button" type="button" aria-current="page" @onclick="@(async () => await this.OnClickHandler(Domain.Types.BodyType.ADVENTURE))">
+                    <img src="https://cdn-ps-motorcycle.azureedge.net/motorcycles/body-types/adventure.jpg" class="card-img-top custom-tab-button-img" alt="adventure">
+                    <p>adventure</p>
+                </button>
+            </div>
+            <div class="carousel-item ">
+                <button class="nav-link custom-tab-button" type="button" aria-current="page" @onclick="@(async () => await this.OnClickHandler(Domain.Types.BodyType.CAFE_RACER))">
+                    <img src="https://cdn-ps-motorcycle.azureedge.net/motorcycles/body-types/cafe_racer.jpg" class="card-img-top custom-tab-button-img" alt="cafe racer">
+                    <p>cafe racer</p>
+                </button>
+            </div>
+            <div class="carousel-item ">
+                <button class="nav-link custom-tab-button" type="button" aria-current="page" @onclick="@(async () => await this.OnClickHandler(Domain.Types.BodyType.CHOPPER))">
+                    <img src="https://cdn-ps-motorcycle.azureedge.net/motorcycles/body-types/chopper.jpg" class="card-img-top custom-tab-button-img" alt="chopper">
+                    <p>chopper</p>
+                </button>
+            </div>
+            <div class="carousel-item ">
+                <button class="nav-link custom-tab-button" type="button" aria-current="page" @onclick="@(async () => await this.OnClickHandler(Domain.Types.BodyType.COMMUTER))">
+                    <img src="https://cdn-ps-motorcycle.azureedge.net/motorcycles/body-types/commuter.jpg" class="card-img-top custom-tab-button-img" alt="commuter">
+                    <p>commuter</p>
+                </button>
+            </div>
+            <div class="carousel-item ">
+                <button class="nav-link custom-tab-button" type="button" aria-current="page" @onclick="@(async () => await this.OnClickHandler(Domain.Types.BodyType.CROSS))">
+                    <img src="https://cdn-ps-motorcycle.azureedge.net/motorcycles/body-types/cross.jpg" class="card-img-top custom-tab-button-img" alt="cross">
+                    <p>cross</p>
+                </button>
+            </div>
+            <div class="carousel-item ">
+                <button class="nav-link custom-tab-button" type="button" aria-current="page" @onclick="@(async () => await this.OnClickHandler(Domain.Types.BodyType.CRUISER))">
+                    <img src="https://cdn-ps-motorcycle.azureedge.net/motorcycles/body-types/cruiser.jpg" class="card-img-top custom-tab-button-img" alt="cruiser">
+                    <p>cruiser</p>
+                </button>
+            </div>
+                <div class="carousel-item ">
+                <button class="nav-link custom-tab-button" type="button" aria-current="page" @onclick="@(async () => await this.OnClickHandler(Domain.Types.BodyType.DUAL_SPORT))">
+                    <img src="https://cdn-ps-motorcycle.azureedge.net/motorcycles/body-types/dual_sport.jpg" class="card-img-top custom-tab-button-img" alt="dual sport">
+                    <p>dual sport</p>
+                </button>
+            </div>
+                <div class="carousel-item ">
+                <button class="nav-link custom-tab-button" type="button" aria-current="page" @onclick="@(async () => await this.OnClickHandler(Domain.Types.BodyType.NAKED))">
+                    <img src="https://cdn-ps-motorcycle.azureedge.net/motorcycles/body-types/naked.jpg" class="card-img-top custom-tab-button-img" alt="naked">
+                    <p>naked</p>
+                </button>
+            </div>
+                <div class="carousel-item ">
+                <button class="nav-link custom-tab-button" type="button" aria-current="page" @onclick="@(async () => await this.OnClickHandler(Domain.Types.BodyType.SCRAMBLER))">
+                    <img src="https://cdn-ps-motorcycle.azureedge.net/motorcycles/body-types/scrambler.jpg" class="card-img-top custom-tab-button-img" alt="scrambler">
+                    <p>scrambler</p>
+                </button>
+            </div>
+                <div class="carousel-item ">
+                <button class="nav-link custom-tab-button" type="button" aria-current="page" @onclick="@(async () => await this.OnClickHandler(Domain.Types.BodyType.SPORTS))">
+                    <img src="https://cdn-ps-motorcycle.azureedge.net/motorcycles/body-types/sport.jpg" class="card-img-top custom-tab-button-img" alt="sport">
+                    <p>sport</p>
+                </button>
+            </div>
+                <div class="carousel-item ">
+                <button class="nav-link custom-tab-button" type="button" aria-current="page" @onclick="@(async () => await this.OnClickHandler(Domain.Types.BodyType.SPORTS_TOURER))">
+                    <img src="https://cdn-ps-motorcycle.azureedge.net/motorcycles/body-types/sports_tourer.jpg" class="card-img-top custom-tab-button-img" alt="sports tourer">
+                    <p>sports tourer</p>
+                </button>
+            </div>
+                <div class="carousel-item ">
+                <button class="nav-link custom-tab-button" type="button" aria-current="page" @onclick="@(async () => await this.OnClickHandler(Domain.Types.BodyType.TOURING))">
+                    <img src="https://cdn-ps-motorcycle.azureedge.net/motorcycles/body-types/touring.jpg" class="card-img-top custom-tab-button-img" alt="touring">
+                    <p>touring</p>
+                </button>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+
+    </div>
+</div>
