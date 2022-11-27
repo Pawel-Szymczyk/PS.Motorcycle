@@ -14,7 +14,9 @@ namespace PS.Motorcycle.Domain.Models.DTO
         // The text to search for.
         public string searchText { get; set; }
 
-        public BodyType bodyType { get; set; }
+        public Dictionary<string, string> filters { get; set; }
+
+        //public BodyType bodyType { get; set; }
 
         // The current page being displayed.
         public int currentPage { get; set; }
@@ -31,7 +33,7 @@ namespace PS.Motorcycle.Domain.Models.DTO
         // Used when page numbers, or next or prev buttons, have been selected.
         public string paging { get; set; }
 
-        public string bodyTypeFilter { get; set; }
+        //public string bodyTypeFilter { get; set; }
 
 
         // The list of results.
@@ -40,7 +42,8 @@ namespace PS.Motorcycle.Domain.Models.DTO
         public AzureCognitiveSearchData()
         {
             this.searchText = string.Empty;
-            this.bodyTypeFilter = string.Empty;
+            //this.bodyTypeFilter = string.Empty;
+            this.filters = new Dictionary<string, string>();
         }
     }
 

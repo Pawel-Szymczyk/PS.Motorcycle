@@ -39,23 +39,83 @@ namespace PS.Motorcycle.Infrastucture.AzureCognitiveSearch.Service
 
             return motorcycles;
         }
-    
-        public async Task<AzureCognitiveSearchData> RunQueryAsync(AzureCognitiveSearchData model, int page, int leftMostPage, string bodyTypeFilter)
+
+
+        // get make, model
+        public async Task<Dictionary<string, string>> ExecuteMakeQueryAsync() 
         {
-            string facetFilter = "";
+            var options = new SearchOptions();
+            options.Select.Add("make");
 
+            var response = await this._azureContext.SearchClient.SearchAsync<MotorcycleDTO>("*", options);
 
-            if(bodyTypeFilter.Length > 0)
+            var results = response.Value.GetResults().ToList();
+
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            try
             {
-                // One, or zero, facets apply.
-                facetFilter = $"bodyType eq {bodyTypeFilter}";
+                foreach (var result in results)
+                {
+                    dictionary.Add(result.Document.Make, result.Document.Make);
+                }
             }
+            catch
+            {
+
+            }
+
+            return dictionary;
+        }
+
+        public async Task<Dictionary<string, string>> ExecuteModelQueryAsync(string make)
+        {
+            if(string.IsNullOrEmpty(make))
+                return new Dictionary<string, string>();
+
+            var options = new SearchOptions();
+            options.Filter = $"make eq '{make}'";
+            options.Select.Add("model");
+
+            var response = await this._azureContext.SearchClient.SearchAsync<MotorcycleDTO>(make, options);
+
+            var results = response.Value.GetResults().ToList();
+
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            try
+            {
+                foreach (var result in results)
+                {
+                    dictionary.Add(result.Document.Model, result.Document.Model);
+                }
+            }
+            catch
+            {
+
+            }
+
+            return dictionary;
+        }
+
+
+
+        public async Task<AzureCognitiveSearchData> RunQueryAsync(AzureCognitiveSearchData model, int page, int leftMostPage, string filterQuery)
+        {
+            //string facetFilter = "";
+
+
+            //if(bodyTypeFilter.Length > 0)
+            //{
+            //    // One, or zero, facets apply.
+            //    facetFilter = $"bodyType eq {bodyTypeFilter}";
+            //}
 
 
             var options = new SearchOptions()
             {
-                Filter = facetFilter,
-                
+                //Filter = facetFilter,
+                //Filter = "bodyType eq 1",
+                //Filter = SearchFilter.Create($"make eq {"Suzuki"} and model eq {"Katana"}"),
+                Filter = filterQuery,
 
                 SearchMode = SearchMode.All,
 
@@ -70,7 +130,11 @@ namespace PS.Motorcycle.Infrastucture.AzureCognitiveSearch.Service
             };
 
             // Return information on the text, and number, of facets in the data.
-            options.Facets.Add("bodyType,count:20");
+            options.Facets.Add("bodyType,count:0");
+
+            //options.Facets.Add("make,count:0");
+            //options.Facets.Add("model,count:0");
+
 
             // Enter MotorcycleDTO property names into this list so only these values will be returned.
             // If Select is empty, all values will be returned, which can be inefficient.
@@ -81,6 +145,8 @@ namespace PS.Motorcycle.Infrastucture.AzureCognitiveSearch.Service
             options.Select.Add("bodyType");
             options.Select.Add("imageUrl");
             options.Select.Add("logoUrl");
+
+            
 
             // For efficiency, the search call should be asynchronous, so use SearchAsync rather than Search.
             model.resultList = await this._azureContext.SearchClient.SearchAsync<MotorcycleDTO>(model.searchText, options);

@@ -81,3 +81,51 @@
     border-color: #d6d6d6;*/
     box-shadow: rgb(0 0 0 / 10%) 0px 0.3px 0.9px, rgb(0 0 0 / 13%) 0px 1.6px 3.6px;
 }
+
+
+.filter-container{
+    width: 100%;
+}
+
+
+
+.pageSelected {
+    color: black;
+}
+
+.page-link {
+    border: none;
+}
+
+.disabled {
+    color: currentColor;
+    cursor: not-allowed;
+    opacity: 0.5;
+    text-decoration: none;
+}
+
+
+
+.filters-pils-container {
+    margin: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.filter-pill {
+    margin-right: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+
+.filter-pill-close-btn {
+    margin-left: 15px;
+}

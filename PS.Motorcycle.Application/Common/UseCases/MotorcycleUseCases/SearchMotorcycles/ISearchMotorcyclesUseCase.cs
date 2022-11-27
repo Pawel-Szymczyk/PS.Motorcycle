@@ -12,7 +12,11 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.Searc
 
         Task<AzureCognitiveSearchData> Execute(AzureCognitiveSearchData model);
 
+        Task<Dictionary<string, string>> GetMakeDictionaryAsync();
+        Task<Dictionary<string, string>> GetModelDictionaryAsync(string make);
+
         Task<AzureCognitiveSearchData> ExecuteByBodyTypeFilterAsync(AzureCognitiveSearchData model);
+        Task<AzureCognitiveSearchData> GetFilteredDataAsync(AzureCognitiveSearchData model);
 
         Task<AzureCognitiveSearchData> ExecutePageAsync(AzureCognitiveSearchData model);
         Task<AzureCognitiveSearchData> ExecuteFacetAsync(AzureCognitiveSearchData model);

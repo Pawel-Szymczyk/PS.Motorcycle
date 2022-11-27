@@ -131,7 +131,6 @@
 
         <div class="container-fluid">
 
-
             <div>
                  <div class="row">
                      <div class="col" style="display: flex; align-content: center; align-items: center; justify-content: flex-start;">
@@ -141,24 +140,24 @@
 
                          <nav aria-label="Page navigation example">
                             <ul class="pagination" style="padding: 5px 0; justify-content: flex-end; margin: 0;">
-                            <li class="page-item">
-                                <a class="page-link" aria-label="Previous" onclick="@(async () => await this.ReturnPreviousPageClickHandler())">
-                                <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
+                                <li class="page-item">
+                                    <a class="page-link" aria-label="Previous" onclick="@(async () => await this.ReturnPreviousPageClickHandler())">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
 
-                                @for(int i = this.pagedItems.Paging.StartPage; i <= this.pagedItems.Paging.TotalPages; i++)
-                                {
-                                    int index = i;
-                                    <li class="page-item"><a class="page-link @i" onclick="@(async () => await this.ReturnPageClickHandler(index))">@i</a></li>
-                                }
+                                    @for(int i = this.pagedItems.Paging.StartPage; i <= this.pagedItems.Paging.TotalPages; i++)
+                                    {
+                                        int index = i;
+                                        <li class="page-item"><a class="page-link @i" onclick="@(async () => await this.ReturnPageClickHandler(index))">@i</a></li>
+                                    }
 
 
-                            <li class="page-item">
-                                <a class="page-link" aria-label="Next" onclick="@(async () => await this.ReturnNextPageClickHandler())">
-                                <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
+                                <li class="page-item">
+                                    <a class="page-link" aria-label="Next" onclick="@(async () => await this.ReturnNextPageClickHandler())">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
                             </ul>
                         </nav>
 
@@ -166,9 +165,6 @@
                  </div>
             </div>
 
-
-            
-       
         </div>
 
     }

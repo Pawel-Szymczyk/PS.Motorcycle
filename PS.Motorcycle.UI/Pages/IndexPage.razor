@@ -10,12 +10,12 @@
         <BreadcrumbComponent Breadcrumbs="@this.Breadcrumbs"></BreadcrumbComponent>
     </div>
 
-    <div class="container-fluid" style="background-color: white; padding-top: 50px; border-radius: 10px; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; height: inherit; overflow-y: auto;">
+    <div class="container-fluid" style="background-color: white;  height: calc(100% - 10rem); padding-top: 50px; padding-bottom: 50px; border-radius: 10px; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; overflow-y: auto;">
 
         <div class="container">
 
             <div class="search-container">
-                <SearchComponent OnSearchClick="@this.OnSearchCLick" />
+                <SearchComponent OnSearchClick="@this.OnSearchClick" />
             </div>
 
 
@@ -23,53 +23,68 @@
             {
                 @*<p><em>Loading...</em></p>*@
                 <div>
-                    <BodyTypeCaruselComponent OnBodyTypeClick="@this.OnBodyTypeClick" />
+                    <BodyTypeCaruselComponent OnBodyTypeClick="@this.OnBodyTypeFilterClick" />
                 </div>
             }
             else
             {
                 <div class="row">
-                    <div class="col-2 filter-container">
+                    <div class="col-sm-12 col-md-2" style="border-right: 1px solid rgba(0,0,0,.125);">
                         @*filters*@
-
-                        <div class="facetchecks">
-                            @if (this.searchData != null && this.searchData.resultList != null)
-                            {
-                                List<string> categories = this.searchData.resultList.Facets["bodyType"].Select(x => x.Value.ToString()).ToList();
-
-                                    // repeat if more facets
-                                if (categories.Count > 0)
-                                {
-                                    <h5 class="facetheader">Body Types Categories:</h5>
-                                    <ul class="facetlist">
-                                        @for (var c = 0; c < categories.Count; c++)
-                                        {
-                                            string facetName = $"{categories[c]}";
-                                            int facetNameNumber = int.Parse(facetName);
-
-                                            var facetLink = $"{(BodyType)facetNameNumber}";
-                                            var facetCount = $"({this.searchData.resultList.Facets["bodyType"][c].Count})";
-                                            <li>
-                                                <button class="btn btn-link" type="button" @onclick="@(e => SearchFacet(facetName, this.searchData.searchText))" style="text-decoration: none;"> 
-                                                    @facetLink <span class="badge bg-light text-dark">@facetCount</span>
-                                                </button>
-                                            </li>
-                                        }
-                                    </ul>
-                                }
-
-                            
-                            }
+                        <div class="filter-container">
+                            <AzureCognitiveSearchMakeComponent MakeData="@this.makeData" 
+                                                               ModelData="@this.modelData" 
+                                                               OnMakeClick="@this.OnMakeClickHandlerAsync" 
+                                                               OnModelClick="@this.OnModelClickHandlerAsync" />
+                            <AzureCognitiveSearchFacetComponent FacetsData="@this.facetsData" 
+                                                                OnFacetClick="@this.OnFacetClickHandlerAsync"  />
+                           @* 
+                            <AzureCognitiveSearchProductionYearComponent YearData="@this.yearData" />
+                            <AzureCognitiveSearchDriveTypeComponent SearchData="@this.searchData" />
+                            <AzureCognitiveSearchCapacityComponent SearchData="@this.searchData" />*@
                         </div>
-
-
                     </div>
+
                     <div class="col-10 results-container">
+                        @if(this.filters.Count() > 0)
+                        {
+                            <div class="filters-pils-container">
+                                <span class="badge rounded-pill bg-secondary filter-pill">Reset filters
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-clockwise filter-pill-close-btn" viewBox="0 0 16 16" @onclick="(async() => await this.OnFilterResetClick())">
+                                      <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+                                      <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
+                                    </svg>
+                                </span>
+
+                                @foreach(var filter in this.filters)
+                                {
+                                    if(filter.Key.Equals("bodyType"))
+                                    {
+                                        BodyType type = (BodyType) Enum.Parse(typeof(BodyType), filter.Value);
+                                        string value = type.ToString();
+
+                                        <span class="badge rounded-pill bg-secondary filter-pill">
+                                            @value
+                                            <button type="button" class="btn-close btn-close-white filter-pill-close-btn" aria-label="Close" @onclick="(async() => await this.OnFilterRemoveClick(filter.Key))"></button>
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge rounded-pill bg-secondary filter-pill">@filter.Value
+                                            <button type="button" class="btn-close btn-close-white filter-pill-close-btn" aria-label="Close" @onclick="(async() => await this.OnFilterRemoveClick(filter.Key))"></button>
+                                        </span>
+                                    }
+                                    
+                                }
+                            </div>
+                        }
+                        
+
                         <div class="row row-cols-1 row-cols-md-3 g-4 motorcycles-list">
                             @*results *@
 
                             @{
-                                var results = this.searchData.resultList.GetResults().ToList();
+                                var results = this.searchData.resultList?.GetResults().ToList();
                             }
 
                             @foreach(var result in results)
@@ -80,143 +95,131 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12 pagination-container">
-                        @*pagination*@
-
-
-                        @if(this.searchData != null && this.searchData.pageCount > 1)
-                        {
-                            // If there is more than one page of results, show the paging buttons.
-
-                            <table class="col">
-                                <tr class="col">
-                                    <td>
-                                        @if (this.searchData.currentPage > 0)
-                                        {
-                                            <p class="pageButton">
-                                                    <button class="btn btn-link" @onclick="@(e => SearchPager(0.ToString(), this.searchData.searchText))">
-                                                    |&#60;
-                                                </button>
-                                            </p>
-                                        }
-                                        else
-                                        {
-                                            <p class="pageButtonDisabled">|&lt;</p>
-                                        }
-                                    </td>
-                                    <td>
-                                        @if (this.searchData.currentPage > 0)
-                                        {
-                                            var prev = "prev";
-                                            <p class="pageButton">
-                                                <button class="btn btn-link" @onclick="@(e => SearchPager(prev, this.searchData.searchText))">&#60;</button>                                      
-                                            </p>
-                                        }
-                                        else
-                                        {
-                                            <p class="pageButtonDisabled">|&lt;</p>
-                                        }
-                                    </td>
-
-                                    @for (var pn = this.searchData.leftMostPage; pn < this.searchData.leftMostPage + this.searchData.pageRange; pn++)
-                                    {
-                                        <td>
-                                            @if (this.searchData.currentPage == pn)
-                                            {
-                                                // Convert displayed page numbers to 1-based and not 0-based.
-                                                <p class="pageSelected">@(pn + 1)</p>
-                                            }
-                                            else
-                                            {
-                                                <p class="pageButton">
-                                                    @{
-                                                        var p1 = this.searchData.pageCount - 1;
-                                                        var plink = pn.ToString();
-                                                    }
-                                                    <button class="btn btn-link"
-                                                            @onclick="@(e => SearchPager(plink, this.searchData.searchText))">
-                                                        @(pn + 1)
-                                                    </button>
-                                                </p>
-                                            }
-                                        </td>
-                                    }
-
-                                    <td>
-                                        @if (this.searchData.currentPage < this.searchData.pageCount - 1)
-                                        {
-                                            <p class="pageButton">
-                                                @{
-                                                    var p1 = this.searchData.pageCount - 1;
-                                                    var next = "next";
-                                                }
-                                                <button class="btn btn-link"
-                                                        @onclick="@(e => SearchPager(next, this.searchData.searchText))">
-                                                    &#62;
-                                                </button>
-                                            </p>
-                                        }
-                                        else
-                                        {
-                                            <p class="pageButtonDisabled">&gt;</p>
-                                        }
-                                    </td>
-
-                                    <td>
-                                        @if (this.searchData.currentPage < this.searchData.pageCount - 1)
-                                        {
-                                                <p class="pageButton">
-                                                @{var p7 = this.searchData.pageCount - 1;}
-                                                <button class="btn btn-link"
-                                                        @onclick="@(e => SearchPager(p7.ToString(), this.searchData.searchText))">
-                                                    &#62;|
-                                                </button>
-                                            </p>
-                                        }
-                                        else
-                                        {
-                                            <p class="pageButtonDisabled">&gt;|</p>
-                                        }
-                                    </td>
-
-                                </tr>
-
-
-                            </table>
-                        }
-
-                    </div>
-                </div>
             }
             
-
-
-
-
-
-            @*<Virtualize @ref="MotorcycleContainer" ItemsProvider="@this.LoadMotorcycles" Context="motorcycle">
-                <ItemContent>
-                    @{
-                        string path = $"/motorcycle/{motorcycle.Id}";
-                    }
-                    <CardComponent Motorcycle="@motorcycle" Path="@path" />
-                </ItemContent>
-                <Placeholder>
-                    <p>
-                        Loading...
-                    </p>
-                </Placeholder>
-            </Virtualize>*@
-
 
         </div>
     </div>
 
+
+
+    @*pagination*@
+    @if(this.searchData != null && this.searchData.pageCount > 1)
+    {
+        <div class="container-fluid" style="background-color: white; margin-top: 1em; border-radius: 10px; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;">
+           
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-sm-12 col-md-10 pagination-container">
+                            
+                        <nav aria-label="paging">
+                            <ul class="pagination" style="padding: 10px 0; justify-content: flex-end; margin: 0;">
+
+                            @if (this.searchData.currentPage > 0)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" aria-label="First page" @onclick="@(e => SearchPager(0.ToString(), this.searchData.searchText))">
+                                        <span aria-hidden="true">|&#60;</span>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item disabled">
+                                    <a class="page-link">
+                                        <span aria-hidden="true">|&lt;</span> 
+                                    </a>
+                                </li>
+                            }
+                                    
+
+                            @if (this.searchData.currentPage > 0)
+                            {
+                                var prev = "prev";
+                                <li class="page-item">
+                                    <a class="page-link" aria-label="First page" @onclick="@(e => SearchPager(prev, this.searchData.searchText))">
+                                        <span aria-hidden="true">&#60;</span>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item disabled">
+                                    <a class="page-link">
+                                        <span aria-hidden="true">|&lt;</span> 
+                                    </a>
+                                </li>
+                            }
+
+                            @for (var pn = this.searchData.leftMostPage; pn < this.searchData.leftMostPage + this.searchData.pageRange; pn++)
+                            {
+                                <li class="page-item">
+                                    @if (this.searchData.currentPage == pn)
+                                    {
+                                        // Convert displayed page numbers to 1-based and not 0-based.
+                                        <a class="page-link pageSelected">@(pn + 1)</a>
+                                    }
+                                    else
+                                    {
+                                                   
+                                        var p1 = this.searchData.pageCount - 1;
+                                        var plink = pn.ToString();
+                                                    
+                                        <a class="page-link pageButton" @onclick="@(e => SearchPager(plink, this.searchData.searchText))">@(pn + 1)</a>
+                                    }
+                                </li>
+                            }
+
+                            @if (this.searchData.currentPage < this.searchData.pageCount - 1)
+                            {
+                                var p1 = this.searchData.pageCount - 1;
+                                var next = "next";
+
+                                    <li class="page-item">
+                                    <a class="page-link" aria-label="Next" @onclick="@(e => SearchPager(next, this.searchData.searchText))">
+                                    <span aria-hidden="true">&#62;</span>
+                                    </a>
+                                </li>
+
+                            }
+                            else
+                            {
+                                <li class="page-item disabled">
+                                    <a class="page-link">
+                                        <span aria-hidden="true">&gt;|</span> 
+                                    </a>
+                                </li>
+                            }
+
+                            @if (this.searchData.currentPage < this.searchData.pageCount - 1)
+                            {
+                                var p7 = this.searchData.pageCount - 1;
+                                <li class="page-item">
+                                    <a class="page-link" aria-label="Next" @onclick="@(e => SearchPager(p7.ToString(), this.searchData.searchText))">
+                                    <span aria-hidden="true">&#62;|</span>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item disabled">
+                                    <a class="page-link">
+                                        <span aria-hidden="true">&gt;|</span> 
+                                    </a>
+                                </li>
+                            }
+
+                            </ul>
+                        </nav>
+
+                    </div>
+                </div>
+           
+        </div>
+    }
     
 
 
     <FooterComponent />
 </div>
-
 

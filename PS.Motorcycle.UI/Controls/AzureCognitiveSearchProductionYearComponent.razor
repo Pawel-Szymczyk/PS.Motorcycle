@@ -1,0 +1,32 @@
+﻿@using PS.Motorcycle.Domain.Types
+
+<div class="filter-item">
+
+    @if (this.YearData.Count > 0)
+    {
+        <button class="btn btn-link filter-collapse-btn" type="button" data-bs-toggle="collapse" data-bs-target="#yearCollapse" aria-expanded="false" aria-controls="collapseExample">
+            Production Year
+        </button>
+        <div class="collapse" id="yearCollapse">
+                
+            <label>Min</label>
+            <select class="form-select" @onchange="@this.OnMinYearSelect" aria-label="Year select">
+                @foreach(var date in this.YearData)
+                {
+                    <option value="@date.Value">@date.Value</option>
+                }
+            </select>
+
+                <label>Max</label>
+            <select class="form-select" @onchange="@this.OnMaxYearSelect" aria-label="Year select">
+                @foreach(var date in this.YearData)
+                {
+                    <option value="@date.Value">@date.Value</option>
+                }
+            </select>
+
+        </div>
+
+    }
+
+</div>

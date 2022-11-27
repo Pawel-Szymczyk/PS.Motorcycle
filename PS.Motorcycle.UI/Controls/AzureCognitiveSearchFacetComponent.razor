@@ -1,0 +1,50 @@
+﻿@using PS.Motorcycle.Domain.Types
+
+<div class="filter-item">
+    @if (this.FacetsData != null)
+    {
+        List<string> facets = this.FacetsData["bodyType"].Select(x => x.Value.ToString()).ToList();
+
+        // repeat if more facets
+        if (facets.Count > 0)
+        {
+            <button class="btn btn-link filter-collapse-btn" type="button" data-bs-toggle="collapse" data-bs-target="#bodyTypesFacets" aria-expanded="false" aria-controls="collapseExample">
+                Body Types
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                </svg>
+            </button>
+            <div class="collapse" id="bodyTypesFacets" style="padding: 0.375rem 0.75rem; border-bottom: 1px solid rgba(0,0,0,.125); margin-bottom: 10px;">
+                <ul class="facet-options-list">
+                    @for (var c = 0; c < facets.Count; c++)
+                    {
+                        string radioId = $"radioFacet{c}";
+
+                        string facetName = $"{facets[c]}";
+                        int facetNameNumber = int.Parse(facetName);
+
+                        var facetLink = $"{(BodyType)facetNameNumber}";
+                        var facetCount = $"({this.FacetsData["bodyType"][c].Count})";
+
+                        <li class="facet-option" @onclick="@(e => this.SearchFacet(facetName))">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                              <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                            </svg>
+
+                            <label class="facet-label" data-category="@facetLink">@facetLink</label>
+                            <span class="badge rounded-pill bg-primary">@facetCount</span>
+
+
+                           @* <input class="form-check-input" type="radio" name="flexRadioDefault" id="@radioId" @onclick="@(e => this.SearchFacet(facetName))">
+                            <label class="form-check-label" for="@radioId">
+                                @facetLink <span class="badge rounded-pill bg-primary">@facetCount</span>
+                            </label>*@
+                        </li>
+                    }
+                </ul>
+            </div>
+
+        }                 
+    }
+</div>

@@ -1,8 +1,10 @@
-﻿using PS.Motorcycle.Application.Interfaces;
+﻿using Azure.Search.Documents;
+using PS.Motorcycle.Application.Interfaces;
 using PS.Motorcycle.Domain.Interfaces;
 using PS.Motorcycle.Domain.Interfaces.DTO;
 using PS.Motorcycle.Domain.Models;
 using PS.Motorcycle.Domain.Models.DTO;
+using PS.Motorcycle.Domain.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +58,40 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.Searc
 
         }
 
+        
+
+        public async Task<Dictionary<string, string>> GetMakeDictionaryAsync()
+        {
+            try
+            {
+                return await this._azureCognitiveSearchService.ExecuteMakeQueryAsync();
+
+            }
+            catch
+            {
+                //return View("Error", new ErrorViewModel { RequestId = "1" });
+                return new Dictionary<string, string>();
+            }
+
+        }
+
+        public async Task<Dictionary<string, string>> GetModelDictionaryAsync(string make)
+        {
+            try
+            {
+                return await this._azureCognitiveSearchService.ExecuteModelQueryAsync(make);
+
+            }
+            catch
+            {
+                //return View("Error", new ErrorViewModel { RequestId = "1" });
+                return new Dictionary<string, string>();
+            }
+
+        }
+
+
+
         public async Task<AzureCognitiveSearchData> ExecuteByBodyTypeFilterAsync(AzureCognitiveSearchData model)
         {
             try
@@ -66,15 +102,94 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.Searc
                 }
 
                 // Filters set by the model override those stored in temporary data.
-                string bodyTypeFilter = string.Empty;
+                string filterQuery = string.Empty;
 
-                int bodyType = (int)model.bodyType;
-                if(!bodyType.Equals(0))
+                if(model.filters.ContainsKey("bodyType"))
                 {
-                    bodyTypeFilter = bodyType.ToString();
+                    BodyType bodyType;
+                    Enum.TryParse(model.filters["bodyType"], out bodyType);
+
+                    int bodyTypeInt = (int)bodyType;
+
+                    filterQuery = this.BuildAzureSearchCognitiveFilter($"bodyType eq {bodyTypeInt}");
                 }
 
+                //int bodyType = (int)model.bodyType;
+                //if(!bodyType.Equals(0))
+                //{
+                //    bodyTypeFilter = bodyType.ToString();
+                //}
+
                 
+
+
+                return await this._azureCognitiveSearchService.RunQueryAsync(model, 0, 0, filterQuery);
+
+            }
+            catch
+            {
+                //return View("Error", new ErrorViewModel { RequestId = "1" });
+                return new AzureCognitiveSearchData();
+            }
+        }
+
+
+        public async Task<AzureCognitiveSearchData> GetFilteredDataAsync(AzureCognitiveSearchData model)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(model.searchText))
+                {
+                    // wildcard
+                    model.searchText = "*";
+                }
+
+                string filterQuery = string.Empty;
+
+                // ...add "make" filter...
+                if (model.filters.ContainsKey("make"))
+                {
+                    string make = model.filters["make"];
+
+                    filterQuery = string.Concat(filterQuery, this.BuildAzureSearchCognitiveFilter($"make eq {make}"));
+                }
+
+                // ...add "model" filter...
+                if (model.filters.ContainsKey("model"))
+                {
+                    string modelName = model.filters["model"];
+
+                    filterQuery = this.AddFilterConcatenation(filterQuery);
+                    filterQuery = string.Concat(filterQuery, this.BuildAzureSearchCognitiveFilter($"model eq {modelName}"));
+                }
+
+                // ...add "bodyType" (facet) filter...
+                if (model.filters.ContainsKey("bodyType"))
+                {
+                    string facet = model.filters["bodyType"];
+
+                    filterQuery = this.AddFilterConcatenation(filterQuery);
+                    filterQuery = string.Concat(filterQuery, $"bodyType eq {facet}");
+                }
+
+                return await this._azureCognitiveSearchService.RunQueryAsync(model, 0, 0, filterQuery);
+            }
+            catch (Exception)
+            {
+                return new AzureCognitiveSearchData();
+            }
+        }
+
+        public async Task<AzureCognitiveSearchData> ExecuteFacetAsync(AzureCognitiveSearchData model)
+        {
+            try
+            {
+
+                // Filters set by the model override those stored in temporary data.
+                string bodyTypeFilter = string.Empty;
+
+                //if(model.bodyTypeFilter is not null)
+                //    bodyTypeFilter = model.bodyTypeFilter;
 
 
                 return await this._azureCognitiveSearchService.RunQueryAsync(model, 0, 0, bodyTypeFilter);
@@ -87,6 +202,20 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.Searc
             }
         }
 
+        /// <summary>
+        /// Add "and" word to filter, which allows to join multiple filters together.
+        /// </summary>
+        /// <param name="filterQuery">actual filter query.</param>
+        /// <returns>updated filter query by "and" at the end of query.</returns>
+        private string AddFilterConcatenation(string filterQuery)
+        {
+            if (!string.IsNullOrEmpty(filterQuery))
+            {
+                filterQuery = string.Concat(filterQuery, " and ");
+            }
+
+            return filterQuery;
+        }
 
 
 
@@ -123,8 +252,8 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.Searc
                 int leftMostPage = model.leftMostPage;
 
                 // Recover the filters.
-                string bodyTypeFilter = model.bodyTypeFilter;
-
+                //string bodyTypeFilter = model.bodyTypeFilter;
+                string bodyTypeFilter = string.Empty;
 
                 return await this._azureCognitiveSearchService.RunQueryAsync(model, page, leftMostPage, bodyTypeFilter);
 
@@ -136,27 +265,25 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.Searc
             }
         }
 
-        public async Task<AzureCognitiveSearchData> ExecuteFacetAsync(AzureCognitiveSearchData model)
+
+
+
+
+
+
+
+        private string BuildAzureSearchCognitiveFilter(FormattableString filter)
         {
-            try
-            {
+            
+            //string filterQuery = SearchFilter.Create($"make eq {"Suzuki"} and model eq {"Katana"}");
+            string filterQuery = SearchFilter.Create(filter);
 
-                // Filters set by the model override those stored in temporary data.
-                string bodyTypeFilter = string.Empty;
-                    
-                if(model.bodyTypeFilter is not null)
-                    bodyTypeFilter = model.bodyTypeFilter;
-
-
-                return await this._azureCognitiveSearchService.RunQueryAsync(model, 0, 0, bodyTypeFilter);
-
-            }
-            catch
-            {
-                //return View("Error", new ErrorViewModel { RequestId = "1" });
-                return new AzureCognitiveSearchData();
-            }
+            return filterQuery;
         }
+
+
+
+
 
     }
 }
