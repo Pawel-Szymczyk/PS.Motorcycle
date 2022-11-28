@@ -1,9 +1,16 @@
 ﻿@using PS.Motorcycle.Domain.Types
+@using PS.Motorcycle.UserPortal.ModelControls
 
 <div class="filter-item">
     @if (this.FacetsData != null)
     {
-        List<string> facets = this.FacetsData["bodyType"].Select(x => x.Value.ToString()).ToList();
+        @*List<string> facets = this.FacetsData["bodyType"].Select(x => x.Value.ToString()).ToList();*@
+        @*List<string> facets = this.FacetsData["bodyType"].Select(x => x.Value.ToString()).ToList();*@
+
+       @* List<string> facets = this.FacetsData["bodyType"].Select(x => x.FacetResult.Value.ToString()).ToList();
+        List<bool> activeFacets = this.FacetsData["bodyType"].Select(x => x.ActiveFacet).ToList();*@
+
+        List<Facet> facets = this.FacetsData["bodyType"].ToList();
 
         // repeat if more facets
         if (facets.Count > 0)
@@ -20,27 +27,54 @@
                     {
                         string radioId = $"radioFacet{c}";
 
-                        string facetName = $"{facets[c]}";
+                        string facetName = $"{facets[c].FacetResult.Value}";
                         int facetNameNumber = int.Parse(facetName);
 
                         var facetLink = $"{(BodyType)facetNameNumber}";
-                        var facetCount = $"({this.FacetsData["bodyType"][c].Count})";
-
-                        <li class="facet-option" @onclick="@(e => this.SearchFacet(facetName))">
-
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
-                              <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
-                            </svg>
-
-                            <label class="facet-label" data-category="@facetLink">@facetLink</label>
-                            <span class="badge rounded-pill bg-primary">@facetCount</span>
+                        //var facetCount = $"({this.FacetsData["bodyType"][c].Count})";
+                        var facetCount = $"({facets[c].FacetResult.Count})";
 
 
-                           @* <input class="form-check-input" type="radio" name="flexRadioDefault" id="@radioId" @onclick="@(e => this.SearchFacet(facetName))">
-                            <label class="form-check-label" for="@radioId">
-                                @facetLink <span class="badge rounded-pill bg-primary">@facetCount</span>
-                            </label>*@
+                        bool activeFacet = facets[c].ActiveFacet;
+
+                        Facet f = facets[c];
+
+                        if(activeFacet)
+                        {
+                             @*<li class="facet-option" @onclick="@(e => this.SearchFacet(facetName))">*@
+                             <li class="facet-option" @onclick="@(e => this.SearchFacet(f))" style="display: flex; flex-wrap: nowrap; align-content: center; justify-content: space-between; align-items: center;">
+
+                                 <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                    </svg>
+
+                                    <label class="facet-label" data-category="@facetLink">@facetLink</label>
+                                 </div>
+                                 <span class="badge rounded-pill bg-secondary">@facetCount</span>
+                     
+                            </li>
+                        }
+                        else
+                        {
+                             @*<li class="facet-option" @onclick="@(e => this.SearchFacet(facetName))">*@
+                             <li class="facet-option" @onclick="@(e => this.SearchFacet(f))" style="display: flex; flex-wrap: nowrap; align-content: center; justify-content: space-between; align-items: center;">
+
+                            
+                                <div>
+                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                                      <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                                    </svg>
+
+                                    <label class="facet-label" data-category="@facetLink">@facetLink</label>
+                                </div>
+                                <span class="badge rounded-pill bg-primary">@facetCount</span>
+                     
                         </li>
+                        }
+                        
+
+                       
                     }
                 </ul>
             </div>

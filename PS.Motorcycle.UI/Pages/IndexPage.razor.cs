@@ -7,6 +7,7 @@ using PS.Motorcycle.Domain.Models.Components;
 using PS.Motorcycle.Domain.Models.DTO;
 using PS.Motorcycle.Domain.Services;
 using PS.Motorcycle.Domain.Types;
+using PS.Motorcycle.UserPortal.ModelControls;
 
 namespace PS.Motorcycle.UserPortal.Pages
 {
@@ -36,7 +37,9 @@ namespace PS.Motorcycle.UserPortal.Pages
         private Dictionary<string, string> modelData;
         private Dictionary<string, string> yearData;
 
-        private IDictionary<string, IList<FacetResult>> facetsData;
+        //private IDictionary<string, IList<FacetResult>> facetsData;
+        private IDictionary<string, IList<Facet>> facetsData;
+        //private IDictionary<string, IList<Facet>> test;
 
         [Inject]
         private NavigationManager NavigationManager { get; set; } = default!;
@@ -69,7 +72,8 @@ namespace PS.Motorcycle.UserPortal.Pages
             this.modelData = new Dictionary<string, string>();
             this.yearData = new Dictionary<string, string>();
             
-            this.facetsData = new Dictionary<string, IList<FacetResult>>();
+            //this.facetsData = new Dictionary<string, IList<FacetResult>>();
+            this.facetsData = new Dictionary<string, IList<Facet>>();
 
 
             await this.IsLoggedInAsync();
@@ -95,7 +99,38 @@ namespace PS.Motorcycle.UserPortal.Pages
 
             this.searchData = await this.SearchMotorcyclesUseCase.Execute(model);
             if (this.searchData != null && this.searchData.resultList != null)
-                this.facetsData = this.searchData.resultList.Facets;
+            {
+                //this.facetsData = this.searchData.resultList.Facets;
+                foreach (var t in this.searchData.resultList.Facets)
+                {
+                    List<Facet> l = new List<Facet>();
+                    
+                    foreach (FacetResult f in t.Value)
+                    {
+                        Facet x = new Facet() { ActiveFacet = false, FacetResult = f };
+                        l.Add(x);
+                    }
+
+                    if(!this.facetsData.ContainsKey(t.Key))
+                    {
+                        this.facetsData.Add(t.Key, l);
+                    }
+                }
+            }
+
+
+            //this.test = new Dictionary<string, IList<Facet>>();
+            //foreach(var t in this.searchData.resultList.Facets)
+            //{
+            //    List<Facet> l = new List<Facet>();
+            //    foreach(FacetResult f in t.Value)
+            //    {
+            //        Facet x = new Facet() { ActiveFacet = false, FacetResult = f};
+            //        l.Add(x);
+            //    }
+            //    this.test.Add(t.Key, l);
+            //}
+
 
             this.makeData = await this.SearchMotorcyclesUseCase.GetMakeDictionaryAsync();
 
@@ -130,10 +165,27 @@ namespace PS.Motorcycle.UserPortal.Pages
 
             this.searchData = await this.SearchMotorcyclesUseCase.ExecuteByBodyTypeFilterAsync(model);
 
+            //if (this.searchData != null && this.searchData.resultList != null)
+            //    this.facetsData = this.searchData.resultList.Facets;
             if (this.searchData != null && this.searchData.resultList != null)
-                this.facetsData = this.searchData.resultList.Facets;
+            {
+                //this.facetsData = this.searchData.resultList.Facets;
+                foreach (var t in this.searchData.resultList.Facets)
+                {
+                    List<Facet> l = new List<Facet>();
+                    foreach (FacetResult f in t.Value)
+                    {
+                        Facet x = new Facet() { ActiveFacet = false, FacetResult = f };
+                        l.Add(x);
+                    }
+                    if (!this.facetsData.ContainsKey(t.Key))
+                    {
+                        this.facetsData.Add(t.Key, l);
+                    }
+                }
+            }
 
-            StateHasChanged();
+            this.StateHasChanged();
         }
 
 
@@ -189,6 +241,7 @@ namespace PS.Motorcycle.UserPortal.Pages
 
             this.StateHasChanged();
         }
+
 
         private async Task OnFacetClickHandlerAsync(string facet)
         {
