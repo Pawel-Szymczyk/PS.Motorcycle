@@ -90,7 +90,36 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.Searc
 
         }
 
+        public async Task<Dictionary<int, int>> GetProductionYearDictionaryAsync()
+        {
+            try
+            {
+                return await this._azureCognitiveSearchService.ExecuteProductionYearQueryAsync();
 
+            }
+            catch
+            {
+                //return View("Error", new ErrorViewModel { RequestId = "1" });
+                return new Dictionary<int, int>();
+            }
+
+        }
+
+        public async Task<Dictionary<int, int>> GetEngineCapacityDictionaryAsync()
+        {
+            try
+            {
+                return await this._azureCognitiveSearchService.ExecuteEngineCapacityQueryAsync();
+
+            }
+            catch
+            {
+                //return View("Error", new ErrorViewModel { RequestId = "1" });
+                return new Dictionary<int, int>();
+            }
+
+        }
+        
 
         public async Task<AzureCognitiveSearchData> ExecuteByBodyTypeFilterAsync(AzureCognitiveSearchData model)
         {
@@ -170,6 +199,42 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.Searc
 
                     filterQuery = this.AddFilterConcatenation(filterQuery);
                     filterQuery = string.Concat(filterQuery, $"bodyType eq {facet}");
+                }
+
+                // ...add "minYear" (facet) filter...
+                if (model.filters.ContainsKey("minYear"))
+                {
+                    string facet = model.filters["minYear"];
+
+                    filterQuery = this.AddFilterConcatenation(filterQuery);
+                    filterQuery = string.Concat(filterQuery, $"year ge {facet}");
+                }
+
+                // ...add "maxYear" (facet) filter...
+                if (model.filters.ContainsKey("maxYear"))
+                {
+                    string facet = model.filters["maxYear"];
+
+                    filterQuery = this.AddFilterConcatenation(filterQuery);
+                    filterQuery = string.Concat(filterQuery, $"year le {facet}");
+                }
+
+                // ...add "minEngineCapacity" (facet) filter...
+                if (model.filters.ContainsKey("minEngineCapacity"))
+                {
+                    string facet = model.filters["minEngineCapacity"];
+
+                    filterQuery = this.AddFilterConcatenation(filterQuery);
+                    filterQuery = string.Concat(filterQuery, $"engine/Capacity ge {facet}");
+                }
+
+                // ...add "maxEngineCapacity" (facet) filter...
+                if (model.filters.ContainsKey("maxEngineCapacity"))
+                {
+                    string facet = model.filters["maxEngineCapacity"];
+
+                    filterQuery = this.AddFilterConcatenation(filterQuery);
+                    filterQuery = string.Concat(filterQuery, $"engine/Capacity le {facet}");
                 }
 
                 return await this._azureCognitiveSearchService.RunQueryAsync(model, 0, 0, filterQuery);

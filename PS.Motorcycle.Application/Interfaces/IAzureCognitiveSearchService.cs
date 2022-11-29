@@ -12,6 +12,8 @@ namespace PS.Motorcycle.Application.Interfaces
 
         Task<Dictionary<string, string>> ExecuteMakeQueryAsync();
         Task<Dictionary<string, string>> ExecuteModelQueryAsync(string make);
+        Task<Dictionary<int, int>> ExecuteProductionYearQueryAsync();
+        Task<Dictionary<int, int>> ExecuteEngineCapacityQueryAsync();
         Task<AzureCognitiveSearchData> RunQueryAsync(AzureCognitiveSearchData model, int page, int leftMostPage, string filterQuery);
     }
 }

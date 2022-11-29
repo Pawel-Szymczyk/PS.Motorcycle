@@ -1,32 +1,29 @@
 ﻿using Microsoft.AspNetCore.Components;
-using PS.Motorcycle.Domain.Models.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PS.Motorcycle.UserPortal.Controls
 {
     public partial class AzureCognitiveSearchProductionYearComponent : ComponentBase
     {
         [Parameter]
-        public Dictionary<string, string> YearData { get; set; }
+        public Dictionary<int, int> YearData { get; set; }
 
 
         [Parameter]
-        public EventCallback<string> OnFacetClick { get; set; }
+        public EventCallback<int> OnMinYearChanged { get; set; }
+
+        [Parameter]
+        public EventCallback<int> OnMaxYearChanged { get; set; }
 
         private async Task OnMinYearSelect(ChangeEventArgs e)
         {
-            string make = e.Value.ToString();
-            //await this.OnMakeClick.InvokeAsync(make);
+            int year = int.Parse(e.Value.ToString());
+            await this.OnMinYearChanged.InvokeAsync(year);
         }
 
         private async Task OnMaxYearSelect(ChangeEventArgs e)
         {
-            string make = e.Value.ToString();
-            //await this.OnMakeClick.InvokeAsync(make);
+            int year = int.Parse(e.Value.ToString());
+            await this.OnMaxYearChanged.InvokeAsync(year);
         }
     }
 }

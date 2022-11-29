@@ -9,6 +9,18 @@ using System.Globalization;
 
 namespace PS.Motorcycle.Domain.Models.DTO
 {
+    public class EngineDTO
+    {
+        [SearchableField(IsFilterable = true, IsSortable = true, IsFacetable = true)]
+        public int Capacity { get; set; }
+
+        [SearchableField(IsFilterable = true, IsSortable = true, IsFacetable = true)]
+        public string Drive { get; set; }
+
+        [SearchableField(IsFilterable = true, IsSortable = true, IsFacetable = true)]
+        public string Power { get; set; }
+    }
+
     public class MotorcycleDTO : IMotorcycleDTO
     {
 
@@ -222,6 +234,9 @@ namespace PS.Motorcycle.Domain.Models.DTO
             }
         }
 
+        [SearchableField]
+        [JsonPropertyName("engine")]
+        public EngineDTO Engine { get; set; }
 
         // constructors 
         public MotorcycleDTO()
@@ -238,6 +253,8 @@ namespace PS.Motorcycle.Domain.Models.DTO
             this.createDate = string.Empty;
             this.updateDate = string.Empty;
             this.rate = 0;
+
+            
         }
 
 

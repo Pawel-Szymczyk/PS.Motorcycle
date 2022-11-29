@@ -14,6 +14,8 @@ namespace PS.Motorcycle.Application.UserPortal.UseCases.MotorcycleUseCases.Searc
 
         Task<Dictionary<string, string>> GetMakeDictionaryAsync();
         Task<Dictionary<string, string>> GetModelDictionaryAsync(string make);
+        Task<Dictionary<int, int>> GetProductionYearDictionaryAsync();
+        Task<Dictionary<int, int>> GetEngineCapacityDictionaryAsync();
 
         Task<AzureCognitiveSearchData> ExecuteByBodyTypeFilterAsync(AzureCognitiveSearchData model);
         Task<AzureCognitiveSearchData> GetFilteredDataAsync(AzureCognitiveSearchData model);

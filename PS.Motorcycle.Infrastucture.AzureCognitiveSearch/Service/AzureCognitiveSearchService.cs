@@ -15,6 +15,9 @@ namespace PS.Motorcycle.Infrastucture.AzureCognitiveSearch.Service
     public class AzureCognitiveSearchService : IAzureCognitiveSearchService
     {
         private readonly IAzureCognitiveSearchContext _azureContext;
+
+        private readonly string wildcard = "*";
+
         public AzureCognitiveSearchService(IAzureCognitiveSearchContext azureContext)
         {
             this._azureContext = azureContext;
@@ -47,7 +50,7 @@ namespace PS.Motorcycle.Infrastucture.AzureCognitiveSearch.Service
             var options = new SearchOptions();
             options.Select.Add("make");
 
-            var response = await this._azureContext.SearchClient.SearchAsync<MotorcycleDTO>("*", options);
+            var response = await this._azureContext.SearchClient.SearchAsync<MotorcycleDTO>(this.wildcard, options);
 
             var results = response.Value.GetResults().ToList();
 
@@ -96,6 +99,57 @@ namespace PS.Motorcycle.Infrastucture.AzureCognitiveSearch.Service
             return dictionary;
         }
 
+        public async Task<Dictionary<int, int>> ExecuteProductionYearQueryAsync()
+        {
+            var options = new SearchOptions();
+            options.Select.Add("year");
+
+            var response = await this._azureContext.SearchClient.SearchAsync<MotorcycleDTO>(this.wildcard, options);
+
+            var results = response.Value.GetResults().ToList();
+
+            Dictionary<int, int> dictionary = new Dictionary<int, int>();
+            try
+            {
+                foreach (var result in results)
+                {
+                    if(!dictionary.ContainsKey(result.Document.Year))
+                        dictionary.Add(result.Document.Year, result.Document.Year);
+                }
+            }
+            catch
+            {
+
+            }
+
+            return dictionary.OrderBy(x=>x.Value).ToDictionary(x => x.Key, x => x.Value);
+        }
+
+        public async Task<Dictionary<int, int>> ExecuteEngineCapacityQueryAsync()
+        {
+            var options = new SearchOptions();
+            options.Select.Add("engine/Capacity");
+
+            var response = await this._azureContext.SearchClient.SearchAsync<MotorcycleDTO>(this.wildcard, options);
+
+            var results = response.Value.GetResults().ToList();
+
+            Dictionary<int, int> dictionary = new Dictionary<int, int>();
+            try
+            {
+                foreach (var result in results)
+                {
+                    if (!dictionary.ContainsKey(result.Document.Engine.Capacity))
+                        dictionary.Add(result.Document.Engine.Capacity, result.Document.Engine.Capacity);
+                }
+            }
+            catch
+            {
+
+            }
+
+            return dictionary.OrderBy(x => x.Value).ToDictionary(x => x.Key, x => x.Value);
+        }
 
 
         public async Task<AzureCognitiveSearchData> RunQueryAsync(AzureCognitiveSearchData model, int page, int leftMostPage, string filterQuery)
@@ -145,6 +199,8 @@ namespace PS.Motorcycle.Infrastucture.AzureCognitiveSearch.Service
             options.Select.Add("bodyType");
             options.Select.Add("imageUrl");
             options.Select.Add("logoUrl");
+
+            options.Select.Add("engine/Capacity");
 
             
 

@@ -5,10 +5,6 @@
     @if (this.FacetsData != null)
     {
         @*List<string> facets = this.FacetsData["bodyType"].Select(x => x.Value.ToString()).ToList();*@
-        @*List<string> facets = this.FacetsData["bodyType"].Select(x => x.Value.ToString()).ToList();*@
-
-       @* List<string> facets = this.FacetsData["bodyType"].Select(x => x.FacetResult.Value.ToString()).ToList();
-        List<bool> activeFacets = this.FacetsData["bodyType"].Select(x => x.ActiveFacet).ToList();*@
 
         List<Facet> facets = this.FacetsData["bodyType"].ToList();
 
@@ -31,7 +27,6 @@
                         int facetNameNumber = int.Parse(facetName);
 
                         var facetLink = $"{(BodyType)facetNameNumber}";
-                        //var facetCount = $"({this.FacetsData["bodyType"][c].Count})";
                         var facetCount = $"({facets[c].FacetResult.Count})";
 
 
@@ -41,7 +36,6 @@
 
                         if(activeFacet)
                         {
-                             @*<li class="facet-option" @onclick="@(e => this.SearchFacet(facetName))">*@
                              <li class="facet-option" @onclick="@(e => this.SearchFacet(f))" style="display: flex; flex-wrap: nowrap; align-content: center; justify-content: space-between; align-items: center;">
 
                                  <div>
@@ -57,7 +51,6 @@
                         }
                         else
                         {
-                             @*<li class="facet-option" @onclick="@(e => this.SearchFacet(facetName))">*@
                              <li class="facet-option" @onclick="@(e => this.SearchFacet(f))" style="display: flex; flex-wrap: nowrap; align-content: center; justify-content: space-between; align-items: center;">
 
                             
@@ -73,8 +66,6 @@
                         </li>
                         }
                         
-
-                       
                     }
                 </ul>
             </div>

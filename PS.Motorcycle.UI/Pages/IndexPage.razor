@@ -38,10 +38,15 @@
                                                                OnModelClick="@this.OnModelClickHandlerAsync" />
                             <AzureCognitiveSearchFacetComponent FacetsData="@this.facetsData" 
                                                                 OnFacetClick="@this.OnFacetClickHandlerAsync" />
+                            <AzureCognitiveSearchProductionYearComponent YearData="@this.yearData" 
+                                                                         OnMinYearChanged="@this.OnMinYearChangedHandlerAsync" 
+                                                                         OnMaxYearChanged="@this.OnMaxYearChangedHandlerAsync" />
+                            <AzureCognitiveSearchEngineCapacityComponent EngineCapacity="@this.engineCapacityData" 
+                                                                         OnMinEngineCapacityChanged="@this.OnMinEngineCapacityChangedHandlerAsync"
+                                                                         OnMaxEngineCapacityChanged="@this.OnMaxEngineCapacityChangedHandlerAsync" />
                            @* 
-                            <AzureCognitiveSearchProductionYearComponent YearData="@this.yearData" />
                             <AzureCognitiveSearchDriveTypeComponent SearchData="@this.searchData" />
-                            <AzureCognitiveSearchCapacityComponent SearchData="@this.searchData" />*@
+                            *@
                         </div>
                     </div>
 

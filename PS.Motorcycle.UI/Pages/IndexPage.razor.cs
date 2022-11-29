@@ -35,7 +35,8 @@ namespace PS.Motorcycle.UserPortal.Pages
 
         private Dictionary<string, string> makeData;
         private Dictionary<string, string> modelData;
-        private Dictionary<string, string> yearData;
+        private Dictionary<int, int> yearData;
+        private Dictionary<int, int> engineCapacityData;
 
         //private IDictionary<string, IList<FacetResult>> facetsData;
         private IDictionary<string, IList<Facet>> facetsData;
@@ -70,7 +71,8 @@ namespace PS.Motorcycle.UserPortal.Pages
 
             this.makeData = new Dictionary<string, string>();
             this.modelData = new Dictionary<string, string>();
-            this.yearData = new Dictionary<string, string>();
+            this.yearData = new Dictionary<int, int>();
+            this.engineCapacityData = new Dictionary<int, int>();
             
             //this.facetsData = new Dictionary<string, IList<FacetResult>>();
             this.facetsData = new Dictionary<string, IList<Facet>>();
@@ -119,22 +121,13 @@ namespace PS.Motorcycle.UserPortal.Pages
             }
 
 
-            //this.test = new Dictionary<string, IList<Facet>>();
-            //foreach(var t in this.searchData.resultList.Facets)
-            //{
-            //    List<Facet> l = new List<Facet>();
-            //    foreach(FacetResult f in t.Value)
-            //    {
-            //        Facet x = new Facet() { ActiveFacet = false, FacetResult = f};
-            //        l.Add(x);
-            //    }
-            //    this.test.Add(t.Key, l);
-            //}
 
 
             this.makeData = await this.SearchMotorcyclesUseCase.GetMakeDictionaryAsync();
+            this.yearData = await this.SearchMotorcyclesUseCase.GetProductionYearDictionaryAsync();
+            this.engineCapacityData = await this.SearchMotorcyclesUseCase.GetEngineCapacityDictionaryAsync();
 
-            StateHasChanged();
+            this.StateHasChanged();
         }
 
 
@@ -266,63 +259,93 @@ namespace PS.Motorcycle.UserPortal.Pages
         }
 
 
-        //protected async ValueTask<ItemsProviderResult<IMotorcycleDTO>> LoadMotorcycles(ItemsProviderRequest request)
-        //{
-        //    //var motorcycles = await this.GetMotorcyclesUseCase.Execute();
-        //    //return new ItemsProviderResult<IMotorcycle>(motorcycles.Skip(request.StartIndex).Take(request.Count), motorcycles.Count());
-        //    List<IMotorcycleDTO> moto = new List<IMotorcycleDTO>();
-        //    IEnumerable<IMotorcycleDTO> motorcycles = new List<IMotorcycleDTO>();
+        private async Task OnMinYearChangedHandlerAsync(int year)
+        {
+            this.searchData.searchText = string.Empty;
+            this.filters["minYear"] = year.ToString();
 
-        //    //if (!this.searchResults.Count().Equals(0))
-        //    //{
-        //    //    motorcycles = this.searchResults;
-        //    //}
+            AzureCognitiveSearchData model = new AzureCognitiveSearchData()
+            {
+                searchText = this.searchData.searchText,
+                currentPage = this.searchData.currentPage,
+                pageCount = this.searchData.pageCount,
+                leftMostPage = this.searchData.leftMostPage,
+                pageRange = this.searchData.pageRange,
+                paging = this.searchData.paging,
+                filters = this.filters
+            };
 
-        //    //if(!this.searchData.resultList.TotalCount.Equals(0))
-        //    if (this.searchData is not null)
-        //    {
-        //        var x = this.searchData.resultList.GetResults().ToList();
-        //        foreach (var item in x)
-        //        {
-        //            moto.Add(item.Document);
-        //        }
-        //        motorcycles = (IEnumerable<IMotorcycleDTO>)moto;
-        //    }
+            this.searchData = await this.SearchMotorcyclesUseCase.GetFilteredDataAsync(model);
 
+            this.StateHasChanged();
+        }
 
-        //    return new ItemsProviderResult<IMotorcycleDTO>(motorcycles.Skip(request.StartIndex).Take(request.Count), motorcycles.Count());
+        private async Task OnMaxYearChangedHandlerAsync(int year)
+        {
+            this.searchData.searchText = string.Empty;
+            this.filters["maxYear"] = year.ToString();
 
-        //}
+            AzureCognitiveSearchData model = new AzureCognitiveSearchData()
+            {
+                searchText = this.searchData.searchText,
+                currentPage = this.searchData.currentPage,
+                pageCount = this.searchData.pageCount,
+                leftMostPage = this.searchData.leftMostPage,
+                pageRange = this.searchData.pageRange,
+                paging = this.searchData.paging,
+                filters = this.filters
+            };
 
+            this.searchData = await this.SearchMotorcyclesUseCase.GetFilteredDataAsync(model);
 
+            this.StateHasChanged();
+        }
 
+        private async Task OnMinEngineCapacityChangedHandlerAsync(int minEngineCapacity)
+        {
+            this.searchData.searchText = string.Empty;
+            this.filters["minEngineCapacity"] = minEngineCapacity.ToString();
 
+            AzureCognitiveSearchData model = new AzureCognitiveSearchData()
+            {
+                searchText = this.searchData.searchText,
+                currentPage = this.searchData.currentPage,
+                pageCount = this.searchData.pageCount,
+                leftMostPage = this.searchData.leftMostPage,
+                pageRange = this.searchData.pageRange,
+                paging = this.searchData.paging,
+                filters = this.filters
+            };
 
+            this.searchData = await this.SearchMotorcyclesUseCase.GetFilteredDataAsync(model);
 
-        //private async Task SearchFacet(string facetName, string searchText)
-        //{
-        //    //this.searchData.bodyTypeFilter = facetName;
-        //    this.searchData.searchText = searchText;
+            this.StateHasChanged();
+        }
 
-        //    AzureCognitiveSearchData model = new AzureCognitiveSearchData()
-        //    {
-        //        searchText = this.searchData.searchText,
-        //        currentPage = this.searchData.currentPage,
-        //        pageCount = this.searchData.pageCount,
-        //        leftMostPage = this.searchData.leftMostPage,
-        //        pageRange = this.searchData.pageRange,
-        //        paging = this.searchData.paging,
-        //        //bodyTypeFilter = this.searchData.bodyTypeFilter,
-        //    };
+        private async Task OnMaxEngineCapacityChangedHandlerAsync(int maxEngineCapacity)
+        {
+            this.searchData.searchText = string.Empty;
+            this.filters["maxEngineCapacity"] = maxEngineCapacity.ToString();
 
-        //    this.searchData = await this.SearchMotorcyclesUseCase.ExecuteFacetAsync(model);
-        //}
+            AzureCognitiveSearchData model = new AzureCognitiveSearchData()
+            {
+                searchText = this.searchData.searchText,
+                currentPage = this.searchData.currentPage,
+                pageCount = this.searchData.pageCount,
+                leftMostPage = this.searchData.leftMostPage,
+                pageRange = this.searchData.pageRange,
+                paging = this.searchData.paging,
+                filters = this.filters
+            };
+
+            this.searchData = await this.SearchMotorcyclesUseCase.GetFilteredDataAsync(model);
+
+            this.StateHasChanged();
+        }
+
 
         private async Task SearchPager(string paging, string searchText)
         {
-            //SearchData.Paging = paging.ToString();
-            //SearchData.SearchText = searchText;
-            //await Search();
 
             this.searchData.paging = paging;
             this.searchData.searchText = searchText;
