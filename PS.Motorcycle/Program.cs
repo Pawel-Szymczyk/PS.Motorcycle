@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
-using PS.Motorcycle.Data;
 using Microsoft.Azure.Cosmos;
 using PS.Motorcycle.Domain.Models;
 using PS.Motorcycle.Infrastructure.CosmosDB;
@@ -54,7 +53,6 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor()
     .AddMicrosoftIdentityConsentHandler();
-builder.Services.AddSingleton<WeatherForecastService>();
 
 builder.Services.AddSingleton<IBreadcrumbService, BreadcrumbService>();
 
