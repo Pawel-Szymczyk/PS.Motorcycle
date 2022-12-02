@@ -9,5 +9,27 @@
   --text-black: #000000;
   --text-red: #c60021;
   --text-white: #ffffff;
-  --header-font: 'Poiret One', cursive;
-  --normal-font: 'Montserrat', sans-serif; }
+  --header-font: "Poiret One", cursive;
+  --normal-font: "Montserrat", sans-serif;
+}
+
+.pageSelected {
+  color: var(--text-red);
+}
+
+.pagination {
+  padding: 10px 0;
+  justify-content: flex-end;
+  margin: 0;
+}
+
+.page-link {
+  border: none;
+}
+
+.disabled {
+  color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+}

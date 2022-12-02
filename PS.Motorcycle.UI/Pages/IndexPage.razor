@@ -114,118 +114,19 @@
     {
         <div class="container-fluid" style="background-color: white; margin-top: 1em; border-radius: 10px; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;">
            
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col-sm-12 col-md-10 pagination-container">
-                            
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-sm-12 col-md-10 pagination-container">
+                        
+                    <PagingComponent CurrentPage=@this.searchData.currentPage 
+                                     LeftMostPage=@this.searchData.leftMostPage 
+                                     PageCount=@this.searchData.pageCount 
+                                     PageRange=@this.searchData.pageRange 
+                                     SearchText=@this.searchData.searchText 
+                                     OnSearchPagerClick=@this.OnSearchPagerClickHandlerAsync />
 
-
-                        <nav aria-label="paging">
-                            <ul class="pagination" style="padding: 10px 0; justify-content: flex-end; margin: 0;">
-
-                            @if (this.searchData.currentPage > 0)
-                            {
-                                <li class="page-item">
-                                    <a class="page-link" aria-label="First page" @onclick="@(e => SearchPager(0.ToString(), this.searchData.searchText))">
-                                        <span aria-hidden="true">|&#60;</span>
-                                    </a>
-                                </li>
-                            }
-                            else
-                            {
-                                <li class="page-item disabled">
-                                    <a class="page-link">
-                                        <span aria-hidden="true">|&lt;</span> 
-                                    </a>
-                                </li>
-                            }
-                                    
-
-                            @if (this.searchData.currentPage > 0)
-                            {
-                                var prev = "prev";
-                                <li class="page-item">
-                                    <a class="page-link" aria-label="First page" @onclick="@(e => SearchPager(prev, this.searchData.searchText))">
-                                        <span aria-hidden="true">&#60;</span>
-                                    </a>
-                                </li>
-                            }
-                            else
-                            {
-                                <li class="page-item disabled">
-                                    <a class="page-link">
-                                        <span aria-hidden="true">|&lt;</span> 
-                                    </a>
-                                </li>
-                            }
-
-                            @for (var pn = this.searchData.leftMostPage; pn < this.searchData.leftMostPage + this.searchData.pageRange; pn++)
-                            {
-                                <li class="page-item">
-                                    @if (this.searchData.currentPage == pn)
-                                    {
-                                        // Convert displayed page numbers to 1-based and not 0-based.
-                                        <a class="page-link pageSelected">@(pn + 1)</a>
-                                    }
-                                    else
-                                    {
-                                                   
-                                        var p1 = this.searchData.pageCount - 1;
-                                        var plink = pn.ToString();
-                                                    
-                                        <a class="page-link pageButton" @onclick="@(e => SearchPager(plink, this.searchData.searchText))">@(pn + 1)</a>
-                                    }
-                                </li>
-                            }
-
-                            @if (this.searchData.currentPage < this.searchData.pageCount - 1)
-                            {
-                                var p1 = this.searchData.pageCount - 1;
-                                var next = "next";
-
-                                    <li class="page-item">
-                                    <a class="page-link" aria-label="Next" @onclick="@(e => SearchPager(next, this.searchData.searchText))">
-                                    <span aria-hidden="true">&#62;</span>
-                                    </a>
-                                </li>
-
-                            }
-                            else
-                            {
-                                <li class="page-item disabled">
-                                    <a class="page-link">
-                                        <span aria-hidden="true">&gt;|</span> 
-                                    </a>
-                                </li>
-                            }
-
-                            @if (this.searchData.currentPage < this.searchData.pageCount - 1)
-                            {
-                                var p7 = this.searchData.pageCount - 1;
-                                <li class="page-item">
-                                    <a class="page-link" aria-label="Next" @onclick="@(e => SearchPager(p7.ToString(), this.searchData.searchText))">
-                                    <span aria-hidden="true">&#62;|</span>
-                                    </a>
-                                </li>
-                            }
-                            else
-                            {
-                                <li class="page-item disabled">
-                                    <a class="page-link">
-                                        <span aria-hidden="true">&gt;|</span> 
-                                    </a>
-                                </li>
-                            }
-
-                            </ul>
-                        </nav>
-
-
-
-
-
-                    </div>
                 </div>
+            </div>
            
         </div>
     }

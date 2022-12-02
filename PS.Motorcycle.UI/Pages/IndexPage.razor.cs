@@ -344,11 +344,12 @@ namespace PS.Motorcycle.UserPortal.Pages
         }
 
 
-        private async Task SearchPager(string paging, string searchText)
+        //private async Task SearchPager(string paging, string searchText)
+        private async Task OnSearchPagerClickHandlerAsync(Paging paging)
         {
 
-            this.searchData.paging = paging;
-            this.searchData.searchText = searchText;
+            this.searchData.paging = paging.Page;
+            this.searchData.searchText = paging.SearchText;
 
             await this.Search();
         }

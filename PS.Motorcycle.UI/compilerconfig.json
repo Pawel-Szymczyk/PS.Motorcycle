@@ -1,6 +1,13 @@
 ﻿[
   {
-    "outputFile": "wwwroot/css/portal.css",
-    "inputFile": "wwwroot/styles/portal.scss"
-  }
+    "outputFile": "wwwroot/css/site.css",
+    "inputFile": "wwwroot/styles/app.scss",
+    "minify": {
+      "enabled": true
+    },
+    "options": {
+      "sourceMap": true
+    }
+  },
+ 
 ]

@@ -1,0 +1,97 @@
+﻿<nav aria-label="paging">
+    <ul class="pagination">
+
+    @if (this.CurrentPage > 0)
+    {
+        <li class="page-item">
+            <a class="page-link" aria-label="First page" @onclick="@(async e => await this.OnSearchPagerClickAsync(0.ToString(), this.SearchText))">
+                <span aria-hidden="true">|&#60;</span>
+            </a>
+        </li>
+    }
+    else
+    {
+        <li class="page-item disabled">
+            <a class="page-link">
+                <span aria-hidden="true">|&lt;</span> 
+            </a>
+        </li>
+    }
+                                    
+
+    @if (this.CurrentPage > 0)
+    {
+        var prev = "prev";
+        <li class="page-item">
+            <a class="page-link" aria-label="First page" @onclick="@(async e => await this.OnSearchPagerClickAsync(prev, this.SearchText))">
+                <span aria-hidden="true">&#60;</span>
+            </a>
+        </li>
+    }
+    else
+    {
+        <li class="page-item disabled">
+            <a class="page-link">
+                <span aria-hidden="true">|&lt;</span> 
+            </a>
+        </li>
+    }
+
+    @for (var pn = this.LeftMostPage; pn < this.LeftMostPage + this.PageRange; pn++)
+    {
+        <li class="page-item">
+            @if (this.CurrentPage == pn)
+            {
+                // Convert displayed page numbers to 1-based and not 0-based.
+                <a class="page-link pageSelected">@(pn + 1)</a>
+            }
+            else
+            {                                 
+                var p1 = this.PageCount - 1;
+                var plink = pn.ToString();
+                                                    
+                <a class="page-link pageButton" @onclick="@(async e => await this.OnSearchPagerClickAsync(plink, this.SearchText))">@(pn + 1)</a>
+            }
+        </li>
+    }
+
+    @if (this.CurrentPage < this.PageCount - 1)
+    {
+        var p1 = this.PageCount - 1;
+        var next = "next";
+
+            <li class="page-item">
+            <a class="page-link" aria-label="Next" @onclick="@(async e => await this.OnSearchPagerClickAsync(next, this.SearchText))">
+            <span aria-hidden="true">&#62;</span>
+            </a>
+        </li>
+    }
+    else
+    {
+        <li class="page-item disabled">
+            <a class="page-link">
+                <span aria-hidden="true">&gt;|</span> 
+            </a>
+        </li>
+    }
+
+    @if (this.CurrentPage < this.PageCount - 1)
+    {
+        var p7 = this.PageCount - 1;
+        <li class="page-item">
+            <a class="page-link" aria-label="Next" @onclick="@(async e => await this.OnSearchPagerClickAsync(p7.ToString(), this.SearchText))">
+            <span aria-hidden="true">&#62;|</span>
+            </a>
+        </li>
+    }
+    else
+    {
+        <li class="page-item disabled">
+            <a class="page-link">
+                <span aria-hidden="true">&gt;|</span> 
+            </a>
+        </li>
+    }
+
+    </ul>
+</nav>

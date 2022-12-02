@@ -1,0 +1,58 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poiret+One&display=swap");
+:root {
+  --header-background: #ffffff;
+  --page-background: #ffffff;
+  --container-background: #ffffff;
+  --card-background: #ffffff;
+  --footer-background: #ffffff;
+  --text-black: #000000;
+  --text-red: #c60021;
+  --text-white: #ffffff;
+  --test-disabled: #c2c6c9;
+  --header-font: "Poiret One", cursive;
+  --normal-font: "Montserrat", sans-serif;
+}
+
+/* phone first layout */
+.pagination {
+  padding: 10px 0;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.page-link {
+  border: none;
+  font-family: var(--normal-font);
+  font-weight: 500;
+}
+
+.page-link, .page-link:hover {
+  color: var(---text-black);
+}
+
+.pageSelected {
+  color: var(--text-red);
+}
+
+.disabled {
+  color: var(--test-disabled);
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+}
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px) and (max-device-width: 1199px) {
+  .pagination {
+    justify-content: flex-end;
+  }
+}
+/* For Desktop View */
+@media screen and (min-width: 1200px) {
+  .pagination {
+    justify-content: flex-end;
+  }
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PagingComponent.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AACQ;AACA;AAER;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;ACXJ;AAEA;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;;;AAGJ;AACA;EACI;IACI;;;AAKR;AACA;EACI;IACI%22%7D */
