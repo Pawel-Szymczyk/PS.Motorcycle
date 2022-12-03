@@ -1,4 +1,7 @@
-﻿@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
+﻿/*components*/
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poiret+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poiret+One&display=swap");
 :root {
   --header-background: #ffffff;
@@ -54,5 +57,86 @@
     justify-content: flex-end;
   }
 }
+:root {
+  --header-background: #ffffff;
+  --page-background: #ffffff;
+  --container-background: #ffffff;
+  --card-background: #ffffff;
+  --footer-background: #ffffff;
+  --text-black: #000000;
+  --text-red: #c60021;
+  --text-white: #ffffff;
+  --test-disabled: #c2c6c9;
+  --header-font: "Poiret One", cursive;
+  --normal-font: "Montserrat", sans-serif;
+}
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PagingComponent.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AACQ;AACA;AAER;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;ACXJ;AAEA;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;;;AAGJ;AACA;EACI;IACI;;;AAKR;AACA;EACI;IACI%22%7D */
+.filters-pills-container {
+  margin: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.filter-pill {
+  margin-right: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}
+
+.filter-pill-close-btn {
+  margin-left: 15px;
+}
+
+/*pages*/
+/* phone (default) */
+/* For Tablet View */
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  /*    .results-container {
+      margin: 0;
+  }*/
+}
+/* For Desktop View */
+@media screen and (min-width: 1200px) {
+  /*    .results-container {
+      margin: 0 10rem;
+  }*/
+}
+/*TODO: move to toolbar later*/
+.toolbar-container {
+  margin-bottom: 2em;
+  margin-top: 2em;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: #d6d6d6;
+  padding: 5px 0;
+}
+
+.toolbar {
+  /*padding: 1.5rem 0;*/
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.search-container {
+  margin-bottom: 2em;
+  padding: 3em;
+  /*box-shadow: rgb(0 0 0 / 25%) 0px 0.0625em 0.0625em, rgb(0 0 0 / 25%) 0px 0.125em 0.5em, rgb(255 255 255 / 10%) 0px 0px 0px 1px inset;*/
+  /*border-width: 2px;
+  border-style: solid;
+  border-color: #d6d6d6;*/
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0.3px 0.9px, rgba(0, 0, 0, 0.13) 0px 1.6px 3.6px;
+}
+
+.filter-container {
+  width: 100%;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/app.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PagingComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PillComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Pages/IndexPage.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAAC;ACCO;AACA;AADA;AACA;AAER;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;ACXJ;AAEA;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;;;AAGJ;AACA;EACI;IACI;;;AAKR;AACA;EACI;IACI;;;ADxCR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AEXJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AHrBJ;AIFA;AAIA;AACA;AACI;AAAA;AAAA;;AAMJ;AACA;AACI;AAAA;AAAA;;AAOJ;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;AACI;EACA;EACA;;;AAIJ;EACI;EACA;AACA;AACA;AAAA;AAAA;EAGA;;;AAIJ;EACI%22%7D */

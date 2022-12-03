@@ -42,6 +42,8 @@ namespace PS.Motorcycle.UserPortal.Pages
         private IDictionary<string, IList<Facet>> facetsData;
         //private IDictionary<string, IList<Facet>> test;
 
+        private Dictionary<string, string> filters = new Dictionary<string, string>();
+
         [Inject]
         private NavigationManager NavigationManager { get; set; } = default!;
 
@@ -182,7 +184,7 @@ namespace PS.Motorcycle.UserPortal.Pages
         }
 
 
-        private Dictionary<string, string> filters = new Dictionary<string, string>();
+        
         private async Task OnMakeClickHandlerAsync(string filter)
         {
             this.modelData = await this.SearchMotorcyclesUseCase.GetModelDictionaryAsync(filter);
@@ -402,14 +404,14 @@ namespace PS.Motorcycle.UserPortal.Pages
 
 
 
-        private async Task OnFilterResetClick()
+        private async Task OnFilterResetClickHandlerAsync()
         {
             this.filters = new Dictionary<string, string>();
 
             await this.OnSearchClick(string.Empty);
         }
 
-        private async Task OnFilterRemoveClick(string key)
+        private async Task OnFilterRemoveClickHandlerAsync(string key)
         {
             this.filters.Remove(key);
 

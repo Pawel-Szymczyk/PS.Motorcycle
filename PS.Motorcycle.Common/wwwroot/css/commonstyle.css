@@ -1,0 +1,66 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poiret+One&display=swap");
+:root {
+  --header-background: #ffffff;
+  --page-background: #ffffff;
+  --container-background: #ffffff;
+  --card-background: #ffffff;
+  --footer-background: #ffffff;
+  --text-black: #000000;
+  --text-red: #c60021;
+  --text-white: #ffffff;
+  --test-disabled: #c2c6c9;
+  --header-font: "Poiret One", cursive;
+  --normal-font: "Montserrat", sans-serif;
+}
+
+/* phone first layout */
+.card {
+  /*border-radius: 0;*/
+  /*box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;*/
+  /*box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;*/
+  /*box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;*/
+  /*box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px, rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px, rgba(0, 0, 0, 0.07) 0px 16px 16px;*/
+  /*box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;*/
+  /*box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;*/
+  /*border-radius: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;*/
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0.3px 0.9px, rgba(0, 0, 0, 0.13) 0px 1.6px 3.6px;
+  cursor: pointer;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-body {
+  z-index: 1;
+}
+
+.raven-image-container {
+  position: relative;
+  z-index: 2;
+}
+
+.raven-image {
+  position: absolute;
+  left: 50%;
+}
+
+.raven-image img {
+  margin-left: -50%;
+  margin-top: -30%;
+  border-radius: 100px 100px 100px 100px;
+}
+
+.card-img-top {
+  min-height: 12em;
+  background-color: lightgrey;
+}
+
+/* For Tablet View */
+/* For Desktop View */
+
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/CardComponent.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AACQ;AACA;AAER;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;ACZJ;AAGA;AAGI;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAAA;EAEA;EACA;EACA;;;AAGJ;EACI;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;;;AAGJ;EACI;EACA;;;AAGA;EACI;EACA;EACA;;;AAGR;EACI;EACA;;;AAMJ;AAMA%22%7D */

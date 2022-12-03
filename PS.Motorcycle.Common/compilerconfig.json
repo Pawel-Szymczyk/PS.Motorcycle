@@ -1,6 +1,13 @@
 ﻿[
   {
-    "outputFile": "wwwroot/css/theme.css",
-    "inputFile": "wwwroot/styles/theme.scss"
+    "outputFile": "wwwroot/css/commonstyle.css",
+    "inputFile": "wwwroot/styles/app.scss",
+    "minify": {
+      "enabled": true
+    },
+    "options": {
+      "sourceMap": true
+    }
   }
+
 ]

@@ -1,1 +1,6 @@
-﻿@import "../../Controls/PagingComponent.razor.scss";
+﻿/*components*/
+@import "../../Controls/PagingComponent.razor.scss";
+@import "../../Controls/PillComponent.razor.scss";
+
+/*pages*/
+@import "../../Pages/IndexPage.razor.scss";

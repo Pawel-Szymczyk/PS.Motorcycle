@@ -58,27 +58,3 @@
 
 
 
-
-.filters-pils-container {
-    margin: 10px 0;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.filter-pill {
-    margin-right: 10px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    width: fit-content;
-}
-
-.filter-pill-close-btn {
-    margin-left: 15px;
-}
