@@ -4,17 +4,22 @@
 @using PS.Motorcycle.Domain.Types
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
-<div style="height: inherit;">
+<div class="main">
     
-    <div class="breadcrumbs-container">
-        <BreadcrumbComponent Breadcrumbs="@this.Breadcrumbs"></BreadcrumbComponent>
+    <div class="main-section">
+
+        <div class="breadcrumbs-container">
+            <BreadcrumbComponent Breadcrumbs="@this.Breadcrumbs"></BreadcrumbComponent>
+        </div>
+
     </div>
 
-    <div class="container-fluid" style="background-color: white;  height: calc(100% - 10rem); padding-top: 50px; padding-bottom: 50px; border-radius: 10px; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; overflow-y: auto;">
 
-        <div class="container">
+    <div id="search-section" class="main-section">
+        <div class="panel search-panel">
 
-            <div>
+            <div class="container">
+
                 <div class="search-container">
                     <SearchComponent OnSearchClick="@this.OnSearchClick" />
                 </div>
@@ -30,21 +35,24 @@
                 else
                 {
                     <div class="row">
-                        <div class="col-sm-12 col-md-2 col-lg-2" style="border-right: 1px solid rgba(0,0,0,.125);">
+                        <div class="col-sm-12 col-md-2 col-lg-2 " style="border-right: 1px solid rgba(0,0,0,.125);">
                             @*filters*@
                             <div class="filter-container">
                                 <AzureCognitiveSearchMakeComponent MakeData="@this.makeData" 
-                                                                   ModelData="@this.modelData" 
-                                                                   OnMakeClick="@this.OnMakeClickHandlerAsync" 
-                                                                   OnModelClick="@this.OnModelClickHandlerAsync" />
+                                                                    ModelData="@this.modelData" 
+                                                                    OnMakeClick="@this.OnMakeClickHandlerAsync" 
+                                                                    OnModelClick="@this.OnModelClickHandlerAsync" />
+
                                 <AzureCognitiveSearchFacetComponent FacetsData="@this.facetsData" 
                                                                     OnFacetClick="@this.OnFacetClickHandlerAsync" />
+
                                 <AzureCognitiveSearchProductionYearComponent YearData="@this.yearData" 
-                                                                             OnMinYearChanged="@this.OnMinYearChangedHandlerAsync" 
-                                                                             OnMaxYearChanged="@this.OnMaxYearChangedHandlerAsync" />
+                                                                                OnMinYearChanged="@this.OnMinYearChangedHandlerAsync" 
+                                                                                OnMaxYearChanged="@this.OnMaxYearChangedHandlerAsync" />
+
                                 <AzureCognitiveSearchEngineCapacityComponent EngineCapacity="@this.engineCapacityData" 
-                                                                             OnMinEngineCapacityChanged="@this.OnMinEngineCapacityChangedHandlerAsync"
-                                                                             OnMaxEngineCapacityChanged="@this.OnMaxEngineCapacityChangedHandlerAsync" />
+                                                                                OnMinEngineCapacityChanged="@this.OnMinEngineCapacityChangedHandlerAsync"
+                                                                                OnMaxEngineCapacityChanged="@this.OnMaxEngineCapacityChangedHandlerAsync" />
                             </div>
                         </div>
 
@@ -52,11 +60,10 @@
                             @if(this.filters.Count() > 0)
                             {
                                 <PillComponent Filters=@this.filters 
-                                               OnFilterRemoveClick=@this.OnFilterRemoveClickHandlerAsync
-                                               OnFilterResetClick=@this.OnFilterResetClickHandlerAsync />
+                                                OnFilterRemoveClick=@this.OnFilterRemoveClickHandlerAsync
+                                                OnFilterResetClick=@this.OnFilterResetClickHandlerAsync />
                             }
                         
-
                             <div class="row row-cols-1 row-cols-md-3 g-4 motorcycles-list">
                                 @*results *@
 
@@ -73,37 +80,38 @@
                         </div>
                     </div>
                 }
-            </div>
 
+            </div>
         </div>
+    </div>
+    <div class="main-section">
+        @*pagination*@
+        @if(this.searchData != null && this.searchData.pageCount > 1)
+        {
+            <div class="panel paging-panel container-fluid">
+           
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-sm-12 col-md-10 pagination-container">
+                        
+                        <PagingComponent CurrentPage=@this.searchData.currentPage 
+                                         LeftMostPage=@this.searchData.leftMostPage 
+                                         PageCount=@this.searchData.pageCount 
+                                         PageRange=@this.searchData.pageRange 
+                                         SearchText=@this.searchData.searchText 
+                                         OnSearchPagerClick=@this.OnSearchPagerClickHandlerAsync />
+
+                    </div>
+                </div>
+           
+            </div>
+        }
+    </div>
+    <div class="main-section">
+        <FooterComponent />
     </div>
 
 
 
-    @*pagination*@
-    @if(this.searchData != null && this.searchData.pageCount > 1)
-    {
-        <div class="container-fluid" style="background-color: white; margin-top: 1em; border-radius: 10px; box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;">
-           
-            <div class="row">
-                <div class="col-2"></div>
-                <div class="col-sm-12 col-md-10 pagination-container">
-                        
-                    <PagingComponent CurrentPage=@this.searchData.currentPage 
-                                     LeftMostPage=@this.searchData.leftMostPage 
-                                     PageCount=@this.searchData.pageCount 
-                                     PageRange=@this.searchData.pageRange 
-                                     SearchText=@this.searchData.searchText 
-                                     OnSearchPagerClick=@this.OnSearchPagerClickHandlerAsync />
-
-                </div>
-            </div>
-           
-        </div>
-    }
-    
-
-
-    <FooterComponent />
 </div>
 

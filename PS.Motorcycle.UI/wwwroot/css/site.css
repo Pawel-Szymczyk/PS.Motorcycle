@@ -97,17 +97,42 @@
 
 /*pages*/
 /* phone (default) */
+.main {
+  height: inherit;
+}
+
+.panel {
+  background-color: white;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 10px;
+}
+
+#search-section {
+  height: calc(100% - 10rem);
+}
+
+.search-panel {
+  height: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  overflow-y: auto;
+}
+
+.paging-panel {
+  margin-top: 1em;
+}
+
 /* For Tablet View */
 @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  /*    .results-container {
-      margin: 0;
-  }*/
+  #search-section {
+    height: calc(100% - 6rem);
+  }
 }
 /* For Desktop View */
 @media screen and (min-width: 1200px) {
-  /*    .results-container {
-      margin: 0 10rem;
-  }*/
+  #search-section {
+    height: calc(100% - 6rem);
+  }
 }
 /*TODO: move to toolbar later*/
 .toolbar-container {
@@ -139,4 +164,4 @@
   width: 100%;
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/app.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PagingComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PillComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Pages/IndexPage.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAAC;ACCO;AACA;AADA;AACA;AAER;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;ACXJ;AAEA;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;;;AAGJ;AACA;EACI;IACI;;;AAKR;AACA;EACI;IACI;;;ADxCR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AEXJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AHrBJ;AIFA;AAIA;AACA;AACI;AAAA;AAAA;;AAMJ;AACA;AACI;AAAA;AAAA;;AAOJ;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;AACI;EACA;EACA;;;AAIJ;EACI;EACA;AACA;AACA;AAAA;AAAA;EAGA;;;AAIJ;EACI%22%7D */
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/app.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PagingComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PillComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Pages/IndexPage.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAAC;ACCO;AACA;AADA;AACA;AAER;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;ACXJ;AAEA;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;;;AAGJ;AACA;EACI;IACI;;;AAKR;AACA;EACI;IACI;;;ADxCR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AEXJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AHrBJ;AIFA;AACA;EACI;;;AAGJ;EACI;EACA;EACA;;;AAIJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;;;AAGJ;EACI;;;AAGJ;AACA;EACI;IACI;;;AAKR;AACA;EACI;IACI;;;AAMR;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;AACI;EACA;EACA;;;AAIJ;EACI;EACA;AACA;AACA;AAAA;AAAA;EAGA;;;AAMJ;EACI%22%7D */
