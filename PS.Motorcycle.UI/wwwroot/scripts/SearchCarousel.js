@@ -1,6 +1,6 @@
 ﻿
 var multipleItemCarousel = document.querySelector(
-    "#carouselExampleControls"
+    "#bodyTypeCarousel"
 );
 
 if (window.matchMedia("(min-width: 576px)").matches) {
@@ -20,17 +20,14 @@ if (window.matchMedia("(min-width: 576px)").matches) {
         $(".carousel-control-next").on("click", function () {
             if (scrollPosition < (carouselWidth - cardWidth * 4)) { //check if you can go any further
                 scrollPosition += cardWidth;  //update scroll position
-                $(".carousel-inner").animate({ scrollLeft: scrollPosition }, 600); //scroll left
+            $(".carousel-inner").animate({ scrollLeft: scrollPosition }, 0); //scroll left
             }
         });
 
         $(".carousel-control-prev").on("click", function () {
             if (scrollPosition > 0) {
                 scrollPosition -= cardWidth;
-                $(".carousel-inner").animate(
-                    { scrollLeft: scrollPosition },
-                    600
-                );
+                $(".carousel-inner").animate({ scrollLeft: scrollPosition },0);
             }
         });
     }

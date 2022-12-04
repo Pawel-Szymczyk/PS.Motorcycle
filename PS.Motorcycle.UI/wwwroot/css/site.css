@@ -1,22 +1,26 @@
-﻿/*components*/
-@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poiret+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
+﻿@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poiret+One&display=swap");
 :root {
   --header-background: #ffffff;
   --page-background: #ffffff;
+  --panel-background: #ffffff;
   --container-background: #ffffff;
   --card-background: #ffffff;
   --footer-background: #ffffff;
-  --text-black: #000000;
-  --text-red: #c60021;
-  --text-white: #ffffff;
-  --test-disabled: #c2c6c9;
-  --header-font: "Poiret One", cursive;
-  --normal-font: "Montserrat", sans-serif;
+  --color-black: #000000;
+  --color-red: #c60021;
+  --color-white: #ffffff;
+  --color-disabled: #c2c6c9;
+  --primary-font: "Poiret One", cursive;
+  --secondary-font: "Montserrat", sans-serif;
+  --border-radius: 10px;
+  --letter-spacing: 10px;
+  --box-shadow: rgb(0 0 0 / 10%) 0px 0.3px 0.9px, rgb(0 0 0 / 13%) 0px 1.6px 3.6px;
+  --border: 1px solid rgba(0,0,0,.125);
 }
 
+/*components*/
+/*@import "../wwwroot/styles/theme.scss";*/
 /* phone first layout */
 .pagination {
   padding: 10px 0;
@@ -26,20 +30,20 @@
 
 .page-link {
   border: none;
-  font-family: var(--normal-font);
+  font-family: var(--secondary-font);
   font-weight: 500;
 }
 
 .page-link, .page-link:hover {
-  color: var(---text-black);
+  color: var(--color-black);
 }
 
 .pageSelected {
-  color: var(--text-red);
+  color: var(--color-red);
 }
 
 .disabled {
-  color: var(--test-disabled);
+  color: var(--color-disabled);
   cursor: not-allowed;
   opacity: 0.5;
   text-decoration: none;
@@ -57,20 +61,7 @@
     justify-content: flex-end;
   }
 }
-:root {
-  --header-background: #ffffff;
-  --page-background: #ffffff;
-  --container-background: #ffffff;
-  --card-background: #ffffff;
-  --footer-background: #ffffff;
-  --text-black: #000000;
-  --text-red: #c60021;
-  --text-white: #ffffff;
-  --test-disabled: #c2c6c9;
-  --header-font: "Poiret One", cursive;
-  --normal-font: "Montserrat", sans-serif;
-}
-
+/*@import "../wwwroot/styles/theme.scss";*/
 .filters-pills-container {
   margin: 10px 0;
   display: flex;
@@ -95,20 +86,205 @@
   margin-left: 15px;
 }
 
+/* phone (default) */
+.carousel-title {
+  font-family: var(--secondary-font);
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  color: var(--color-black);
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+#bodyTypeCarousel {
+  padding: 0;
+}
+
+.carousel-control-prev, .carousel-control-next {
+  width: 6vh;
+  height: 4vh;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.custom-tab-button {
+  padding: 0px;
+  border: none;
+  border-radius: var(--border-radius);
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  background-color: #000000 !important;
+  border: none;
+  width: inherit;
+}
+
+.custom-tab-button p {
+  color: #fff;
+  position: absolute;
+  text-transform: lowercase;
+  font-size: 30px;
+  margin: 0;
+  padding-right: 10px;
+  font-family: var(--primary-font);
+  font-weight: 400;
+  letter-spacing: var(--letter-spacing);
+}
+
+.custom-tab-button-img {
+  height: 10em;
+  object-fit: cover;
+  transition: 0.5s;
+  opacity: 0.4;
+  border-radius: var(--border-radius);
+}
+
+.custom-tab-button-img:hover {
+  opacity: 1;
+}
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .carousel-inner {
+    display: flex;
+    padding: 1em;
+  }
+  .carousel-item {
+    margin-right: 0;
+    display: block;
+  }
+  .custom-tab-button {
+    margin: 3px;
+    width: fit-content;
+  }
+  .custom-tab-button-img {
+    width: 19.2em;
+  }
+  .carousel-control-prev, .carousel-control-next {
+    width: 5vh;
+  }
+  .carousel-title {
+    justify-content: flex-start;
+    margin: 0;
+    padding-left: 1.2em;
+  }
+}
+/* For Desktop View */
+@media screen and (min-width: 1200px) {
+  .carousel-inner {
+    display: flex;
+    padding: 1em;
+  }
+  .carousel-item {
+    margin-right: 0;
+    display: block;
+  }
+  .custom-tab-button {
+    margin: 3px;
+    width: fit-content;
+  }
+  .custom-tab-button-img {
+    width: 19.2em;
+  }
+  .carousel-control-prev, .carousel-control-next {
+    width: 5vh;
+  }
+  .carousel-title {
+    justify-content: flex-start;
+    margin: 0;
+    padding-left: 1.2em;
+  }
+}
+/* phone (default) */
+.search-container-box {
+  display: flex;
+}
+
+.search-container-box-row, .search-container-box-row-2 {
+  border-bottom: var(--border);
+  padding-bottom: 24px;
+}
+
+.search-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-group > div {
+  margin-bottom: 10px;
+}
+
+.search-title {
+  font-family: var(--secondary-font);
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  color: var(--color-black);
+  margin-bottom: 10px;
+}
+
+.btn {
+  font-family: var(--secondary-font);
+}
+
+.btn-custom {
+  width: 100%;
+}
+
+.btn-outline-dark:hover {
+  background-color: var(--color-red);
+  border-color: var(--color-red);
+}
+
+.form-control {
+  font-family: var(--secondary-font);
+}
+
+/* For Tablet View */
+/* For Desktop View */
+@media screen and (min-width: 1200px) {
+  .search-container-box {
+    justify-content: space-around;
+  }
+  .search-container-box-row {
+    width: 100%;
+  }
+  .search-container-box-2 {
+    display: flex;
+    justify-content: flex-end;
+  }
+  .search-container-box-row-2 {
+    width: 1100px;
+  }
+  .search-group {
+    flex-direction: row;
+    padding: 0 24px;
+  }
+  .search-group > div {
+    margin-bottom: 0;
+  }
+  .search-title {
+    padding: 0 24px;
+  }
+  .submit-btn-container {
+    margin-left: 10px;
+  }
+}
 /*pages*/
 /* phone (default) */
 .main {
   height: inherit;
 }
 
-.panel {
-  background-color: white;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  border-radius: 10px;
+.main-search-section {
+  height: calc(100% - 10rem);
 }
 
-#search-section {
-  height: calc(100% - 10rem);
+.panel {
+  background-color: var(--panel-background);
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
 }
 
 .search-panel {
@@ -116,6 +292,14 @@
   padding-top: 50px;
   padding-bottom: 50px;
   overflow-y: auto;
+}
+
+.search-container {
+  margin-bottom: 1em;
+}
+
+.filter-container {
+  width: 100%;
 }
 
 .paging-panel {
@@ -134,34 +318,5 @@
     height: calc(100% - 6rem);
   }
 }
-/*TODO: move to toolbar later*/
-.toolbar-container {
-  margin-bottom: 2em;
-  margin-top: 2em;
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
-  border-bottom-color: #d6d6d6;
-  padding: 5px 0;
-}
 
-.toolbar {
-  /*padding: 1.5rem 0;*/
-  margin-right: 0;
-  margin-left: 0;
-}
-
-.search-container {
-  margin-bottom: 2em;
-  padding: 3em;
-  /*box-shadow: rgb(0 0 0 / 25%) 0px 0.0625em 0.0625em, rgb(0 0 0 / 25%) 0px 0.125em 0.5em, rgb(255 255 255 / 10%) 0px 0px 0px 1px inset;*/
-  /*border-width: 2px;
-  border-style: solid;
-  border-color: #d6d6d6;*/
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0.3px 0.9px, rgba(0, 0, 0, 0.13) 0px 1.6px 3.6px;
-}
-
-.filter-container {
-  width: 100%;
-}
-
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/app.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PagingComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PillComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Pages/IndexPage.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AAAC;ACCO;AACA;AADA;AACA;AAER;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;ACXJ;AAEA;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;;;AAGJ;AACA;EACI;IACI;;;AAKR;AACA;EACI;IACI;;;ADxCR;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AEXJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AHrBJ;AIFA;AACA;EACI;;;AAGJ;EACI;EACA;EACA;;;AAIJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;;;AAGJ;EACI;;;AAGJ;AACA;EACI;IACI;;;AAKR;AACA;EACI;IACI;;;AAMR;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;AACI;EACA;EACA;;;AAIJ;EACI;EACA;AACA;AACA;AAAA;AAAA;EAGA;;;AAMJ;EACI%22%7D */
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/app.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PagingComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PillComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/BodyTypeCaruselComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/SearchComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Pages/IndexPage.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AACQ;AACA;AAER;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AClBJ;ACDA;AAGA;AAEA;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;;;AAGJ;AACA;EACI;IACI;;;AAKR;AACA;EACI;IACI;;;AC3CR;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;ACvBJ;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AAIJ;EACI;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAIJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AAIJ;AACA;EAEI;IACI;IACA;;EAGJ;IACI;IACA;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;;EAGJ;IACI;IACA;IACA;;;AAIR;AACA;EACI;IACI;IACA;;EAGJ;IACI;IACA;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;;EAGJ;IACI;IACA;IACA;;;AC5HR;AAEA;EACI;;;AAMJ;EACI;EACA;;;AAMJ;EACI;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;;;AAGJ;EACI;EACA;;;AAGJ;EACI;;;AAGJ;AAKA;AACA;EAEI;IACI;;EAGJ;IACI;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;;EAGJ;IACI;;;AJpFR;AKNA;AACA;EACI;;;AAOJ;EACI;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;;;AAGJ;EACI;;;AAKJ;EACI;;;AAKJ;EACI;;;AAKJ;AACA;EACI;IACI;;;AAKR;AACA;EACI;IACI%22%7D */

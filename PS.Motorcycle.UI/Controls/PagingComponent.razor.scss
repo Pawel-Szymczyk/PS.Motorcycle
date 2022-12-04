@@ -1,5 +1,5 @@
 ﻿
-@import "../wwwroot/styles/theme.scss";
+/*@import "../wwwroot/styles/theme.scss";*/
 
 
 /* phone first layout */
@@ -12,20 +12,20 @@
 
 .page-link {
     border: none;
-    font-family: var(--normal-font);
+    font-family: var(--secondary-font);
     font-weight: 500;
 }
 
 .page-link, .page-link:hover {
-    color: var(---text-black);
+    color: var(--color-black);
 }
 
 .pageSelected {
-    color: var(--text-red);
+    color: var(--color-red);
 }
 
 .disabled {
-    color: var(--test-disabled);
+    color: var(--color-disabled);
     cursor: not-allowed;
     opacity: 0.5;
     text-decoration: none;

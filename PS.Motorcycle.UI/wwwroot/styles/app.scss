@@ -1,6 +1,10 @@
-﻿/*components*/
+﻿@import "theme.scss";
+
+/*components*/
 @import "../../Controls/PagingComponent.razor.scss";
 @import "../../Controls/PillComponent.razor.scss";
+@import "../../Controls/BodyTypeCaruselComponent.razor.scss";
+@import "../../Controls/SearchComponent.razor.scss";
 
 /*pages*/
 @import "../../Pages/IndexPage.razor.scss";

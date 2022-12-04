@@ -1,8 +1,15 @@
 ﻿
-<div class="container text-center my-3">
+<div class="container">
+    
+    
+
     <div class="row mx-auto my-auto justify-content-center">
 
-        <div id="carouselExampleControls" class="carousel" data-bs-ride="carousel">
+        <div class="carousel-title">
+            <span>Search by motorcycle type</span>
+        </div>
+
+        <div id="bodyTypeCarousel" class="carousel" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
                 <button class="nav-link custom-tab-button" type="button" aria-current="page" @onclick="@(async () => await this.OnClickHandler(Domain.Types.BodyType.ADVENTURE))">

@@ -1,15 +1,16 @@
 ﻿@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poiret+One&display=swap");
 :root {
-  --header-background: #ffffff;
-  --page-background: #ffffff;
-  --container-background: #ffffff;
-  --card-background: #ffffff;
-  --footer-background: #ffffff;
-  --text-black: #000000;
-  --text-red: #c60021;
-  --text-white: #ffffff;
-  --test-disabled: #c2c6c9;
-  --header-font: "Poiret One", cursive;
-  --normal-font: "Montserrat", sans-serif;
+    --header-background: #ffffff;
+    --page-background: #ffffff;
+    --container-background: #ffffff;
+    --card-background: #ffffff;
+    --footer-background: #ffffff;
+    --text-black: #000000;
+    --text-red: #c60021;
+    --text-white: #ffffff;
+    --test-disabled: #c2c6c9;
+    --header-font: "Poiret One", cursive;
+    --normal-font: "Montserrat", sans-serif;
+    --border: 1px solid rgba(0,0,0,.125);
 }

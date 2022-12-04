@@ -15,6 +15,8 @@ namespace PS.Motorcycle.UserPortal.Controls
 
         public string? searchPhrase;
 
+        private bool searchButtonClicked = false;
+
         public SearchComponent()
         {
             this.searchPhrase = string.Empty;
@@ -22,6 +24,7 @@ namespace PS.Motorcycle.UserPortal.Controls
 
         private async Task OnClickHandler(string searchPhrase)
         {
+            this.searchButtonClicked = true;
             await this.OnSearchClick.InvokeAsync(searchPhrase);
         }
 

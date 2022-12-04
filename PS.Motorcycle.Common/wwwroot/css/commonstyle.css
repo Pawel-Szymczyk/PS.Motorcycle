@@ -3,17 +3,23 @@
 :root {
   --header-background: #ffffff;
   --page-background: #ffffff;
+  --panel-background: #ffffff;
   --container-background: #ffffff;
   --card-background: #ffffff;
   --footer-background: #ffffff;
-  --text-black: #000000;
-  --text-red: #c60021;
-  --text-white: #ffffff;
-  --test-disabled: #c2c6c9;
-  --header-font: "Poiret One", cursive;
-  --normal-font: "Montserrat", sans-serif;
+  --color-black: #000000;
+  --color-red: #c60021;
+  --color-white: #ffffff;
+  --color-disabled: #c2c6c9;
+  --primary-font: "Poiret One", cursive;
+  --secondary-font: "Montserrat", sans-serif;
+  --border-radius: 10px;
+  --letter-spacing: 10px;
+  --box-shadow: rgb(0 0 0 / 10%) 0px 0.3px 0.9px, rgb(0 0 0 / 13%) 0px 1.6px 3.6px;
+  --border: 1px solid rgba(0,0,0,.125);
 }
 
+/*@import "../wwwroot/styles/theme.scss";*/
 /* phone first layout */
 .card {
   /*border-radius: 0;*/
@@ -62,5 +68,84 @@
 
 /* For Tablet View */
 /* For Desktop View */
+/* phone (default) */
+.footer-container {
+  background: var(--footer-background);
+  border-top: var(--border);
+  padding: 12px;
+}
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/CardComponent.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AACQ;AACA;AAER;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;ACZJ;AAGA;AAGI;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAAA;EAEA;EACA;EACA;;;AAGJ;EACI;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;;;AAGJ;EACI;EACA;;;AAGA;EACI;EACA;EACA;;;AAGR;EACI;EACA;;;AAMJ;AAMA%22%7D */
+.footer-icons {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+string {
+  color: var(--color-black);
+}
+
+.text-muted {
+  color: var(--color-black) !important;
+  text-transform: lowercase;
+  font-family: var(--primary-font);
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: var(--letter-spacing);
+}
+
+.footer-info {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-info p {
+  margin-bottom: 0;
+  margin-left: 10px;
+  color: var(--color-red);
+  text-transform: lowercase;
+  font-family: var(--primary-font);
+  font-weight: bold;
+}
+
+.footer-left {
+  margin-bottom: 10px;
+}
+
+.footer-right {
+  align-items: center;
+  align-content: space-between;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+/* For Tablet View */
+/* For Desktop View */
+@media screen and (min-width: 1200px) {
+  .footer-info {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .footer-icons {
+    padding-right: 20px;
+    margin-bottom: 0;
+  }
+  .footer-left {
+    margin: 0;
+  }
+  .footer-right {
+    flex-direction: row;
+    width: auto;
+  }
+  .text-muted {
+    font-size: 17px;
+  }
+  .footer-info p {
+    font-size: 12px;
+    letter-spacing: var(--letter-spacing);
+  }
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/CardComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/FooterComponent.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AACQ;AACA;AAER;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;ACnBJ;AAEA;AAGA;AAGI;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAAA;EAEA;EACA;EACA;;;AAGJ;EACI;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;;;AAGJ;EACI;EACA;;;AAGA;EACI;EACA;EACA;;;AAGR;EACI;EACA;;;AAMJ;AAMA;AC9DC;AACD;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAEJ;EACI;EACA;;;AAEJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAEJ;AAKA;AACA;EACI;IACI;IACA;IACA;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;IACA%22%7D */

@@ -15,7 +15,7 @@
     </div>
 
 
-    <div id="search-section" class="main-section">
+    <div class="main-section main-search-section">
         <div class="panel search-panel">
 
             <div class="container">
@@ -28,7 +28,7 @@
                 @if(this.searchData is null)
                 {
                     @*<p><em>Loading...</em></p>*@
-                    <div>
+                    <div class="body-type-container">
                         <BodyTypeCaruselComponent OnBodyTypeClick="@this.OnBodyTypeFilterClick" />
                     </div>
                 }
@@ -56,7 +56,7 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-2 col-md-10 col-lg-10 results-container">
+                        <div class="results-container col-sm-2 col-md-10 col-lg-10 ">
                             @if(this.filters.Count() > 0)
                             {
                                 <PillComponent Filters=@this.filters 
@@ -88,11 +88,10 @@
         @*pagination*@
         @if(this.searchData != null && this.searchData.pageCount > 1)
         {
-            <div class="panel paging-panel container-fluid">
+            <div class="panel paging-panel">
            
                 <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col-sm-12 col-md-10 pagination-container">
+                    <div class="pagination-container col-sm-12 col-md-12 col-lg-12 ">
                         
                         <PagingComponent CurrentPage=@this.searchData.currentPage 
                                          LeftMostPage=@this.searchData.leftMostPage 

@@ -1,0 +1,132 @@
+﻿
+
+/* phone (default) */
+
+.carousel-title {
+    font-family: var(--secondary-font);
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    color: var(--color-black);
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+#bodyTypeCarousel {
+    padding: 0;
+}
+
+
+.carousel-control-prev, .carousel-control-next {
+    width: 6vh;
+    height: 4vh;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.custom-tab-button {
+    padding: 0px;
+    border: none;
+    border-radius: var(--border-radius);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    background-color: #000000 !important;
+    border: none;
+    width: inherit;
+}
+
+
+.custom-tab-button p {
+    color: #fff;
+    position: absolute;
+    text-transform: lowercase;
+    font-size: 30px;
+    margin: 0;
+    padding-right: 10px;
+    font-family: var(--primary-font);
+    font-weight: 400;
+    letter-spacing: var(--letter-spacing);
+}
+
+.custom-tab-button-img {
+    height: 10em;
+    object-fit: cover;
+    transition: .5s;
+    opacity: 0.4;
+    border-radius: var(--border-radius);
+}
+
+.custom-tab-button-img:hover {
+    opacity: 1;
+}
+
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+
+    .carousel-inner {
+        display: flex;
+        padding: 1em;
+    }
+
+    .carousel-item {
+        margin-right: 0;
+        display: block;
+    }
+
+    .custom-tab-button {
+        margin: 3px;
+        width: fit-content;
+    }
+
+    .custom-tab-button-img {
+        width: 19.2em;
+    }
+
+    .carousel-control-prev, .carousel-control-next {
+        width: 5vh;
+    }
+
+    .carousel-title {
+        justify-content: flex-start;
+        margin: 0;
+        padding-left: 1.2em;
+    }
+}
+
+/* For Desktop View */
+@media screen and (min-width: 1200px) {
+    .carousel-inner {
+        display: flex;
+        padding: 1em;
+    }
+
+    .carousel-item {
+        margin-right: 0;
+        display: block;
+    }
+
+    .custom-tab-button {
+        margin: 3px;
+        width: fit-content;
+    }
+
+    .custom-tab-button-img {
+        width: 19.2em;
+    }
+
+    .carousel-control-prev, .carousel-control-next {
+        width: 5vh;
+    }
+
+    .carousel-title {
+        justify-content: flex-start;
+        margin: 0;
+        padding-left: 1.2em;
+    }
+}
+
+
+
+
