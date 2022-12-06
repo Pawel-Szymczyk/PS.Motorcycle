@@ -1,5 +1,4 @@
 ﻿
-/*@import "../wwwroot/styles/theme.scss";*/
 
 /* phone first layout */
 
@@ -24,6 +23,11 @@
 .list-group-item {
     display: flex;
     justify-content: space-between;
+    font-family: var(--primary-font);
+    letter-spacing: var(--letter-spacing);
+    font-weight: var(--font-weight-bold);
+    padding: 0.5rem 0;
+    text-transform: lowercase;
 }
 
 .card-body {

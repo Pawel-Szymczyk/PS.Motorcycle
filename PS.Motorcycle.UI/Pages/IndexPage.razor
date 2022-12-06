@@ -5,25 +5,17 @@
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
 <div class="main">
-    
     <div class="main-section">
-
         <div class="breadcrumbs-container">
             <BreadcrumbComponent Breadcrumbs="@this.Breadcrumbs"></BreadcrumbComponent>
         </div>
-
     </div>
-
-
     <div class="main-section main-search-section">
         <div class="panel search-panel">
-
             <div class="container">
-
                 <div class="search-container">
                     <SearchComponent OnSearchClick="@this.OnSearchClick" />
                 </div>
-
 
                 @if(this.searchData is null)
                 {
@@ -35,9 +27,9 @@
                 else
                 {
                     <div class="row">
-                        <div class="col-sm-12 col-md-2 col-lg-2 " style="border-right: 1px solid rgba(0,0,0,.125);">
+                        <div class="results-container">
                             @*filters*@
-                            <div class="filter-container">
+                            <div class="filter-container col-sm-12 col-md-2 col-lg-2">
                                 <AzureCognitiveSearchMakeComponent MakeData="@this.makeData" 
                                                                     ModelData="@this.modelData" 
                                                                     OnMakeClick="@this.OnMakeClickHandlerAsync" 
@@ -54,33 +46,28 @@
                                                                                 OnMinEngineCapacityChanged="@this.OnMinEngineCapacityChangedHandlerAsync"
                                                                                 OnMaxEngineCapacityChanged="@this.OnMaxEngineCapacityChangedHandlerAsync" />
                             </div>
-                        </div>
-
-                        <div class="results-container col-sm-2 col-md-10 col-lg-10 ">
-                            @if(this.filters.Count() > 0)
-                            {
-                                <PillComponent Filters=@this.filters 
-                                                OnFilterRemoveClick=@this.OnFilterRemoveClickHandlerAsync
-                                                OnFilterResetClick=@this.OnFilterResetClickHandlerAsync />
-                            }
-                        
-                            <div class="row row-cols-1 row-cols-md-3 g-4 motorcycles-list">
-                                @*results *@
-
-                                @{
-                                    var results = this.searchData.resultList?.GetResults().ToList();
-                                }
-
-                                @foreach(var result in results)
+                            <div class="cards-container col-sm-2 col-md-10 col-lg-10">
+                                @if(this.filters.Count() > 0)
                                 {
-                                    string path = $"/motorcycle/{result.Document.Id}";
-                                    <CardComponent Motorcycle="result.Document" Path="@path" />
+                                    <PillComponent Filters=@this.filters 
+                                                    OnFilterRemoveClick=@this.OnFilterRemoveClickHandlerAsync
+                                                    OnFilterResetClick=@this.OnFilterResetClickHandlerAsync />
                                 }
+                                <div class="row row-cols-1 row-cols-md-3 g-4 motorcycles-list">
+                                    @*results *@
+                                    @{
+                                        var results = this.searchData.resultList?.GetResults().ToList();
+                                    }
+                                    @foreach(var result in results)
+                                    {
+                                        string path = $"/motorcycle/{result.Document.Id}";
+                                        <CardComponent Motorcycle="result.Document" Path="@path" />
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
                 }
-
             </div>
         </div>
     </div>
@@ -89,28 +76,20 @@
         @if(this.searchData != null && this.searchData.pageCount > 1)
         {
             <div class="panel paging-panel">
-           
                 <div class="row">
-                    <div class="pagination-container col-sm-12 col-md-12 col-lg-12 ">
-                        
+                    <div class="pagination-container col-sm-12 col-md-12 col-lg-12">
                         <PagingComponent CurrentPage=@this.searchData.currentPage 
                                          LeftMostPage=@this.searchData.leftMostPage 
                                          PageCount=@this.searchData.pageCount 
                                          PageRange=@this.searchData.pageRange 
                                          SearchText=@this.searchData.searchText 
                                          OnSearchPagerClick=@this.OnSearchPagerClickHandlerAsync />
-
                     </div>
                 </div>
-           
             </div>
         }
     </div>
     <div class="main-section">
         <FooterComponent />
     </div>
-
-
-
 </div>
-

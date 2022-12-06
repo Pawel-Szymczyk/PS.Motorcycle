@@ -36,7 +36,7 @@
 
                         if(activeFacet)
                         {
-                             <li class="facet-option" @onclick="@(e => this.SearchFacet(f))" style="display: flex; flex-wrap: nowrap; align-content: center; justify-content: space-between; align-items: center;">
+                             <li class="facet-option active-facet" @onclick="@(e => this.SearchFacet(f))">
 
                                  <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
@@ -45,7 +45,7 @@
 
                                     <label class="facet-label" data-category="@facetLink">@facetLink</label>
                                  </div>
-                                 <span class="badge rounded-pill bg-secondary">@facetCount</span>
+                                 <span class="badge rounded-pill active-pill">@facetCount</span>
                      
                             </li>
                         }
@@ -61,7 +61,7 @@
 
                                     <label class="facet-label" data-category="@facetLink">@facetLink</label>
                                 </div>
-                                <span class="badge rounded-pill bg-primary">@facetCount</span>
+                                <span class="badge rounded-pill bg-dark">@facetCount</span>
                      
                         </li>
                         }

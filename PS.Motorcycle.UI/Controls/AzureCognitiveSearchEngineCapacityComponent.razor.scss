@@ -1,4 +1,8 @@
-﻿
+﻿/* phone (default) */
+
+
+
+
 .filter-item {
     width: 100%;
 }
@@ -12,27 +16,16 @@
 }
 
 
-
-
-
-
-
-
-
-
-
 .customCollapseBtn {
     text-decoration: none;
 }
 
 .facet-options-list {
-
     list-style-type: none !important;
     padding: 0;
 }
 
 .facet-option {
-    
     text-transform: lowercase;
 }
 
@@ -40,9 +33,23 @@
         text-decoration: none;
     }
 
-    label::first-letter {
-        text-transform: capitalize;
-    }
+label::first-letter {
+    text-transform: capitalize;
+}
+
+
+
+
+
+
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px) and (max-device-width: 1199px) {
+}
+
+/* For Desktop View */
+@media screen and (min-width: 1200px) {
+}
 
 
 

@@ -1,5 +1,4 @@
 ﻿
-
 /* phone (default) */
 .main {
     height: inherit;
@@ -32,11 +31,17 @@
 
 .body-type-container {}
 
-.filter-container {
-    width: 100%;
+.results-container {
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.results-container {}
+.filter-container {
+    width: 100%;
+    padding-bottom: 12px;
+}
+
+.cards-container {}
 
 .paging-panel {
     margin-top: 1em;
@@ -45,9 +50,19 @@
 .pagination-container {}
 
 /* For Tablet View */
-@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+@media screen and (min-device-width: 768px) and (max-device-width: 1199px) {
     #search-section {
         height: calc(100% - 6rem);
+    }
+
+    .results-container {
+        justify-content: space-between;
+        flex-wrap: nowrap;
+    }
+
+    .filter-container {
+        width: auto;
+        border-right: 1px solid rgba(0,0,0,.125);
     }
 }
 
@@ -56,6 +71,17 @@
 @media screen and (min-width: 1200px) {
     #search-section {
         height: calc(100% - 6rem);
+    }
+
+    .results-container {
+        justify-content: space-between;
+        flex-wrap: nowrap;
+    }
+
+    .filter-container {
+        width: 200px;
+        padding-right: 12px;
+        border-right: 1px solid rgba(0,0,0,.125);
     }
 }
 

@@ -13,13 +13,14 @@
   --color-disabled: #c2c6c9;
   --primary-font: "Poiret One", cursive;
   --secondary-font: "Montserrat", sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
   --border-radius: 10px;
   --letter-spacing: 10px;
   --box-shadow: rgb(0 0 0 / 10%) 0px 0.3px 0.9px, rgb(0 0 0 / 13%) 0px 1.6px 3.6px;
   --border: 1px solid rgba(0,0,0,.125);
 }
 
-/*@import "../wwwroot/styles/theme.scss";*/
 /* phone first layout */
 .card {
   /*border-radius: 0;*/
@@ -39,6 +40,11 @@
 .list-group-item {
   display: flex;
   justify-content: space-between;
+  font-family: var(--primary-font);
+  letter-spacing: var(--letter-spacing);
+  font-weight: var(--font-weight-bold);
+  padding: 0.5rem 0;
+  text-transform: lowercase;
 }
 
 .card-body {
@@ -148,4 +154,4 @@ string {
   }
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/CardComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/FooterComponent.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AACQ;AACA;AAER;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;ACnBJ;AAEA;AAGA;AAGI;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAAA;EAEA;EACA;EACA;;;AAGJ;EACI;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;;;AAGJ;EACI;EACA;;;AAGA;EACI;EACA;EACA;;;AAGR;EACI;EACA;;;AAMJ;AAMA;AC9DC;AACD;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAEJ;EACI;EACA;;;AAEJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAEJ;AAKA;AACA;EACI;IACI;IACA;IACA;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;IACA%22%7D */
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/CardComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/FooterComponent.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AACQ;AACA;AAER;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;ACpBJ;AAGA;AAGI;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAAA;EAEA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;;;AAGJ;EACI;EACA;;;AAGA;EACI;EACA;EACA;;;AAGR;EACI;EACA;;;AAMJ;AAMA;AClEC;AACD;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAEJ;EACI;EACA;;;AAEJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAEJ;AAKA;AACA;EACI;IACI;IACA;IACA;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;IACA%22%7D */

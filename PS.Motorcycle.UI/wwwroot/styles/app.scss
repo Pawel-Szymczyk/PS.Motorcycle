@@ -1,10 +1,31 @@
 ﻿@import "theme.scss";
 
 /*components*/
+@import "../../Controls/AzureCognitiveSearchEngineCapacityComponent.razor.scss";
+@import "../../Controls/AzureCognitiveSearchFacetComponent.razor.scss";
+@import "../../Controls/AzureCognitiveSearchMakeComponent.razor.scss";
+@import "../../Controls/AzureCognitiveSearchProductionYearComponent.razor.scss";
+@import "../../Controls/BodyTypeCaruselComponent.razor.scss";
 @import "../../Controls/PagingComponent.razor.scss";
 @import "../../Controls/PillComponent.razor.scss";
-@import "../../Controls/BodyTypeCaruselComponent.razor.scss";
 @import "../../Controls/SearchComponent.razor.scss";
+
 
 /*pages*/
 @import "../../Pages/IndexPage.razor.scss";
+
+
+
+
+label, .form-select, option {
+    font-family: var(--secondary-font);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--color-red);
+    box-shadow: none;
+}
+
+
+

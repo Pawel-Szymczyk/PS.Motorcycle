@@ -13,6 +13,8 @@
   --color-disabled: #c2c6c9;
   --primary-font: "Poiret One", cursive;
   --secondary-font: "Montserrat", sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
   --border-radius: 10px;
   --letter-spacing: 10px;
   --box-shadow: rgb(0 0 0 / 10%) 0px 0.3px 0.9px, rgb(0 0 0 / 13%) 0px 1.6px 3.6px;
@@ -20,72 +22,172 @@
 }
 
 /*components*/
-/*@import "../wwwroot/styles/theme.scss";*/
-/* phone first layout */
-.pagination {
-  padding: 10px 0;
+/* phone (default) */
+.filter-item {
+  width: 100%;
+}
+
+.filter-collapse-btn {
+  width: inherit;
+  display: flex;
   justify-content: space-between;
-  margin: 0;
-}
-
-.page-link {
-  border: none;
-  font-family: var(--secondary-font);
-  font-weight: 500;
-}
-
-.page-link, .page-link:hover {
-  color: var(--color-black);
-}
-
-.pageSelected {
-  color: var(--color-red);
-}
-
-.disabled {
-  color: var(--color-disabled);
-  cursor: not-allowed;
-  opacity: 0.5;
   text-decoration: none;
 }
 
+.customCollapseBtn {
+  text-decoration: none;
+}
+
+.facet-options-list {
+  list-style-type: none !important;
+  padding: 0;
+}
+
+.facet-option {
+  text-transform: lowercase;
+}
+
+.facet-option > label {
+  text-decoration: none;
+}
+
+label::first-letter {
+  text-transform: capitalize;
+}
+
 /* For Tablet View */
-@media screen and (min-device-width: 768px) and (max-device-width: 1199px) {
-  .pagination {
-    justify-content: flex-end;
-  }
-}
 /* For Desktop View */
-@media screen and (min-width: 1200px) {
-  .pagination {
-    justify-content: flex-end;
-  }
+/* phone (default) */
+.filter-item {
+  width: 100%;
 }
-/*@import "../wwwroot/styles/theme.scss";*/
-.filters-pills-container {
-  margin: 10px 0;
+
+.filter-collapse-btn {
+  width: inherit;
   display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
+  text-decoration: none;
 }
 
-.filter-pill {
-  margin-right: 10px;
+.active-facet {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-content: center;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  width: fit-content;
+  color: var(--color-red);
 }
 
-.filter-pill-close-btn {
-  margin-left: 15px;
+.active-pill {
+  background-color: var(--color-red);
 }
 
+.customCollapseBtn {
+  text-decoration: none;
+}
+
+.badge,
+.facet-label {
+  font-family: var(--secondary-font);
+  font-weight: var(--font-weight-normal);
+}
+
+.facet-options-list {
+  list-style-type: none !important;
+  padding: 0;
+}
+
+.facet-option {
+  text-transform: lowercase;
+}
+
+.facet-option > label {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+label::first-letter {
+  text-transform: capitalize;
+}
+
+/* For Tablet View */
+/* For Desktop View */
+/* phone (default) */
+.filter-item {
+  width: 100%;
+}
+
+.filter-collapse-btn {
+  width: inherit;
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  color: var(--color-black);
+  align-items: center;
+}
+
+.filter-collapse-btn:hover {
+  color: var(--color-red);
+}
+
+.customCollapseBtn {
+  text-decoration: none;
+}
+
+.facet-options-list {
+  list-style-type: none !important;
+  padding: 0;
+}
+
+.facet-option {
+  text-transform: lowercase;
+}
+
+.facet-option > label {
+  text-decoration: none;
+}
+
+label::first-letter {
+  text-transform: capitalize;
+}
+
+/* For Tablet View */
+/* For Desktop View */
+/* phone (default) */
+.filter-item {
+  width: 100%;
+}
+
+.filter-collapse-btn {
+  width: inherit;
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+}
+
+.customCollapseBtn {
+  text-decoration: none;
+}
+
+.facet-options-list {
+  list-style-type: none !important;
+  padding: 0;
+}
+
+.facet-option {
+  text-transform: lowercase;
+}
+
+.facet-option > label {
+  text-decoration: none;
+}
+
+label::first-letter {
+  text-transform: capitalize;
+}
+
+/* For Tablet View */
+/* For Desktop View */
 /* phone (default) */
 .carousel-title {
   font-family: var(--secondary-font);
@@ -150,20 +252,25 @@
     display: flex;
     padding: 1em;
   }
+
   .carousel-item {
     margin-right: 0;
     display: block;
   }
+
   .custom-tab-button {
     margin: 3px;
     width: fit-content;
   }
+
   .custom-tab-button-img {
     width: 19.2em;
   }
+
   .carousel-control-prev, .carousel-control-next {
     width: 5vh;
   }
+
   .carousel-title {
     justify-content: flex-start;
     margin: 0;
@@ -176,26 +283,107 @@
     display: flex;
     padding: 1em;
   }
+
   .carousel-item {
     margin-right: 0;
     display: block;
   }
+
   .custom-tab-button {
     margin: 3px;
     width: fit-content;
   }
+
   .custom-tab-button-img {
     width: 19.2em;
   }
+
   .carousel-control-prev, .carousel-control-next {
     width: 5vh;
   }
+
   .carousel-title {
     justify-content: flex-start;
     margin: 0;
     padding-left: 1.2em;
   }
 }
+/*@import "../wwwroot/styles/theme.scss";*/
+/* phone first layout */
+.pagination {
+  padding: 10px 0;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.page-link {
+  border: none;
+  font-family: var(--secondary-font);
+  font-weight: 500;
+}
+
+.page-link, .page-link:hover {
+  color: var(--color-black);
+}
+
+.pageSelected {
+  color: var(--color-red);
+}
+
+.disabled {
+  color: var(--color-disabled);
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+}
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px) and (max-device-width: 1199px) {
+  .pagination {
+    justify-content: flex-end;
+  }
+}
+/* For Desktop View */
+@media screen and (min-width: 1200px) {
+  .pagination {
+    justify-content: flex-end;
+  }
+}
+/* phone (default) */
+.filters-pills-container {
+  margin: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.filter-pill {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  background-color: var(--color-black);
+  font-family: var(--secondary-font);
+  font-weight: var(--font-weight-normal);
+  letter-spacing: var(--letter-spacing);
+  text-transform: lowercase;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.filter-pill-close-btn {
+  margin-left: 15px;
+}
+
+/* For Tablet View */
+/* For Desktop View */
 /* phone (default) */
 .search-container-box {
   display: flex;
@@ -247,26 +435,33 @@
   .search-container-box {
     justify-content: space-around;
   }
+
   .search-container-box-row {
     width: 100%;
   }
+
   .search-container-box-2 {
     display: flex;
     justify-content: flex-end;
   }
+
   .search-container-box-row-2 {
     width: 1100px;
   }
+
   .search-group {
     flex-direction: row;
     padding: 0 24px;
   }
+
   .search-group > div {
     margin-bottom: 0;
   }
+
   .search-title {
     padding: 0 24px;
   }
+
   .submit-btn-container {
     margin-left: 10px;
   }
@@ -298,8 +493,14 @@
   margin-bottom: 1em;
 }
 
+.results-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .filter-container {
   width: 100%;
+  padding-bottom: 12px;
 }
 
 .paging-panel {
@@ -307,9 +508,19 @@
 }
 
 /* For Tablet View */
-@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+@media screen and (min-device-width: 768px) and (max-device-width: 1199px) {
   #search-section {
     height: calc(100% - 6rem);
+  }
+
+  .results-container {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  .filter-container {
+    width: auto;
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
   }
 }
 /* For Desktop View */
@@ -317,6 +528,26 @@
   #search-section {
     height: calc(100% - 6rem);
   }
+
+  .results-container {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  .filter-container {
+    width: 200px;
+    padding-right: 12px;
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
+  }
+}
+label, .form-select, option {
+  font-family: var(--secondary-font);
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/app.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PagingComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PillComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/BodyTypeCaruselComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/SearchComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Pages/IndexPage.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AACQ;AACA;AAER;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AClBJ;ACDA;AAGA;AAEA;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;;;AAGJ;AACA;EACI;IACI;;;AAKR;AACA;EACI;IACI;;;AC3CR;AAGA;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;ACvBJ;AAEA;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AAIJ;EACI;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAIJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AAIJ;AACA;EAEI;IACI;IACA;;EAGJ;IACI;IACA;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;;EAGJ;IACI;IACA;IACA;;;AAIR;AACA;EACI;IACI;IACA;;EAGJ;IACI;IACA;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;;EAGJ;IACI;IACA;IACA;;;AC5HR;AAEA;EACI;;;AAMJ;EACI;EACA;;;AAMJ;EACI;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;;;AAGJ;EACI;EACA;;;AAGJ;EACI;;;AAGJ;AAKA;AACA;EAEI;IACI;;EAGJ;IACI;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;;EAGJ;IACI;;;AJpFR;AKNA;AACA;EACI;;;AAOJ;EACI;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;;;AAGJ;EACI;;;AAKJ;EACI;;;AAKJ;EACI;;;AAKJ;AACA;EACI;IACI;;;AAKR;AACA;EACI;IACI%22%7D */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--color-red);
+  box-shadow: none;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/app.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/AzureCognitiveSearchEngineCapacityComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/AzureCognitiveSearchFacetComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/AzureCognitiveSearchMakeComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/AzureCognitiveSearchProductionYearComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/BodyTypeCaruselComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PagingComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PillComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/SearchComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Pages/IndexPage.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%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%22%7D */
