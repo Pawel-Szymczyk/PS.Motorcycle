@@ -134,20 +134,25 @@ string {
     flex-wrap: wrap;
     flex-direction: column;
   }
+
   .footer-icons {
     padding-right: 20px;
     margin-bottom: 0;
   }
+
   .footer-left {
     margin: 0;
   }
+
   .footer-right {
     flex-direction: row;
     width: auto;
   }
+
   .text-muted {
     font-size: 17px;
   }
+
   .footer-info p {
     font-size: 12px;
     letter-spacing: var(--letter-spacing);
@@ -280,6 +285,7 @@ string {
   .jumbotron-custom-text-box h1 {
     font-size: 9em;
   }
+
   .jumbotron-custom-text-box h2 {
     font-size: 3em !important;
   }
@@ -289,6 +295,7 @@ string {
   .jumbotron-custom-text-box h1 {
     font-size: 9em;
   }
+
   .jumbotron-custom-text-box h2 {
     font-size: 3em !important;
   }
@@ -316,4 +323,4 @@ string {
   font-weight: var(--font-weight-bold);
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/CardComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/FooterComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/BreadcrumbComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/TabsControlComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/JumbotronComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/LoaderComponent.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AACQ;AACA;AAER;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;ACpBJ;AAGA;AAGI;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAAA;EAEA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;;;AAGJ;EACI;EACA;;;AAGA;EACI;EACA;EACA;;;AAGR;EACI;EACA;;;AAMJ;AAMA;AClEC;AACD;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAEJ;EACI;EACA;;;AAEJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAEJ;AAKA;AACA;EACI;IACI;IACA;IACA;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;IACA;;;AClFP;EACG;EACA;;;AAGJ;EACI;EACA;EACA;EACA;;;ACRJ;AAEA;EACI;EACA;EACA;EACA;;;AAIJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;;;AAIJ;EACI;EACA;;;AAIJ;AACA;EACI;IACI;;;AAKR;AACA;EACI;IACI;;;ACjEP;AAED;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAKJ;AACA;EACI;IACI;;EAEJ;IACI;;;AAKR;AACA;EACI;IACI;;EAEJ;IACI;;;ACpER;EACI;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA%22%7D */
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/CardComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/FooterComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/BreadcrumbComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/TabsControlComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/JumbotronComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/LoaderComponent.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AACQ;AACA;AAER;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;ACpBJ;AAGA;AAGI;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAAA;EAEA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;;;AAGJ;EACI;EACA;;;AAGA;EACI;EACA;EACA;;;AAGR;EACI;EACA;;;AAMJ;AAMA;AClEC;AACD;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAEJ;EACI;EACA;;;AAEJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAEJ;AAKA;AACA;EACI;IACI;IACA;IACA;;;EAGJ;IACI;IACA;;;EAGJ;IACI;;;EAGJ;IACI;IACA;;;EAGJ;IACI;;;EAGJ;IACI;IACA;;;AClFP;EACG;EACA;;;AAGJ;EACI;EACA;EACA;EACA;;;ACRJ;AAEA;EACI;EACA;EACA;EACA;;;AAIJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;;;AAIJ;EACI;EACA;;;AAIJ;AACA;EACI;IACI;;;AAKR;AACA;EACI;IACI;;;ACjEP;AAED;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAKJ;AACA;EACI;IACI;;;EAEJ;IACI;;;AAKR;AACA;EACI;IACI;;;EAEJ;IACI;;;ACpER;EACI;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA%22%7D */
