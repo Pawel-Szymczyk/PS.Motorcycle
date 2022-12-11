@@ -252,25 +252,20 @@ label::first-letter {
     display: flex;
     padding: 1em;
   }
-
   .carousel-item {
     margin-right: 0;
     display: block;
   }
-
   .custom-tab-button {
     margin: 3px;
     width: fit-content;
   }
-
   .custom-tab-button-img {
     width: 19.2em;
   }
-
   .carousel-control-prev, .carousel-control-next {
     width: 5vh;
   }
-
   .carousel-title {
     justify-content: flex-start;
     margin: 0;
@@ -283,25 +278,20 @@ label::first-letter {
     display: flex;
     padding: 1em;
   }
-
   .carousel-item {
     margin-right: 0;
     display: block;
   }
-
   .custom-tab-button {
     margin: 3px;
     width: fit-content;
   }
-
   .custom-tab-button-img {
     width: 19.2em;
   }
-
   .carousel-control-prev, .carousel-control-next {
     width: 5vh;
   }
-
   .carousel-title {
     justify-content: flex-start;
     margin: 0;
@@ -327,7 +317,7 @@ label::first-letter {
 }
 
 .pageSelected {
-  color: var(--color-red);
+  color: var(--color-red) !important;
 }
 
 .disabled {
@@ -416,7 +406,7 @@ label::first-letter {
   font-family: var(--secondary-font);
 }
 
-.btn-custom {
+.search-custom {
   width: 100%;
 }
 
@@ -435,33 +425,26 @@ label::first-letter {
   .search-container-box {
     justify-content: space-around;
   }
-
   .search-container-box-row {
     width: 100%;
   }
-
   .search-container-box-2 {
     display: flex;
     justify-content: flex-end;
   }
-
   .search-container-box-row-2 {
     width: 1100px;
   }
-
   .search-group {
     flex-direction: row;
     padding: 0 24px;
   }
-
   .search-group > div {
     margin-bottom: 0;
   }
-
   .search-title {
     padding: 0 24px;
   }
-
   .submit-btn-container {
     margin-left: 10px;
   }
@@ -524,12 +507,10 @@ label::first-letter {
   #search-section {
     height: calc(100% - 6rem);
   }
-
   .results-container {
     justify-content: space-between;
     flex-wrap: nowrap;
   }
-
   .filter-container {
     width: auto;
     border-right: 1px solid rgba(0, 0, 0, 0.125);
@@ -540,12 +521,10 @@ label::first-letter {
   #search-section {
     height: calc(100% - 6rem);
   }
-
   .results-container {
     justify-content: space-between;
     flex-wrap: nowrap;
   }
-
   .filter-container {
     width: 200px;
     padding-right: 12px;
@@ -588,21 +567,6 @@ label::first-letter {
   padding: 1em;
 }
 
-.toolbar-container {
-  margin-bottom: 2em;
-  margin-top: 2em;
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
-  border-bottom-color: #d6d6d6;
-  padding: 5px 0;
-}
-
-.toolbar {
-  /*padding: 1.5rem 0;*/
-  margin-right: 0;
-  margin-left: 0;
-}
-
 .about, .technical-details, .gallery {
   margin-bottom: 5em;
 }
@@ -624,4 +588,4 @@ p, h2, h3, h4, label, .form-select, option {
   box-shadow: none;
 }
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/app.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/AzureCognitiveSearchEngineCapacityComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/AzureCognitiveSearchFacetComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/AzureCognitiveSearchMakeComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/AzureCognitiveSearchProductionYearComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/BodyTypeCaruselComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PagingComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PillComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/SearchComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Pages/IndexPage.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Pages/MotorcycleDetailsPage.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%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%22%7D */
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/wwwroot/styles/app.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/AzureCognitiveSearchEngineCapacityComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/AzureCognitiveSearchFacetComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/AzureCognitiveSearchMakeComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/AzureCognitiveSearchProductionYearComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/BodyTypeCaruselComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PagingComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/PillComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Controls/SearchComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Pages/IndexPage.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.UI/Pages/MotorcycleDetailsPage.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%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%22%7D */

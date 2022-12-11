@@ -1,0 +1,24 @@
+﻿
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poiret+One&display=swap');
+
+:root {
+    --header-background: #ffffff;
+    --page-background: #ffffff;
+    --panel-background: #ffffff;
+    --container-background: #ffffff;
+    --card-background: #ffffff;
+    --footer-background: #ffffff;
+    --color-black: #000000;
+    --color-red: #c60021;
+    --color-white: #ffffff;
+    --color-disabled: #c2c6c9;
+    --primary-font: 'Poiret One', cursive;
+    --secondary-font: 'Montserrat', sans-serif;
+    --font-weight-normal: 400;
+    --font-weight-bold: 700;
+    --border-radius: 10px;
+    --letter-spacing: 10px;
+    --box-shadow: rgb(0 0 0 / 10%) 0px 0.3px 0.9px, rgb(0 0 0 / 13%) 0px 1.6px 3.6px;
+    --border: 1px solid rgba(0,0,0,.125);
+}

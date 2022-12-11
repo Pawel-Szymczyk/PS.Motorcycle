@@ -1,0 +1,150 @@
+﻿/* phone (default) */
+
+.main {
+    height: inherit;
+}
+
+.main-section {
+}
+
+.breadcrumbs-container {
+}
+
+
+.container-fluid {
+}
+
+.toolbar-container {
+    padding: 0.5em 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+.toolbar {
+    margin-right: 0;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.manager-main-section {
+    height: calc(100% - 14rem);
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+.sort-search-container, .manager-paging-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.manager-form-group {
+    padding-bottom: 1rem;
+}
+
+.manager-sort-label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    align-content: center;
+    max-width: 10em;
+}
+
+.motorcycles-list {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.page-link {
+    border: none;
+}
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px) and (max-device-width: 1199px) {
+    .toolbar {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+
+    .manager-main-section {
+        height: calc(100% - 10rem);
+    }
+
+    .sort-search-container, .manager-paging-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+
+/* For Desktop View */
+@media screen and (min-width: 1200px) {
+
+    .toolbar {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+    }
+
+    .manager-main-section {
+        height: calc(100% - 10rem);
+    }
+
+    .sort-search-container, .manager-paging-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .pageButton {
+        border: none;
+        color: darkblue;
+        font-weight: normal;
+        width: 50px;
+    }
+
+    .pageSelected {
+        border: none;
+        color: black;
+        font-weight: bold;
+        width: 50px;
+    }
+
+    .pageButtonDisabled {
+        border: none;
+        color: lightgray;
+        font-weight: bold;
+        width: 50px;
+    }

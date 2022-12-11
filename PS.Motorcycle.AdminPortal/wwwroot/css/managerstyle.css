@@ -1,0 +1,228 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poiret+One&display=swap");
+:root {
+  --header-background: #ffffff;
+  --page-background: #ffffff;
+  --panel-background: #ffffff;
+  --container-background: #ffffff;
+  --card-background: #ffffff;
+  --footer-background: #ffffff;
+  --color-black: #000000;
+  --color-red: #c60021;
+  --color-white: #ffffff;
+  --color-disabled: #c2c6c9;
+  --primary-font: "Poiret One", cursive;
+  --secondary-font: "Montserrat", sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+  --border-radius: 10px;
+  --letter-spacing: 10px;
+  --box-shadow: rgb(0 0 0 / 10%) 0px 0.3px 0.9px, rgb(0 0 0 / 13%) 0px 1.6px 3.6px;
+  --border: 1px solid rgba(0,0,0,.125);
+}
+
+/* phone (default) */
+.main {
+  height: inherit;
+}
+
+.toolbar-container {
+  padding: 0.5em 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+}
+
+.toolbar {
+  margin-right: 0;
+  margin-left: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.manager-main-section {
+  height: calc(100% - 14rem);
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.sort-search-container, .manager-paging-container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.manager-form-group {
+  padding-bottom: 1rem;
+}
+
+.manager-sort-label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  align-content: center;
+  max-width: 10em;
+}
+
+.motorcycles-list {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.page-link {
+  border: none;
+}
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px) and (max-device-width: 1199px) {
+  .toolbar {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  .manager-main-section {
+    height: calc(100% - 10rem);
+  }
+  .sort-search-container, .manager-paging-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+/* For Desktop View */
+@media screen and (min-width: 1200px) {
+  .toolbar {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  .manager-main-section {
+    height: calc(100% - 10rem);
+  }
+  .sort-search-container, .manager-paging-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+.pageButton {
+  border: none;
+  color: darkblue;
+  font-weight: normal;
+  width: 50px;
+}
+
+.pageSelected {
+  border: none;
+  color: black;
+  font-weight: bold;
+  width: 50px;
+}
+
+.pageButtonDisabled {
+  border: none;
+  color: lightgray;
+  font-weight: bold;
+  width: 50px;
+}
+
+/* phone (default) */
+.main {
+  height: inherit;
+}
+
+.manager-edit-toolbar {
+  padding: 2rem;
+}
+
+.manager-edit-main-section {
+  height: calc(100% - 8rem);
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.manager-edit-panel {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.tabSubContent {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #d6d6d6;
+}
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px) and (max-device-width: 1199px) {
+  .manager-edit-main-section {
+    height: calc(100% - 2rem);
+  }
+  .sort-search-container, .manager-paging-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+/* For Desktop View */
+@media screen and (min-width: 1200px) {
+  .manager-edit-main-section {
+    height: calc(100% - 2rem);
+  }
+  .sort-search-container, .manager-paging-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+/* phone (default) */
+.main {
+  height: inherit;
+}
+
+.manager-edit-toolbar {
+  padding: 2rem;
+}
+
+.manager-edit-main-section {
+  height: calc(100% - 8rem);
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.manager-edit-panel {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.tabSubContent {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #d6d6d6;
+}
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px) and (max-device-width: 1199px) {
+  .manager-edit-main-section {
+    height: calc(100% - 2rem);
+  }
+  .sort-search-container, .manager-paging-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+/* For Desktop View */
+@media screen and (min-width: 1200px) {
+  .manager-edit-main-section {
+    height: calc(100% - 2rem);
+  }
+  .sort-search-container, .manager-paging-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.AdminPortal/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.AdminPortal/Pages/CatalogPage.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.AdminPortal/Pages/CreateMotorcyclePage.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.AdminPortal/Pages/EditMotorcyclePage.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AACQ;AACA;AAER;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;ACtBH;AAED;EACI;;;AAaJ;EACI;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;;;AAGJ;EACI;;;AAGJ;AACA;EACI;IACI;IACA;IACA;;EAGJ;IACI;;EAGJ;IACI;IACA;;;AAKR;AACA;EAEI;IACI;IACA;IACA;;EAGJ;IACI;;EAGJ;IACI;IACA;;;AA6BJ;EACI;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;;;ACpJP;AAED;EACI;;;AAaJ;EACI;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAIJ;AACA;EAEI;IACI;;EAGJ;IACI;IACA;;;AAKR;AACA;EAEI;IACI;;EAGJ;IACI;IACA;;;AC/DP;AAED;EACI;;;AAaJ;EACI;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAIJ;AACA;EAEI;IACI;;EAGJ;IACI;IACA;;;AAKR;AACA;EAEI;IACI;;EAGJ;IACI;IACA%22%7D */

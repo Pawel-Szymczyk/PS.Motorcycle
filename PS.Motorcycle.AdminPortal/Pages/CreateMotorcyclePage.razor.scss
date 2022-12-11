@@ -1,0 +1,66 @@
+﻿/* phone (default) */
+
+.main {
+    height: inherit;
+}
+
+.main-section {
+}
+
+.breadcrumbs-container {
+}
+
+
+.container-fluid {
+}
+
+.manager-edit-toolbar {
+    padding: 2rem;
+}
+
+.manager-edit-main-section {
+    height: calc(100% - 8rem);
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+}
+
+.manager-edit-panel {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.tabSubContent {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #d6d6d6;
+}
+
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px) and (max-device-width: 1199px) {
+
+    .manager-edit-main-section {
+        height: calc(100% - 2rem);
+    }
+
+    .sort-search-container, .manager-paging-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+
+/* For Desktop View */
+@media screen and (min-width: 1200px) {
+
+    .manager-edit-main-section {
+        height: calc(100% - 2rem);
+    }
+
+    .sort-search-container, .manager-paging-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
