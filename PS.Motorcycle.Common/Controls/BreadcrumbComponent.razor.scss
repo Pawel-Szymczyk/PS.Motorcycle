@@ -1,0 +1,11 @@
+﻿.breadcrumb-item a {
+    text-decoration: none;
+    color: var(--color-black);
+}
+
+.breadcrumb-item.active {
+    color: var(--color-red);
+    font-family: var(--secondary-font);
+    text-transform: lowercase;
+    font-weight: var(--font-weight-normal);
+}

@@ -1,0 +1,68 @@
+﻿
+/* phone (default) */
+
+.nav-additional-info {
+    border-bottom-width: 0.1em;
+    border-bottom-style: solid;
+    border-bottom-color: #d6d6d6;
+    padding-bottom: 0.5em;
+}
+
+
+.tc-custom-tab-button {
+    padding: 0;
+    margin: 0.3em;
+    border: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    background-color: var(--color-black) !important;
+    position: relative;
+    border-radius: var(--border-radius) !important;
+}
+
+.tc-custom-tab-button p {
+    color: var(--color-white);
+    position: absolute;
+    font-size: 30px;
+    margin: 0;
+    padding: 0;
+    font-family: var(--primary-font);
+    text-transform: lowercase;
+    letter-spacing: var(--letter-spacing);
+}
+
+.tc-custom-tab-button-img {
+    width: 19em;
+    height: 5em;
+    object-fit: cover;
+    transition: .5s;
+    opacity: 0.25;
+}
+
+.tc-custom-tab-button-img:hover {
+    opacity: 1;
+    border-radius: var(--border-radius);
+}
+
+
+.active > .tc-custom-tab-button-img {
+    opacity: 1;
+    border-radius: var(--border-radius);
+}
+
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px) and (max-device-width: 1199px) {
+    .tc-custom-tab-button-img {
+        width: 15.4em;
+    }
+}
+
+
+/* For Desktop View */
+@media screen and (min-width: 1200px) {
+    .tc-custom-tab-button-img {
+        width: 15.4em;
+    }
+}

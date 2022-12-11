@@ -16,6 +16,8 @@ namespace PS.Motorcycle.UserPortal.Pages
         #region Use Cases and Services ------------------------------------------
         //[Inject]
         //private IGetMotorcyclesUseCase GetMotorcyclesUseCase { get; set; } = default!;
+        [Inject]
+        private NavigationManager NavigationManager { get; set; } = default!;
 
         [Inject]
         private ISearchMotorcyclesUseCase SearchMotorcyclesUseCase { get; set; } = default!;
@@ -26,7 +28,8 @@ namespace PS.Motorcycle.UserPortal.Pages
 
         public List<IBreadcrumb> Breadcrumbs { get; set; }
 
-        private Virtualize<IMotorcycleDTO> MotorcycleContainer { get; set; }
+        private int PageNo { get; set; }
+
 
         private IEnumerable<IMotorcycleDTO> searchResults;
 
@@ -35,17 +38,13 @@ namespace PS.Motorcycle.UserPortal.Pages
 
         private Dictionary<string, string> makeData;
         private Dictionary<string, string> modelData;
-        private Dictionary<int, int> yearData;
         private Dictionary<int, int> engineCapacityData;
-
-        //private IDictionary<string, IList<FacetResult>> facetsData;
+        private Dictionary<int, int> yearData;
         private IDictionary<string, IList<Facet>> facetsData;
-        //private IDictionary<string, IList<Facet>> test;
 
         private Dictionary<string, string> filters = new Dictionary<string, string>();
 
-        [Inject]
-        private NavigationManager NavigationManager { get; set; } = default!;
+        private bool isSearchClicked;
 
         public IndexPage()
         {
@@ -54,10 +53,7 @@ namespace PS.Motorcycle.UserPortal.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            
             await base.OnInitializedAsync();
-
-
 
             IBreadcrumb breadcrumb = new Breadcrumb()
             {
@@ -69,15 +65,13 @@ namespace PS.Motorcycle.UserPortal.Pages
 
             this.searchResults = new List<IMotorcycleDTO>();
 
-            //this.searchData = new SearchData();
-
             this.makeData = new Dictionary<string, string>();
             this.modelData = new Dictionary<string, string>();
             this.yearData = new Dictionary<int, int>();
             this.engineCapacityData = new Dictionary<int, int>();
-            
-            //this.facetsData = new Dictionary<string, IList<FacetResult>>();
             this.facetsData = new Dictionary<string, IList<Facet>>();
+
+            this.isSearchClicked = false;
 
 
             await this.IsLoggedInAsync();
@@ -96,38 +90,19 @@ namespace PS.Motorcycle.UserPortal.Pages
 
         protected async Task OnSearchClick(string searchPhrase)
         {
+            this.filters = new Dictionary<string, string>();
+
+            // update search input view...
+            this.isSearchClicked = true;
+
             AzureCognitiveSearchData model = new AzureCognitiveSearchData()
             {
                 searchText = searchPhrase,
             };
 
             this.searchData = await this.SearchMotorcyclesUseCase.Execute(model);
-            if (this.searchData != null && this.searchData.resultList != null)
-            {
-                //this.facetsData = this.searchData.resultList.Facets;
-                foreach (var t in this.searchData.resultList.Facets)
-                {
-                    List<Facet> l = new List<Facet>();
-                    
-                    foreach (FacetResult f in t.Value)
-                    {
-                        Facet x = new Facet() { ActiveFacet = false, FacetResult = f };
-                        l.Add(x);
-                    }
-
-                    if(!this.facetsData.ContainsKey(t.Key))
-                    {
-                        this.facetsData.Add(t.Key, l);
-                    }
-                }
-            }
-
-
-
-
-            this.makeData = await this.SearchMotorcyclesUseCase.GetMakeDictionaryAsync();
-            this.yearData = await this.SearchMotorcyclesUseCase.GetProductionYearDictionaryAsync();
-            this.engineCapacityData = await this.SearchMotorcyclesUseCase.GetEngineCapacityDictionaryAsync();
+  
+            await this.GenerateFilters(this.searchData);
 
             this.StateHasChanged();
         }
@@ -139,33 +114,32 @@ namespace PS.Motorcycle.UserPortal.Pages
         /// </summary>
         /// <param name="bodyType"></param>
         /// <returns></returns>
-        protected async Task OnBodyTypeFilterClick(BodyType bodyType)
+        protected async Task OnBodyTypeFilterClickHandlerAsync(BodyType bodyType)
         {
+            // update search input view...
+            this.isSearchClicked = true;
 
-            Dictionary<string, string> filters = new Dictionary<string,string>();
-            filters.Add("bodyType", bodyType.ToString());
+            int bodyTypeInt = (int)bodyType;
+            this.filters["bodyType"] = bodyTypeInt.ToString();
 
             AzureCognitiveSearchData model = new AzureCognitiveSearchData()
             {
-                searchText = string.Empty,
-                filters = filters
-                //searchText = this.searchData.searchText,
-                //currentPage = this.searchData.currentPage,
-                //pageCount = this.searchData.pageCount,
-                //leftMostPage = this.searchData.leftMostPage,
-                //pageRange = this.searchData.pageRange,
-                //paging = this.searchData.paging,
-                //filters = this.filters
+                searchText = String.Empty,
+                filters = this.filters,
             };
+            this.searchData = await this.SearchMotorcyclesUseCase.Execute(model);
 
-            this.searchData = await this.SearchMotorcyclesUseCase.ExecuteByBodyTypeFilterAsync(model);
+            await this.GenerateFilters(this.searchData);
 
-            //if (this.searchData != null && this.searchData.resultList != null)
-            //    this.facetsData = this.searchData.resultList.Facets;
-            if (this.searchData != null && this.searchData.resultList != null)
+            this.StateHasChanged();
+        }
+
+
+        private async Task GenerateFilters(AzureCognitiveSearchData searchData)
+        {
+            if (searchData != null && searchData.resultList != null)
             {
-                //this.facetsData = this.searchData.resultList.Facets;
-                foreach (var t in this.searchData.resultList.Facets)
+                foreach (var t in searchData.resultList.Facets)
                 {
                     List<Facet> l = new List<Facet>();
                     foreach (FacetResult f in t.Value)
@@ -180,24 +154,43 @@ namespace PS.Motorcycle.UserPortal.Pages
                 }
             }
 
-            this.StateHasChanged();
+            this.makeData = await this.SearchMotorcyclesUseCase.GetMakeDictionaryAsync();
+            this.yearData = await this.SearchMotorcyclesUseCase.GetProductionYearDictionaryAsync();
+            this.engineCapacityData = await this.SearchMotorcyclesUseCase.GetEngineCapacityDictionaryAsync();
         }
 
 
-        
+        private async Task OnFacetClickHandlerAsync(string facet)
+        {
+            this.searchData.searchText = string.Empty;
+
+            this.filters["bodyType"] = facet;
+
+            AzureCognitiveSearchData model = new AzureCognitiveSearchData()
+            {
+                searchText = this.searchData.searchText,
+                currentPage = this.searchData.currentPage,
+                pageCount = this.searchData.pageCount,
+                leftMostPage = this.searchData.leftMostPage,
+                pageRange = this.searchData.pageRange,
+                paging = this.searchData.paging,
+                filters = this.filters
+            };
+
+            this.searchData = await this.SearchMotorcyclesUseCase.GetFilteredDataAsync(model);
+            this.StateHasChanged();
+        }
+
         private async Task OnMakeClickHandlerAsync(string filter)
         {
             this.modelData = await this.SearchMotorcyclesUseCase.GetModelDictionaryAsync(filter);
 
             // clean filters first...
             this.filters = new Dictionary<string, string>();
-            //this.filters.Add("make", filter);
             this.filters["make"] = filter;
 
             AzureCognitiveSearchData model = new AzureCognitiveSearchData()
             {
-                //searchText = string.Empty,
-                //filters = filters
                 searchText = this.searchData.searchText,
                 currentPage = this.searchData.currentPage,
                 pageCount = this.searchData.pageCount,
@@ -220,8 +213,6 @@ namespace PS.Motorcycle.UserPortal.Pages
 
             AzureCognitiveSearchData model = new AzureCognitiveSearchData()
             {
-                //searchText = string.Empty,
-                //filters = filters
                 searchText = this.searchData.searchText,
                 currentPage = this.searchData.currentPage,
                 pageCount = this.searchData.pageCount,
@@ -234,29 +225,6 @@ namespace PS.Motorcycle.UserPortal.Pages
             // return results for all makes or specific make
             this.searchData = await this.SearchMotorcyclesUseCase.GetFilteredDataAsync(model);
 
-            this.StateHasChanged();
-        }
-
-
-        private async Task OnFacetClickHandlerAsync(string facet)
-        {
-            this.searchData.searchText = string.Empty;
-
-            this.filters["bodyType"] = facet;
-
-            AzureCognitiveSearchData model = new AzureCognitiveSearchData()
-            {
-                searchText = this.searchData.searchText,
-                currentPage = this.searchData.currentPage,
-                pageCount = this.searchData.pageCount,
-                leftMostPage = this.searchData.leftMostPage,
-                pageRange = this.searchData.pageRange,
-                paging = this.searchData.paging,
-                filters = this.filters
-            };
-
-            //this.searchData = await this.SearchMotorcyclesUseCase.ExecuteFacetAsync(model);
-            this.searchData = await this.SearchMotorcyclesUseCase.GetFilteredDataAsync(model);
             this.StateHasChanged();
         }
 
@@ -346,20 +314,15 @@ namespace PS.Motorcycle.UserPortal.Pages
         }
 
 
-        //private async Task SearchPager(string paging, string searchText)
         private async Task OnSearchPagerClickHandlerAsync(Paging paging)
         {
 
             this.searchData.paging = paging.Page;
             this.searchData.searchText = paging.SearchText;
 
-            await this.Search();
-        }
-
-        private int PageNo { get; set; }
-
-        private async Task Search()
-        {
+            // -----------------------------------------------
+            // search update based on picked page
+            // 
             int page;
 
             switch (this.searchData.paging)
@@ -393,21 +356,14 @@ namespace PS.Motorcycle.UserPortal.Pages
             this.PageNo = page;
 
             this.searchData = await this.SearchMotorcyclesUseCase.ExecutePageAsync(model);
-
         }
 
         
 
-
-
-
-
-
+ 
 
         private async Task OnFilterResetClickHandlerAsync()
         {
-            this.filters = new Dictionary<string, string>();
-
             await this.OnSearchClick(string.Empty);
         }
 
@@ -418,7 +374,6 @@ namespace PS.Motorcycle.UserPortal.Pages
             AzureCognitiveSearchData model = new AzureCognitiveSearchData()
             {
                 searchText = string.Empty,
-                //bodyType = bodyType
                 filters = this.filters
             };
 

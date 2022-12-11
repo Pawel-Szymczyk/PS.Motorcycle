@@ -1,20 +1,15 @@
 ﻿
+<div class="container @(this.IsClicked ? "search-container-box-2" : "search-container-box")">
 
-<div class="container @(this.searchButtonClicked ? "search-container-box-2" : "search-container-box")">
+        <div class="row @(this.IsClicked ? "search-container-box-row-2" : "search-container-box-row") ">
 
-        <div class="row @(this.searchButtonClicked ? "search-container-box-row-2" : "search-container-box-row") ">
-
-            @if(!this.searchButtonClicked)
+            @if(!this.IsClicked)
             {
                 <div class="search-title col-sm-12">
                     <span>Search for technical and service data, photos and opinions about motorcycles</span>
                 </div>
             }
 
-
-
-
-        
             <div class="search-group">
                 <div class="col-sm-12 col-md-10 col-lg-10">
                     <input type="text" @bind="this.searchPhrase" class="form-control" placeholder="Search for make or model..." />
@@ -30,6 +25,5 @@
                 </div>
             </div>
             
-
         </div>
     </div>

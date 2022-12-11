@@ -153,5 +153,167 @@ string {
     letter-spacing: var(--letter-spacing);
   }
 }
+.breadcrumb-item a {
+  text-decoration: none;
+  color: var(--color-black);
+}
 
-/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/CardComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/FooterComponent.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AACQ;AACA;AAER;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;ACpBJ;AAGA;AAGI;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAAA;EAEA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;;;AAGJ;EACI;EACA;;;AAGA;EACI;EACA;EACA;;;AAGR;EACI;EACA;;;AAMJ;AAMA;AClEC;AACD;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAEJ;EACI;EACA;;;AAEJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAEJ;AAKA;AACA;EACI;IACI;IACA;IACA;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;IACA%22%7D */
+.breadcrumb-item.active {
+  color: var(--color-red);
+  font-family: var(--secondary-font);
+  text-transform: lowercase;
+  font-weight: var(--font-weight-normal);
+}
+
+/* phone (default) */
+.nav-additional-info {
+  border-bottom-width: 0.1em;
+  border-bottom-style: solid;
+  border-bottom-color: #d6d6d6;
+  padding-bottom: 0.5em;
+}
+
+.tc-custom-tab-button {
+  padding: 0;
+  margin: 0.3em;
+  border: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  background-color: var(--color-black) !important;
+  position: relative;
+  border-radius: var(--border-radius) !important;
+}
+
+.tc-custom-tab-button p {
+  color: var(--color-white);
+  position: absolute;
+  font-size: 30px;
+  margin: 0;
+  padding: 0;
+  font-family: var(--primary-font);
+  text-transform: lowercase;
+  letter-spacing: var(--letter-spacing);
+}
+
+.tc-custom-tab-button-img {
+  width: 19em;
+  height: 5em;
+  object-fit: cover;
+  transition: 0.5s;
+  opacity: 0.25;
+}
+
+.tc-custom-tab-button-img:hover {
+  opacity: 1;
+  border-radius: var(--border-radius);
+}
+
+.active > .tc-custom-tab-button-img {
+  opacity: 1;
+  border-radius: var(--border-radius);
+}
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px) and (max-device-width: 1199px) {
+  .tc-custom-tab-button-img {
+    width: 15.4em;
+  }
+}
+/* For Desktop View */
+@media screen and (min-width: 1200px) {
+  .tc-custom-tab-button-img {
+    width: 15.4em;
+  }
+}
+/* phone (default) */
+.jumbotron-custom-container {
+  position: relative;
+  padding: 0;
+  margin-bottom: 2em;
+  border: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  background-color: var(--color-black);
+}
+
+.jumbotron-custom-image {
+  opacity: 0.5;
+  width: 100%;
+  object-fit: cover;
+  height: 400px;
+}
+
+.jumbotron-custom-text-box {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  text-align-last: end;
+}
+
+.jumbotron-custom-text-box h1 {
+  color: var(--color-white);
+  text-transform: uppercase;
+  margin: 0;
+  padding-right: 0.1em;
+  letter-spacing: var(--letter-spacing);
+  font-size: 3em;
+  font-family: var(--primary-font);
+  font-weight: var(--font-weight-bold);
+  text-align: end;
+}
+
+.jumbotron-custom-text-box h2 {
+  font-size: 1em !important;
+  color: var(--color-white);
+  text-transform: uppercase;
+  margin: 0;
+  padding-right: 0.1em;
+  font-family: var(--primary-font);
+  letter-spacing: var(--letter-spacing);
+  text-align: end;
+}
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px) and (max-device-width: 1199px) {
+  .jumbotron-custom-text-box h1 {
+    font-size: 9em;
+  }
+  .jumbotron-custom-text-box h2 {
+    font-size: 3em !important;
+  }
+}
+/* For Desktop View */
+@media screen and (min-width: 1200px) {
+  .jumbotron-custom-text-box h1 {
+    font-size: 9em;
+  }
+  .jumbotron-custom-text-box h2 {
+    font-size: 3em !important;
+  }
+}
+.loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+}
+
+.spinner {
+  display: block;
+  background: url("/images/moto-loader.gif") 0 0 no-repeat;
+  height: 30px;
+  width: 180px;
+  margin-bottom: 1rem;
+}
+
+.loader p {
+  font-family: var(--primary-font);
+  text-transform: lowercase;
+  font-size: 20px;
+  font-weight: var(--font-weight-bold);
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8,%7B%22version%22:3,%22sourceRoot%22:%22%22,%22sources%22:%5B%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/wwwroot/styles/theme.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/CardComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/FooterComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/BreadcrumbComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/TabsControlComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/JumbotronComponent.razor.scss%22,%22file:///G:/Projects/VStudio/PS.Motorcycle/PS.Motorcycle.Common/Controls/LoaderComponent.razor.scss%22%5D,%22names%22:%5B%5D,%22mappings%22:%22AACQ;AACA;AAER;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;ACpBJ;AAGA;AAGI;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AAAA;EAEA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;;;AAGJ;EACI;EACA;;;AAGA;EACI;EACA;EACA;;;AAGR;EACI;EACA;;;AAMJ;AAMA;AClEC;AACD;EACI;EACA;EACA;;;AAGJ;EACI;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAEJ;EACI;EACA;;;AAEJ;EACI;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAEJ;AAKA;AACA;EACI;IACI;IACA;IACA;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;IACA;;EAGJ;IACI;;EAGJ;IACI;IACA;;;AClFP;EACG;EACA;;;AAGJ;EACI;EACA;EACA;EACA;;;ACRJ;AAEA;EACI;EACA;EACA;EACA;;;AAIJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;;;AAIJ;EACI;EACA;;;AAIJ;AACA;EACI;IACI;;;AAKR;AACA;EACI;IACI;;;ACjEP;AAED;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAKJ;AACA;EACI;IACI;;EAEJ;IACI;;;AAKR;AACA;EACI;IACI;;EAEJ;IACI;;;ACpER;EACI;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA;EACA;;;AAGJ;EACI;EACA;EACA;EACA%22%7D */

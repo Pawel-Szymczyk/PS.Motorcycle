@@ -13,9 +13,11 @@ namespace PS.Motorcycle.UserPortal.Controls
         [Parameter]
         public EventCallback<string> OnSearchClick { get; set; }
 
+        [Parameter]
+        public bool IsClicked { get; set; }
+
         public string? searchPhrase;
 
-        private bool searchButtonClicked = false;
 
         public SearchComponent()
         {
@@ -24,7 +26,6 @@ namespace PS.Motorcycle.UserPortal.Controls
 
         private async Task OnClickHandler(string searchPhrase)
         {
-            this.searchButtonClicked = true;
             await this.OnSearchClick.InvokeAsync(searchPhrase);
         }
 

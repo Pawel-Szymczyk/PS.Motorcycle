@@ -4,8 +4,8 @@
             @foreach (TabContentComponent tabPage in this.Pages)
             {
                 <li class="nav-item" >
-                    <button class="nav-link custom-tab-button @this.GetButtonClass(tabPage)" type="button" aria-current="page" @onclick="@( () => ActivatePage(tabPage) )">
-                        <img src="@tabPage.ImgUrl" class="card-img-top custom-tab-button-img" alt="@tabPage.Title">
+                    <button class="nav-link tc-custom-tab-button @this.GetButtonClass(tabPage)" type="button" aria-current="page" @onclick="@( () => ActivatePage(tabPage) )">
+                        <img src="@tabPage.ImgUrl" class="tc-card-img-top tc-custom-tab-button-img" alt="@tabPage.Title">
                         <p>@tabPage.Title</p>
                     </button>
                 </li>

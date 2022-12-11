@@ -14,14 +14,14 @@
         <div class="panel search-panel">
             <div class="container">
                 <div class="search-container">
-                    <SearchComponent OnSearchClick="@this.OnSearchClick" />
+                    <SearchComponent OnSearchClick="@this.OnSearchClick" IsClicked="@this.isSearchClicked" />
                 </div>
 
                 @if(this.searchData is null)
                 {
                     @*<p><em>Loading...</em></p>*@
                     <div class="body-type-container">
-                        <BodyTypeCaruselComponent OnBodyTypeClick="@this.OnBodyTypeFilterClick" />
+                        <BodyTypeCaruselComponent OnBodyTypeClick="@this.OnBodyTypeFilterClickHandlerAsync" />
                     </div>
                 }
                 else
@@ -57,12 +57,23 @@
                                     @*results *@
                                     @{
                                         var results = this.searchData.resultList?.GetResults().ToList();
+
+                                        if(results.Count.Equals(0))
+                                        {
+                                            <div class="empty-motorcycle-list">
+                                                <p>Sorry, there are no results.</p>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            foreach(var result in results)
+                                            {
+                                                string path = $"/motorcycle/{result.Document.Id}";
+                                                <CardComponent Motorcycle="result.Document" Path="@path" />
+                                            }
+                                        }
                                     }
-                                    @foreach(var result in results)
-                                    {
-                                        string path = $"/motorcycle/{result.Document.Id}";
-                                        <CardComponent Motorcycle="result.Document" Path="@path" />
-                                    }
+                                    
                                 </div>
                             </div>
                         </div>

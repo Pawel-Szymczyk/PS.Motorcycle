@@ -1,5 +1,10 @@
 ﻿
 /* phone (default) */
+/*.content {
+    background-image: url("/images/motorcycle-bg-1.png");
+}*/
+
+
 .main {
     height: inherit;
 }
@@ -23,6 +28,7 @@
     padding-top: 50px;
     padding-bottom: 50px;
     overflow-y: auto;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .search-container {
@@ -43,11 +49,21 @@
 
 .cards-container {}
 
+.empty-motorcycle-list {
+    margin-top: 50px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
 .paging-panel {
     margin-top: 1em;
 }
 
 .pagination-container {}
+
+
 
 /* For Tablet View */
 @media screen and (min-device-width: 768px) and (max-device-width: 1199px) {

@@ -1,0 +1,23 @@
+﻿
+.loader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+}
+
+.spinner {
+    display: block;
+    background: url('/images/moto-loader.gif') 0 0 no-repeat;
+    height: 30px;
+    width: 180px;
+    margin-bottom: 1rem;
+}
+
+.loader p {
+    font-family: var(--primary-font);
+    text-transform: lowercase;
+    font-size: 20px;
+    font-weight: var(--font-weight-bold);
+}

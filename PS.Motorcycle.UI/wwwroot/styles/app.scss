@@ -13,11 +13,12 @@
 
 /*pages*/
 @import "../../Pages/IndexPage.razor.scss";
+@import "../../Pages/MotorcycleDetailsPage.razor.scss";
 
 
 
 
-label, .form-select, option {
+p, h2, h3, h4, label, .form-select, option {
     font-family: var(--secondary-font);
 }
 
@@ -26,6 +27,8 @@ label, .form-select, option {
     border-color: var(--color-red);
     box-shadow: none;
 }
+
+
 
 
 
