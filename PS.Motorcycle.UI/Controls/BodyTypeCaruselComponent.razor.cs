@@ -23,12 +23,20 @@ namespace PS.Motorcycle.UserPortal.Controls
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            if (firstRender)
+            try
             {
-                await this.JS.InvokeAsync<object>("initializeSearchCarousel");
+                if (firstRender)
+                {
+                    await this.JS.InvokeAsync<object>("initializeSearchCarousel");
 
-                this.firstRender = false;
+                    this.firstRender = false;
+                }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            
         }
 
 
